@@ -17,12 +17,6 @@ import (
 	"time"
 )
 
-const (
-	ParseTimeTemplate = "2006-01-02T15:04:05+08:00"
-	TimeTemplate      = "2006-01-02 15:04:05"
-	TimeTemplate2     = "20060102150405"
-)
-
 func GetStructMap(data interface{}) map[string]interface{} {
 	s, _ := json.Marshal(data)
 	var mapData map[string]interface{}
@@ -31,7 +25,7 @@ func GetStructMap(data interface{}) map[string]interface{} {
 		if field == "created_at" || field == "updated_at" || field == "deleted_at" {
 			if value != nil {
 				t, _ := time.ParseInLocation(ParseTimeTemplate, value.(string), time.Local)
-				mapData[field] = t.Format(TimeTemplate)
+				mapData[field] = t.Format(DateTimeTemplate)
 			}
 		}
 	}

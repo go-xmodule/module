@@ -11,8 +11,8 @@ package dirver
 
 import (
 	"fmt"
+	"github.com/go-utils-module/module/code"
 	"github.com/go-utils-module/module/utils"
-	"github.com/go-utils-module/module/utils/code"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )

@@ -18,24 +18,31 @@ import (
 	"github.com/jinzhu/now"
 )
 
-// Template 日期时间模板
-const Template = "2006-01-02 15:04:05"
-
-// DateFormat 日期模板
+// DateFormat
 const DateFormat = "2006-01-02"
 
 // MonthFormat 月份模板
 const MonthFormat = "2006-01"
 
+const (
+	// DateTimeTemplate 日期时间模板
+	DateTimeTemplate  = "2006-01-02 15:04:05"
+	ZeroTimeTemplate  = "2006-01-02 00:00:00"
+	DateTemplate      = "2006-01-02"
+	OnlyTimeTemplate  = "15:04:05"
+	ParseTimeTemplate = "2006-01-02T15:04:05+08:00"
+	YearMonthTemplate = "2006-01"
+)
+
 // TransDateArr 获取日期区间
 func TransDateArr(start string, end string) []string {
 	var dateList []string
-	st, _ := time.ParseInLocation(DateFormat, start, time.Local)
-	et, _ := time.ParseInLocation(DateFormat, end, time.Local)
+	st, _ := time.ParseInLocation(DateTemplate, start, time.Local)
+	et, _ := time.ParseInLocation(DateTemplate, end, time.Local)
 	startUnix := st.Unix()
 	endUnix := et.Unix()
 	for i := startUnix; i <= endUnix; i = i + 86400 {
-		dateList = append(dateList, time.Unix(i, 0).Format(DateFormat))
+		dateList = append(dateList, time.Unix(i, 0).Format(DateTemplate))
 	}
 	return dateList
 }
@@ -50,8 +57,8 @@ func GetTimeDuration(startTime int64, endTime int64) int64 {
 
 // GetDayStringSub 获取两个日期的天数之差
 func GetDayStringSub(startDate string, endDate string) int {
-	st, _ := time.Parse(Template, startDate)
-	et, _ := time.Parse(Template, endDate)
+	st, _ := time.Parse(DateTimeTemplate, startDate)
+	et, _ := time.Parse(DateTimeTemplate, endDate)
 	std := GetYearDay(st)
 	end := GetYearDay(et)
 	return end - std
@@ -124,12 +131,12 @@ func GetYearDay(date time.Time) int {
 
 // GetDayRangeList 获取日期区间数据
 func GetDayRangeList(startDate string, endDate string) ([]string, error) {
-	st, _ := time.ParseInLocation(DateFormat, startDate, time.Local)
+	st, _ := time.ParseInLocation(DateTemplate, startDate, time.Local)
 	if st.Unix() < 0 {
 		Logger.Warning("error date format,expect[2006-01-02] , input[" + startDate + "]")
 		return nil, errors.New("error date format,expect[2006-01-02] , input[" + startDate + "]")
 	}
-	et, _ := time.ParseInLocation(DateFormat, endDate, time.Local)
+	et, _ := time.ParseInLocation(DateTemplate, endDate, time.Local)
 	if et.Unix() < 0 {
 		Logger.Warning("error date format,expect[2006-01-02] , input[" + endDate + "]")
 		return nil, errors.New("error date format,expect[2006-01-02] , input[" + endDate + "]")
@@ -142,7 +149,7 @@ func GetDayRangeList(startDate string, endDate string) ([]string, error) {
 	for i := 0; ; i++ {
 		currentTimes := st.Unix() + int64(86400*i)
 		if currentTimes <= et.Unix() {
-			dateMap = append(dateMap, time.Unix(currentTimes, 0).Format(DateFormat))
+			dateMap = append(dateMap, time.Unix(currentTimes, 0).Format(DateTemplate))
 		} else {
 			break
 		}
@@ -153,8 +160,8 @@ func GetDayRangeList(startDate string, endDate string) ([]string, error) {
 // GetWeekRangeList 将开始时间和结束时间分割为周为单位
 func GetWeekRangeList(startDate string, endDate string) []string {
 	l, _ := time.LoadLocation("Asia/Shanghai")
-	startTime, _ := time.ParseInLocation(DateFormat, startDate, l)
-	endTime, _ := time.ParseInLocation(DateFormat, endDate, l)
+	startTime, _ := time.ParseInLocation(DateTemplate, startDate, l)
+	endTime, _ := time.ParseInLocation(DateTemplate, endDate, l)
 	weekDate := make([]WeekDate, 0)
 	diffDuration := endTime.Sub(startTime)
 	days := int(math.Ceil(float64(diffDuration/(time.Hour*24)))) + 1
@@ -228,8 +235,8 @@ type WeekDate struct {
 // GetMonthRangeList 月份区间
 func GetMonthRangeList(startDate string, endDate string) []string {
 	l, _ := time.LoadLocation("Asia/Shanghai")
-	startTime, _ := time.ParseInLocation(DateFormat, startDate, l)
-	endTime, _ := time.ParseInLocation(DateFormat, endDate, l)
+	startTime, _ := time.ParseInLocation(DateTemplate, startDate, l)
+	endTime, _ := time.ParseInLocation(DateTemplate, endDate, l)
 	monthList := []string{
 		startTime.Format(MonthFormat),
 	}

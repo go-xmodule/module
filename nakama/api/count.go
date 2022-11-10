@@ -10,9 +10,9 @@ package api
 
 import (
 	"errors"
+	"github.com/go-utils-module/module/code"
 	"github.com/go-utils-module/module/nakama/common"
 	"github.com/go-utils-module/module/utils"
-	"github.com/go-utils-module/module/utils/code"
 	"github.com/go-utils-module/module/utils/request"
 	"time"
 )
@@ -43,9 +43,9 @@ func NewCount(token string) *Count {
 	return count
 }
 
-func (a *Count) GetGameServerInfo(apiUrl string, model string) (CountResponse, error) {
-	utils.Logger.Info("当前运行模式为:", model)
-	response, err := request.NewRequest().Debug(model == utils.DebugMode).SetHeaders(a.GetNakamaHeader(a.Token)).SetTimeout(10).Get(apiUrl)
+func (a *Count) GetGameServerInfo(apiUrl string, mode string) (CountResponse, error) {
+	utils.Logger.Info("当前运行模式为:", mode)
+	response, err := request.NewRequest().Debug(mode == utils.DebugMode).SetHeaders(a.GetNakamaHeader(a.Token)).SetTimeout(10).Get(apiUrl)
 	if utils.HasErr(err, code.GetGameDataErr) {
 		return CountResponse{}, err
 	}
