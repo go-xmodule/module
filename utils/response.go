@@ -9,7 +9,7 @@
 package utils
 
 import (
-	"github.com/go-utils-module/module/utils/code"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,13 +17,13 @@ import (
 
 // ResponseData 响应结构体
 type ResponseData struct {
-	Code code.ErrCode `json:"code"`
+	Code fmt.Stringer `json:"code"`
 	Msg  string       `json:"msg"`
 	Data interface{}  `json:"data"`
 }
 
 // ApiResponse 异常通知
-func ApiResponse(context *gin.Context, errorCode code.ErrCode, data ...interface{}) {
+func ApiResponse(context *gin.Context, errorCode fmt.Stringer, data ...interface{}) {
 	response := ResponseData{
 		Code: errorCode,
 		Msg:  errorCode.String(),
