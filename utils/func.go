@@ -100,10 +100,10 @@ func Success(status int) bool {
 	return code.ErrCode(status) == code.Success
 }
 
-func CatchErr(err error, errCode code.ErrCode, params ...interface{}) bool {
+func CatchErr(err error, errCode fmt.Stringer, params ...interface{}) bool {
 	return HasErr(err, errCode, params...)
 }
-func HasErr(err error, errCode code.ErrCode, params ...interface{}) bool {
+func HasErr(err error, errCode fmt.Stringer, params ...interface{}) bool {
 	if err != nil {
 		errMsg := fmt.Sprintf("%s ,err:%s,params:%s,stack:%s", errCode.String(), err.Error(), params, string(debug.Stack()))
 		if Logger != nil {
@@ -122,7 +122,7 @@ func HasErr(err error, errCode code.ErrCode, params ...interface{}) bool {
 	}
 	return false
 }
-func HasWar(err error, errCode code.ErrCode, params ...interface{}) bool {
+func HasWar(err error, errCode fmt.Stringer, params ...interface{}) bool {
 	if err != nil {
 		errMsg := fmt.Sprintf("%s ,waring:%s,params:%s", errCode.String(), err.Error(), params)
 		if Logger != nil {
