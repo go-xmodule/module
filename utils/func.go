@@ -96,6 +96,9 @@ func ReplaceStringByRegex(str, rule, replace string) (string, error) {
 	}
 	return reg.ReplaceAllString(str, replace), nil
 }
+func Success(status int) bool {
+	return code.ErrCode(status) == code.Success
+}
 
 func CatchErr(err error, errCode code.ErrCode, params ...interface{}) bool {
 	return HasErr(err, errCode, params...)
