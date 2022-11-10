@@ -3,6 +3,7 @@ module github.com/go-utils-module/module
 go 1.17
 
 require (
+	github.com/disintegration/imaging v1.6.2
 	github.com/dlclark/regexp2 v1.7.0
 	github.com/druidcaesa/gotool v0.0.0-20210820022536-52fde3f59bc4
 	github.com/gin-gonic/gin v1.8.1
@@ -11,6 +12,8 @@ require (
 	github.com/golang-module/carbon v1.7.1
 	github.com/google/uuid v1.3.0
 	github.com/jinzhu/gorm v1.9.16
+	github.com/jinzhu/now v1.1.5
+	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/json-iterator/go v1.1.12
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
@@ -33,7 +36,6 @@ require (
 	github.com/goccy/go-json v0.9.7 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
-	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/jonboulle/clockwork v0.2.3 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
