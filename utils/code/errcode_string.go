@@ -11,67 +11,41 @@ func _() {
 	_ = x[Success-200]
 	_ = x[SystemErr-101000]
 	_ = x[ParamsError-101001]
-	_ = x[GetLogConfigErr-101002]
-	_ = x[GetApiConfigErr-101003]
-	_ = x[GetDbConfigErr-101004]
-	_ = x[GetChannelConfigErr-101005]
-	_ = x[GetSystemConfigErr-101006]
-	_ = x[GetNakamaConfigErr-101007]
-	_ = x[ConnectMysqlErr-101008]
-	_ = x[RequestOvertimeErr-101009]
-	_ = x[SignErr-101010]
-	_ = x[RedisPushErr-101011]
-	_ = x[RedisPublishErr-101012]
-	_ = x[NeTRequestErr-101013]
-	_ = x[ParseJsonDataErr-101014]
-	_ = x[DbErr-101015]
-	_ = x[DataDeleteErr-101016]
-	_ = x[PublishDataErr-101017]
-	_ = x[ApiSignErr-201000]
-	_ = x[ArmsTimeLengthErr-201001]
-	_ = x[ArmsNameEmptyErr-201002]
-	_ = x[ArmsKillPositionEmptyErr-201003]
-	_ = x[ArmsKillDistanceEmptyErr-201004]
-	_ = x[GetMatchDataError-201005]
-	_ = x[SaveWeaponErr-201006]
-	_ = x[SaveMatchDataErr-201007]
-	_ = x[SaveGameDataErr-201008]
-	_ = x[SavePlayerErr-201009]
-	_ = x[SaveGameInfoError-301000]
-	_ = x[GetGameInfoErr-301001]
-	_ = x[GetTokenErr-301002]
-	_ = x[GetGameDataErr-301003]
-	_ = x[AccountLoginErr-301004]
-	_ = x[AccountTokenExpressErr-301005]
-	_ = x[SaveGameStatisticsErr-301006]
+	_ = x[ConnectMysqlErr-101002]
+	_ = x[RequestOvertimeErr-101003]
+	_ = x[SignErr-101004]
+	_ = x[NeTRequestErr-101005]
+	_ = x[ParseJsonDataErr-101006]
+	_ = x[SaveGameInfoError-401000]
+	_ = x[GetGameInfoErr-401001]
+	_ = x[GetTokenErr-401002]
+	_ = x[GetGameDataErr-401003]
+	_ = x[AccountLoginErr-401004]
+	_ = x[AccountTokenExpressErr-401005]
+	_ = x[SaveGameStatisticsErr-401006]
 }
 
 const (
 	_ErrCode_name_0 = "Success"
-	_ErrCode_name_1 = "系统异常参数异常，请检查获取日志配置获取Api配置获取数据库配置异常获取发布频道配置异常获取系统配置异常获取Nakama配置异常连接数据库异常请求发起时间超时参数签名异常Redis push 数据异常Redis 发布消息异常网络请求失败解析json数据异常数据库异常DB数据删除异常数据发布定义失败"
-	_ErrCode_name_2 = "接口签名key异常武器使用时长错误武器名称为空武器击杀位置为空武器击杀距离为空获取比赛数据异常保存游戏使用的武器异常保存比赛数据异常保存游戏数据异常保存玩家数据异常"
-	_ErrCode_name_3 = "保存游戏信息异常获取游戏信息异常获取Token信息异常获取Nakama数据异常Nakama账户登录异常Nakama Token过期异常保存游戏统计数据异常"
+	_ErrCode_name_1 = "系统异常参数异常，请检查连接数据库异常请求发起时间超时参数签名异常网络请求失败解析json数据异常"
+	_ErrCode_name_2 = "保存游戏信息异常获取游戏信息异常获取Token信息异常获取Nakama数据异常Nakama账户登录异常Nakama Token过期异常保存游戏统计数据异常"
 )
 
 var (
-	_ErrCode_index_1 = [...]uint16{0, 12, 36, 54, 69, 96, 126, 150, 174, 195, 219, 237, 260, 284, 302, 324, 339, 359, 383}
-	_ErrCode_index_2 = [...]uint8{0, 21, 45, 63, 87, 111, 135, 168, 192, 216, 240}
-	_ErrCode_index_3 = [...]uint8{0, 24, 48, 71, 95, 119, 143, 173}
+	_ErrCode_index_1 = [...]uint8{0, 12, 36, 57, 81, 99, 117, 139}
+	_ErrCode_index_2 = [...]uint8{0, 24, 48, 71, 95, 119, 143, 173}
 )
 
 func (i ErrCode) String() string {
 	switch {
 	case i == 200:
 		return _ErrCode_name_0
-	case 101000 <= i && i <= 101017:
+	case 101000 <= i && i <= 101006:
 		i -= 101000
 		return _ErrCode_name_1[_ErrCode_index_1[i]:_ErrCode_index_1[i+1]]
-	case 201000 <= i && i <= 201009:
-		i -= 201000
+	case 401000 <= i && i <= 401006:
+		i -= 401000
 		return _ErrCode_name_2[_ErrCode_index_2[i]:_ErrCode_index_2[i+1]]
-	case 301000 <= i && i <= 301006:
-		i -= 301000
-		return _ErrCode_name_3[_ErrCode_index_3[i]:_ErrCode_index_3[i+1]]
 	default:
 		return "ErrCode(" + strconv.FormatInt(int64(i), 10) + ")"
 	}

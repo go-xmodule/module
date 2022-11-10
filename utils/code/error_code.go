@@ -30,45 +30,18 @@ const (
 
 // 系统功能
 const (
-	SystemErr           ErrCode = 101000 + iota // 系统异常
-	ParamsError                                 // 参数异常，请检查
-	GetLogConfigErr                             // 获取日志配置
-	GetApiConfigErr                             // 获取Api配置
-	GetDbConfigErr                              // 获取数据库配置异常
-	GetChannelConfigErr                         // 获取发布频道配置异常
-	GetSystemConfigErr                          // 获取系统配置异常
-	GetNakamaConfigErr                          // 获取Nakama配置异常
-	ConnectMysqlErr                             // 连接数据库异常
-	RequestOvertimeErr                          // 请求发起时间超时
-	SignErr                                     // 参数签名异常
-	RedisPushErr                                // Redis push 数据异常
-	RedisPublishErr                             // Redis 发布消息异常
-	NeTRequestErr                               // 网络请求失败
-	ParseJsonDataErr                            // 解析json数据异常
-	DbErr                                       // 数据库异常
-	DataDeleteErr                               // DB数据删除异常
-	PublishDataErr                              // 数据发布定义失败
-
-)
-
-// 接口相关
-const (
-	ApiSignErr               ErrCode = 201000 + iota // 接口签名key异常
-	ArmsTimeLengthErr                                // 武器使用时长错误
-	ArmsNameEmptyErr                                 // 武器名称为空
-	ArmsKillPositionEmptyErr                         // 武器击杀位置为空
-	ArmsKillDistanceEmptyErr                         // 武器击杀距离为空
-	GetMatchDataError                                // 获取比赛数据异常
-	SaveWeaponErr                                    // 保存游戏使用的武器异常
-	SaveMatchDataErr                                 // 保存比赛数据异常
-	SaveGameDataErr                                  // 保存游戏数据异常
-	SavePlayerErr                                    // 保存玩家数据异常
-
+	SystemErr          ErrCode = 101000 + iota // 系统异常
+	ParamsError                                // 参数异常，请检查
+	ConnectMysqlErr                            // 连接数据库异常
+	RequestOvertimeErr                         // 请求发起时间超时
+	SignErr                                    // 参数签名异常
+	NeTRequestErr                              // 网络请求失败
+	ParseJsonDataErr                           // 解析json数据异常
 )
 
 // 命令行游戏服务信息相关
 const (
-	SaveGameInfoError      ErrCode = 301000 + iota // 保存游戏信息异常
+	SaveGameInfoError      ErrCode = 401000 + iota // 保存游戏信息异常
 	GetGameInfoErr                                 // 获取游戏信息异常
 	GetTokenErr                                    // 获取Token信息异常
 	GetGameDataErr                                 // 获取Nakama数据异常
