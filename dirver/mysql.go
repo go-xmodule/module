@@ -31,7 +31,7 @@ type LinkParams struct {
 	Password    string
 	MaxOpenConn int
 	MaxIdleConn int
-	Model       string
+	Mode        string
 }
 
 // InitializeConsoleDB 初始化管理后台数据库
@@ -45,7 +45,7 @@ func InitializeConsoleDB(params LinkParams) (*gorm.DB, error) {
 	// 链接池设置
 	db.DB().SetMaxOpenConns(params.MaxOpenConn)
 	db.DB().SetMaxIdleConns(params.MaxIdleConn)
-	db.LogMode(params.Model == DebugMode)
+	db.LogMode(params.Mode == DebugMode)
 	// db.LogMode(false)
 	return db, nil
 }
