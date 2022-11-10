@@ -9,6 +9,7 @@
 package utils
 
 import (
+	"github.com/go-utils-module/module/utils/code"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
