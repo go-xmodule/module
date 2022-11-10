@@ -18,9 +18,8 @@ type MockResult struct {
 	Data interface{} `json:"data"`
 }
 
-func MockData(fields map[string]interface{}, count int, target interface{}) error {
+func MockData(fields map[string]interface{}, count int, target interface{}, path string) error {
 	extra.RegisterFuzzyDecoders()
-	path := getCurrentAbPathByExecutable()
 	key := fmt.Sprintf("%s|%d", "data", count)
 	paramsBite := map[string][]map[string]interface{}{
 		key: {
@@ -36,7 +35,7 @@ func MockData(fields map[string]interface{}, count int, target interface{}) erro
 let data = Mock.mock(#code#)
 console.log(JSON.stringify(data))`
 	code = strings.Replace(code, "#code#", reg, 1)
-	jsFile := path + "/script/temp_mock.js"
+	jsFile := path + "/temp_mock.js"
 	// jsFile = getCurrentPath()
 	_ = ioutil.WriteFile(jsFile, []byte(code), 0666)
 	command := "/opt/homebrew/bin/node " + jsFile
