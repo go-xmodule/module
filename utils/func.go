@@ -80,7 +80,13 @@ func Json(params interface{}) string {
 	b, _ := json.Marshal(params)
 	return string(b)
 }
-
+func JsonString(params interface{}) string {
+	b, _ := json.Marshal(params)
+	return string(b)
+}
+func Unmarshal(data string, params interface{}) error {
+	return json.Unmarshal([]byte(data), params)
+}
 func SplitTowString(str string) (string, string, error) {
 	temp := strings.Split(str, "@")
 	if len(temp) < 2 {
