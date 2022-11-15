@@ -8,7 +8,6 @@ require (
 	github.com/druidcaesa/gotool v0.0.0-20210820022536-52fde3f59bc4
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-redis/redis/v8 v8.11.4
-	github.com/go-session/session/v3 v3.1.7
 	github.com/golang-jwt/jwt/v4 v4.4.2
 	github.com/golang-module/carbon v1.7.1
 	github.com/google/uuid v1.3.0
