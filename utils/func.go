@@ -69,6 +69,10 @@ func TransInterfaceToMap(params interface{}) map[string]interface{} {
 	_ = json.Unmarshal(jsonData, &paramsMap)
 	return paramsMap
 }
+func ParseFloat64(str string) float64 {
+	v, _ := strconv.ParseFloat(str, 64)
+	return v
+}
 
 // TansToMap 转换json 到map
 func TansToMap(paramsStr []byte) map[string]interface{} {
