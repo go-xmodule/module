@@ -11,8 +11,10 @@ package utils
 
 import (
 	"bytes"
+	"encoding/base64"
 	"github.com/disintegration/imaging"
 	"io/ioutil"
+	"os"
 )
 
 type ImageUtil struct {
@@ -44,5 +46,15 @@ func (i *ImageUtil) Resize() error {
 	}
 	image = imaging.Resize(image, i.width, i.height, imaging.Lanczos)
 	err = imaging.Save(image, i.targetImg)
+	return err
+}
+
+// TransStrToImage base64 字符串转图片
+func TransStrToImage(sourceString string, imageName string) error {
+	dist, err := base64.StdEncoding.DecodeString(sourceString)
+	if err != nil {
+		return err
+	}
+	err = ioutil.WriteFile(imageName, dist, os.ModePerm)
 	return err
 }

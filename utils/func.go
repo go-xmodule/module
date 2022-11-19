@@ -164,3 +164,8 @@ func JsonDisplay(obj interface{}) {
 	fmt.Printf("\n")
 	fmt.Println("---------------------------------json obj-------------------------------------")
 }
+
+func GetFileExtension(fileName string) string {
+	temps := strings.Split(fileName, ".")
+	return temps[len(temps)-1]
+}
