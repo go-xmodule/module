@@ -8,6 +8,11 @@
 
 package global
 
+import "embed"
+
+var TemplatePath embed.FS
+var AssetsPath embed.FS
+
 // 常量定义
 const (
 	ApiV1                = "/api/v1"
