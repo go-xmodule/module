@@ -11,7 +11,7 @@ package dirver
 
 import (
 	"fmt"
-	"github.com/go-utils-module/module/code"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/utils"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -39,7 +39,7 @@ func InitializeConsoleDB(params LinkParams) (*gorm.DB, error) {
 	linkParams := "%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local"
 	linkAddress := fmt.Sprintf(linkParams, params.UserName, params.Password, params.Host, params.Port, params.DbName)
 	db, err := gorm.Open(DbType, linkAddress)
-	if utils.HasErr(err, code.ConnectMysqlErr) {
+	if utils.HasErr(err, global.ConnectMysqlErr) {
 		return nil, err
 	}
 	// 链接池设置

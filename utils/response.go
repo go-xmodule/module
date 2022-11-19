@@ -10,7 +10,7 @@ package utils
 
 import (
 	"fmt"
-	"github.com/go-utils-module/module/code"
+	"github.com/go-utils-module/module/global"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -38,8 +38,8 @@ func ApiResponse(context *gin.Context, errorCode fmt.Stringer, data ...interface
 // WebResponse 异常通知
 func WebResponse(context *gin.Context, errorCode interface{}, data ...interface{}) {
 	msg := ""
-	var errCode code.ErrCode = 201
-	if code, ok := errorCode.(code.ErrCode); ok {
+	var errCode global.ErrCode = 201
+	if code, ok := errorCode.(global.ErrCode); ok {
 		msg = code.String()
 		errCode = code
 	} else if err, ok := errorCode.(error); ok {

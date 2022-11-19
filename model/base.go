@@ -12,7 +12,7 @@ package models
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/go-utils-module/module/code"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/utils"
 	"github.com/jinzhu/gorm"
 )
@@ -50,7 +50,7 @@ func (m *BaseModel) GetModel() ModelAction {
 // DeleteByWhere 删除数据
 func (m *BaseModel) DeleteByWhere(where interface{}) error {
 	err := m.db.Where(where).Delete(m.model).Error
-	if utils.HasErr(err, code.DataDeleteErr) {
+	if utils.HasErr(err, global.DataDeleteErr) {
 		return err
 	}
 	return nil
@@ -73,7 +73,7 @@ func (m *BaseModel) Begin() *gorm.DB {
 func (m *BaseModel) Exist(where Where) (bool, error) {
 	var count int
 	err := m.db.Model(m.Result).Where(where).Count(&count).Error
-	if utils.HasErr(err, code.DbErr) {
+	if utils.HasErr(err, global.DbErr) {
 		return false, err
 	}
 	return count > 0, nil

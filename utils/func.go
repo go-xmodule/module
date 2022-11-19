@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/go-utils-module/module/code"
+	"github.com/go-utils-module/module/global"
 	"os"
 	"regexp"
 	"runtime/debug"
@@ -94,7 +94,7 @@ func Unmarshal(data string, params interface{}) error {
 func SplitTowString(str string) (string, string, error) {
 	temp := strings.Split(str, "@")
 	if len(temp) < 2 {
-		return "", "", errors.New(code.ParamsError.String())
+		return "", "", errors.New(global.ParamsError.String())
 	}
 	return temp[0], temp[1], nil
 }
@@ -107,7 +107,7 @@ func ReplaceStringByRegex(str, rule, replace string) (string, error) {
 	return reg.ReplaceAllString(str, replace), nil
 }
 func Success(status int) bool {
-	return code.ErrCode(status) == code.Success
+	return global.ErrCode(status) == global.Success
 }
 
 func CatchErr(err error, errCode fmt.Stringer, params ...interface{}) bool {

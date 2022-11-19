@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	global "github.com/go-utils-module/module/code"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/nakama/common"
 	"github.com/go-utils-module/module/utils"
 	"github.com/go-utils-module/module/utils/request"

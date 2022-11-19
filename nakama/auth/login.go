@@ -12,7 +12,7 @@ import (
 	"crypto"
 	"errors"
 	"fmt"
-	"github.com/go-utils-module/module/code"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/nakama/common"
 	"github.com/go-utils-module/module/utils"
 	"github.com/go-utils-module/module/utils/request"
@@ -87,7 +87,7 @@ func (a *Auth) parseConsoleToken(hmacSecretByte []byte, tokenString string) (use
 		}
 		return hmacSecretByte, nil
 	})
-	if utils.HasErr(err, code.GetTokenErr) {
+	if utils.HasErr(err, global.GetTokenErr) {
 		return
 	}
 	claims, ok := token.Claims.(*ConsoleTokenClaims)
@@ -105,7 +105,7 @@ func (a *Auth) testToken(loginToken LoginToken) (int, error) {
 		}
 		return []byte(a.signKey), nil
 	})
-	if utils.HasErr(err, code.GetTokenErr) {
+	if utils.HasErr(err, global.GetTokenErr) {
 		utils.Logger.Error("parse token error:", err, "  config:", a.signKey, ", token:", loginToken.Token)
 		return InvalidToken, err
 	}
@@ -128,14 +128,14 @@ func (a *Auth) testToken(loginToken LoginToken) (int, error) {
 func (a *Auth) GetToken(loginToken LoginToken) (LoginToken, error) {
 	if loginToken.Token == "" {
 		token, err := a.login()
-		if utils.HasErr(err, code.AccountLoginErr) {
+		if utils.HasErr(err, global.AccountLoginErr) {
 			return LoginToken{}, err
 		} else {
 			return token, err
 		}
 	} else {
 		_, err := a.testToken(loginToken)
-		if utils.HasErr(err, code.AccountTokenExpressErr) {
+		if utils.HasErr(err, global.AccountTokenExpressErr) {
 			// if checkResult == ExpireToken { // token过期
 			return a.GetToken(LoginToken{})
 			// }
@@ -158,7 +158,7 @@ func (a *Auth) login() (LoginToken, error) {
 
 	utils.Logger.Info("当前运行模式为:", a.model)
 	response, err := request.NewRequest().Debug(a.model == utils.DebugMode).Json().SetTimeout(10).Post(a.url, data)
-	if utils.HasErr(err, code.AccountLoginErr) {
+	if utils.HasErr(err, global.AccountLoginErr) {
 		return LoginToken{}, err
 	}
 	defer response.Close()
@@ -168,7 +168,7 @@ func (a *Auth) login() (LoginToken, error) {
 	}
 	var loginToken LoginToken
 	err = response.Json(&loginToken)
-	if utils.HasErr(err, code.ParseJsonDataErr) {
+	if utils.HasErr(err, global.ParseJsonDataErr) {
 		return LoginToken{}, err
 	}
 	utils.Logger.Info("success login nakama console. token info: ", loginToken)
