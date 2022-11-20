@@ -47,6 +47,8 @@ const (
 	DataSaveErr                                     // DB数据编辑异常
 	DataAddErr                                      // DB数据添加异常
 	DataGetErr                                      // DB数据获取异常
+	GetNakamaConfigErr                              // 获取Nakama配置异常
+	PublishDataErr                                  // 数据发布失败
 	DbErr                                           // 数据库异常
 	DataDeleteErr                                   // DB数据删除异常
 	GetTokenErr                                     // 获取Token信息异常
