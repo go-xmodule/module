@@ -30,34 +30,44 @@ const (
 
 // 系统功能asdfasdf
 const (
-	StartServerErr     ErrCode = 101000 + iota // 启动服务异常
-	SystemErr                                  // 系统异常
-	ParamsError                                // 参数异常，请检查
-	ConnectMysqlErr                            // 连接数据库异常
-	RequestOvertimeErr                         // 请求发起时间超时
-	SignErr                                    // 参数签名异常
-
-	DbErr                   // 数据库异常
-	DataDeleteErr           // DB数据删除异常
-	GetTokenErr             // 获取Token信息异常
-	GetLeaderboardListErr   // 获取Nakama排行榜数据列表异常
-	GetLeaderboardDetailErr // 获取Nakama排行榜数据详情异常
-	ParseJsonDataErr        // 解析Nakama json数据异常
-	GetAccountListErr       // 获取Nakama账户列表异常
-	DeleteAccountErr        // 删除Nakama账户列表异常
-	EditeAccountErr         // 编辑Nakama账户列表异常
-	GetAccountDetailErr     // 获取Nakama账户详情异常
-	GetAccountBanListErr    // 获取Nakama禁用账户列表异常
-	DeleteLeaderboardErr    // 删除Nakama排行榜数据异常
-	AccountUnlinkErr        // 删除Nakama账户好友关联异常
-	GetAccountFriendErr     // 获取Nakama账户好友异常
-	DeleteAccountFriendErr  // 删除Nakama账户好友异常
-	AccountEnableErr        // 启用Nakama账户异常
-	AccountDisableErr       // 禁用Nakama账户异常
-	GetMatchDataErr         // 获取Nakama比赛数据异常
-	GetMatchStateErr        // 获取Nakama比赛状态数据异常
-	AccountLoginErr         // Nakama账户登录异常
-	AccountTokenExpressErr  // Nakama Token过期异常
-	GetGameDataErr          // 获取Nakama数据异常
+	StartServerErr          ErrCode = 101000 + iota // 启动服务异常
+	SystemErr                                       // 系统异常
+	ParamsError                                     // 参数异常，请检查
+	ConnectMysqlErr                                 // 连接数据库异常
+	RequestOvertimeErr                              // 请求发起时间超时
+	SignErr                                         // 参数签名异常
+	GetChannelConfigErr                             // 获取发布频道配置异常
+	GetLogConfigErr                                 // 获取日志配置
+	GetApiConfigErr                                 // 获取Api配置
+	GetDbConfigErr                                  // 获取数据库配置异常
+	GetSystemConfigErr                              // 获取系统配置异常
+	RedisPushErr                                    // Redis push 数据异常
+	RedisPublishErr                                 // Redis 发布消息异常
+	NeTRequestErr                                   // 网络请求失败
+	DataSaveErr                                     // DB数据编辑异常
+	DataAddErr                                      // DB数据添加异常
+	DataGetErr                                      // DB数据获取异常
+	DbErr                                           // 数据库异常
+	DataDeleteErr                                   // DB数据删除异常
+	GetTokenErr                                     // 获取Token信息异常
+	GetLeaderboardListErr                           // 获取Nakama排行榜数据列表异常
+	GetLeaderboardDetailErr                         // 获取Nakama排行榜数据详情异常
+	ParseJsonDataErr                                // 解析Nakama json数据异常
+	GetAccountListErr                               // 获取Nakama账户列表异常
+	DeleteAccountErr                                // 删除Nakama账户列表异常
+	EditeAccountErr                                 // 编辑Nakama账户列表异常
+	GetAccountDetailErr                             // 获取Nakama账户详情异常
+	GetAccountBanListErr                            // 获取Nakama禁用账户列表异常
+	DeleteLeaderboardErr                            // 删除Nakama排行榜数据异常
+	AccountUnlinkErr                                // 删除Nakama账户好友关联异常
+	GetAccountFriendErr                             // 获取Nakama账户好友异常
+	DeleteAccountFriendErr                          // 删除Nakama账户好友异常
+	AccountEnableErr                                // 启用Nakama账户异常
+	AccountDisableErr                               // 禁用Nakama账户异常
+	GetMatchDataErr                                 // 获取Nakama比赛数据异常
+	GetMatchStateErr                                // 获取Nakama比赛状态数据异常
+	AccountLoginErr                                 // Nakama账户登录异常
+	AccountTokenExpressErr                          // Nakama Token过期异常
+	GetGameDataErr                                  // 获取Nakama数据异常
 
 )

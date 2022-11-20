@@ -11,10 +11,12 @@ package utils
 
 import (
 	"bytes"
+	"encoding/base64"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/go-utils-module/module/global"
+	"io/ioutil"
 	"os"
 	"regexp"
 	"runtime/debug"
@@ -168,4 +170,13 @@ func JsonDisplay(obj interface{}) {
 func GetFileExtension(fileName string) string {
 	temps := strings.Split(fileName, ".")
 	return temps[len(temps)-1]
+}
+
+func GetImgBase64String(image string) (string, error) {
+	bit, err := ioutil.ReadFile(image)
+	if err != nil {
+		return "", err
+	}
+	imgStr := base64.StdEncoding.EncodeToString(bit)
+	return imgStr, nil
 }

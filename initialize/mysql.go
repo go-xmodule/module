@@ -11,6 +11,7 @@ package system
 import (
 	"github.com/go-utils-module/module/config"
 	"github.com/go-utils-module/module/dirver"
+	"github.com/go-utils-module/module/handler"
 	"github.com/go-utils-module/module/utils"
 	"github.com/jinzhu/gorm"
 )
@@ -30,5 +31,6 @@ func InitializeDatabase(conf config.Database) *gorm.DB {
 	if err != nil {
 		utils.Logger.Fatalln("初始化系统-连接管理后台数据库异常。", err)
 	}
+	handler.DBHandler = handler.NewDatabase(db)
 	return db
 }

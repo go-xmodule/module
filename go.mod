@@ -1,6 +1,6 @@
 module github.com/go-utils-module/module
 
-go 1.17
+go 1.18
 
 require (
 	github.com/disintegration/imaging v1.6.2
@@ -19,10 +19,12 @@ require (
 	github.com/rifflock/lfshook v0.0.0-20180920164130-b9218ef580f5
 	github.com/sirupsen/logrus v1.8.1
 	github.com/urfave/cli/v2 v2.23.5
+	github.com/wcharczuk/go-chart v2.0.1+incompatible
 	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
+	github.com/blend/go-sdk v1.20220411.3 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect

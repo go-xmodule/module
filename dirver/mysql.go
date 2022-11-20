@@ -23,6 +23,8 @@ const (
 	DbType    = "mysql"
 )
 
+var DB *gorm.DB
+
 type LinkParams struct {
 	Host        string
 	Port        int

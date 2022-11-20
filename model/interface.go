@@ -10,8 +10,6 @@ package models
 
 import "github.com/jinzhu/gorm"
 
-var DB *gorm.DB
-
 // ConfigType 数据库类型
 type ConfigType int
 
