@@ -15,22 +15,72 @@ func _() {
 	_ = x[ConnectMysqlErr-101003]
 	_ = x[RequestOvertimeErr-101004]
 	_ = x[SignErr-101005]
+	_ = x[GetNoticeConfigErr-101006]
+	_ = x[GetGameConfigErr-101007]
+	_ = x[GetChannelConfigErr-101008]
+	_ = x[GetLogConfigErr-101009]
+	_ = x[GetApiConfigErr-101010]
+	_ = x[GetDbConfigErr-101011]
+	_ = x[GetSystemConfigErr-101012]
+	_ = x[RedisPushErr-101013]
+	_ = x[RedisPublishErr-101014]
+	_ = x[NeTRequestErr-101015]
+	_ = x[DataSaveErr-101016]
+	_ = x[DataAddErr-101017]
+	_ = x[DataGetErr-101018]
+	_ = x[GetNakamaConfigErr-101019]
+	_ = x[PublishDataErr-101020]
+	_ = x[DbErr-101021]
+	_ = x[DataDeleteErr-101022]
+	_ = x[GetTokenErr-101023]
+	_ = x[GetLeaderboardListErr-101024]
+	_ = x[GetLeaderboardDetailErr-101025]
+	_ = x[ParseJsonDataErr-101026]
+	_ = x[GetAccountListErr-101027]
+	_ = x[DeleteAccountErr-101028]
+	_ = x[EditeAccountErr-101029]
+	_ = x[GetAccountDetailErr-101030]
+	_ = x[GetAccountBanListErr-101031]
+	_ = x[DeleteLeaderboardErr-101032]
+	_ = x[AccountUnlinkErr-101033]
+	_ = x[GetAccountFriendErr-101034]
+	_ = x[DeleteAccountFriendErr-101035]
+	_ = x[AccountEnableErr-101036]
+	_ = x[AccountDisableErr-101037]
+	_ = x[GetMatchDataErr-101038]
+	_ = x[GetMatchStateErr-101039]
+	_ = x[AccountLoginErr-101040]
+	_ = x[AccountTokenExpressErr-101041]
+	_ = x[GetGameDataErr-101042]
+	_ = x[ExecuteAfterDeleteFunErr-101043]
+	_ = x[ExecuteAfterEditFunErr-101044]
+	_ = x[ExecuteBeforeEditFunErr-101045]
+	_ = x[ExecuteBeforeAddFunErr-101046]
+	_ = x[LinkMysqlErr-101047]
+	_ = x[GetSingleDataErr-101048]
+	_ = x[CreateUploadFileDirErr-101049]
+	_ = x[SystemError-101050]
+	_ = x[ParamsEmptyError-101051]
+	_ = x[ParamsFormatError-101052]
+	_ = x[RepeatRequestError-101053]
+	_ = x[InitSessionRedisErr-101054]
+	_ = x[GetSystemNoticeConfigErr-101055]
 }
 
 const (
 	_ErrCode_name_0 = "Success"
-	_ErrCode_name_1 = "启动服务异常系统异常参数异常，请检查连接数据库异常请求发起时间超时参数签名异常"
+	_ErrCode_name_1 = "启动服务异常系统异常参数异常，请检查连接数据库异常请求发起时间超时参数签名异常获取系统通知配置异常获取游戏配置异常获取发布频道配置异常获取日志配置获取Api配置获取数据库配置异常获取系统配置异常Redis push 数据异常Redis 发布消息异常网络请求失败DB数据编辑异常DB数据添加异常DB数据获取异常获取Nakama配置异常数据发布失败数据库异常DB数据删除异常获取Token信息异常获取Nakama排行榜数据列表异常获取Nakama排行榜数据详情异常解析Nakama json数据异常获取Nakama账户列表异常删除Nakama账户列表异常编辑Nakama账户列表异常获取Nakama账户详情异常获取Nakama禁用账户列表异常删除Nakama排行榜数据异常删除Nakama账户好友关联异常获取Nakama账户好友异常删除Nakama账户好友异常启用Nakama账户异常禁用Nakama账户异常获取Nakama比赛数据异常获取Nakama比赛状态数据异常Nakama账户登录异常Nakama Token过期异常获取Nakama数据异常执行删除后方法异常执行编辑后方法异常执行编辑前方法异常执行添加前方法异常连接数据库异常获取单条数据异常创建上传目录异常系统异常，请稍后重试参数不可空，请检查参数格式错误，请检查重复请求初始化sessionRedis连接异常获取系统通知配置文件失败"
 )
 
 var (
-	_ErrCode_index_1 = [...]uint8{0, 18, 30, 54, 75, 99, 117}
+	_ErrCode_index_1 = [...]uint16{0, 18, 30, 54, 75, 99, 117, 147, 171, 201, 219, 234, 261, 285, 308, 332, 350, 370, 390, 410, 434, 452, 467, 487, 510, 549, 588, 617, 647, 677, 707, 737, 773, 806, 842, 872, 902, 926, 950, 980, 1016, 1040, 1064, 1088, 1115, 1142, 1169, 1196, 1217, 1241, 1265, 1295, 1322, 1352, 1364, 1397, 1433}
 )
 
 func (i ErrCode) String() string {
 	switch {
 	case i == 200:
 		return _ErrCode_name_0
-	case 101000 <= i && i <= 101005:
+	case 101000 <= i && i <= 101055:
 		i -= 101000
 		return _ErrCode_name_1[_ErrCode_index_1[i]:_ErrCode_index_1[i+1]]
 	default:
