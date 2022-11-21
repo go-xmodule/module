@@ -180,3 +180,25 @@ func GetImgBase64String(image string) (string, error) {
 	imgStr := base64.StdEncoding.EncodeToString(bit)
 	return imgStr, nil
 }
+
+func MaxNum(arr []int) (max int, maxIndex int) {
+	max = arr[0]
+	for i := 0; i < len(arr); i++ {
+		if max < arr[i] {
+			max = arr[i]
+			maxIndex = i
+		}
+	}
+	return max, maxIndex
+}
+
+func MinNum(arr []int) (min int, minIndex int) {
+	min = arr[0]
+	for index, val := range arr {
+		if min > val {
+			min = val
+			minIndex = index
+		}
+	}
+	return min, minIndex
+}

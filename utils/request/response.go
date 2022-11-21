@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/go-utils-module/module/global"
 	"io/ioutil"
 	"net/http"
 )
@@ -109,6 +110,26 @@ func (r *Response) Json(T interface{}) error {
 	}
 	return nil
 }
+
+type Result struct {
+	Code global.ErrCode `json:"code"`
+	Msg  string         `json:"msg"`
+	Data string         `json:"data"`
+}
+
+func (r *Response) Result() (Result, error) {
+	body, err := r.Body()
+	if err != nil {
+		return Result{}, err
+	}
+	var result Result
+	err = json.Unmarshal(body, &result)
+	if err != nil {
+		return Result{}, err
+	}
+	return result, nil
+}
+
 func (r *Response) JsonReturn(T interface{}) (string, error) {
 	body, err := r.Body()
 	if err != nil {
