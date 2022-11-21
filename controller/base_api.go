@@ -11,3 +11,10 @@ package controller
 type BaseApiController struct {
 	BaseController
 }
+
+// Response 响应结构体
+type Response struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg"`
+	Data interface{} `json:"data"`
+}

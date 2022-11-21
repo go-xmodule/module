@@ -31,7 +31,7 @@ const (
 var ValidatorList = map[string]map[ActionType]map[string][]ValidatorItem{}
 
 type Validator struct {
-	baseModel *models.BaseModel
+	baseModel *models.CommonModel
 	model     models.ModelAction
 }
 
@@ -42,7 +42,7 @@ func NewValidator(model models.ModelAction) *Validator {
 }
 
 // SetBaseModel 设置基础model
-func (v *Validator) SetBaseModel(model *models.BaseModel) *Validator {
+func (v *Validator) SetBaseModel(model *models.CommonModel) *Validator {
 	v.baseModel = model
 	return v
 }
@@ -80,14 +80,14 @@ func (v *Validator) DataValidator(actionType ActionType, params map[string]strin
 }
 
 func (v *Validator) checkDataExist(field string, value string, params map[string]string) {
-	not := map[string]interface{}{}
-	if _, exist := params["id"]; exist {
-		not["id"] = 30
-	}
-	v.baseModel.First(map[string]interface{}{
-		field: value,
-	}, not)
-	v.baseModel.GetModel()
+	// not := map[string]interface{}{}
+	// if _, exist := params["id"]; exist {
+	// 	not["id"] = 30
+	// }
+	// v.baseModel.First(map[string]interface{}{
+	// 	field: value,
+	// }, not)
+	// v.baseModel.GetModel()
 }
 
 // AddValidator 添加验证规则--内部方法

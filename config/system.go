@@ -10,6 +10,8 @@ package config
 
 // System 系统配置
 type System struct {
-	Mode    string `yaml:"mode"`
-	TempDir string `yaml:"tempDir"`
+	Mode        string `yaml:"mode"`
+	TempDir     string `yaml:"tempDir"`
+	PwdPrefix   string `yaml:"pwdPrefix"`
+	SystemTitle string `yaml:"systemTitle"`
 }
