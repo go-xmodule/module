@@ -29,7 +29,7 @@ func StartServer(config ServerConfig, hock hockFun) error {
 	// 服务钩子
 	hock(engine)
 	// 设置系统运行模式
-	SetRunModel(config.Mode)
+	SetRunMode(config.Mode)
 	// 开始启动服务
 	addr := fmt.Sprintf("%s:%d", config.Ip, config.Port)
 	err := engine.Run(addr)
@@ -42,8 +42,8 @@ func StartServer(config ServerConfig, hock hockFun) error {
 	return nil
 }
 
-// SetRunModel 设置当前系统运行模式
-func SetRunModel(mode string) {
+// SetRunMode 设置当前系统运行模式
+func SetRunMode(mode string) {
 	utils.Logger.Info("当前运行模式为:", mode)
 	switch mode {
 	case gin.ReleaseMode:
