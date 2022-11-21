@@ -19,7 +19,7 @@ import (
 )
 
 // StaticPath 静态文件路由地址
-const StaticPath = "/static/application/resource"
+const StaticPath = "/static/application/server/resource"
 
 // InitializeTemplateFun 定义模板方法
 func InitializeTemplateFun() template.FuncMap {
