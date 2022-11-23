@@ -18,8 +18,11 @@ import (
 	"path"
 )
 
-const OnlineEnv = "online"
-const TestEnv = "test"
+// ParseConfig 解析配置文件
+func ParseConfig(configFile string, config interface{}) error {
+	configFile = GetConfigFile(configFile)
+	return GetConfig(configFile, config)
+}
 
 // GetConfig 获取配置
 func GetConfig(path string, config interface{}) error {
