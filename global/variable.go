@@ -13,6 +13,7 @@ import "embed"
 var TemplatePath embed.FS
 var AssetsPath embed.FS
 
+// 运行模式定义
 const (
 	// DebugMode indicates gin mode is debug.
 	DebugMode = "debug"
@@ -26,4 +27,8 @@ const (
 const (
 	ApiV1                = "/api/v1"
 	RequestParams string = "params"
+)
+
+const (
+	ErrField = "error"
 )
