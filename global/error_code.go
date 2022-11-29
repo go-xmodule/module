@@ -53,6 +53,8 @@ const (
 	PublishDataErr                                   // 数据发布失败
 	DbErr                                            // 数据库异常
 	DataDeleteErr                                    // DB数据删除异常
+	NoTokenErr                                       // 无Token认证信息
+	TokenErr                                         // Token认证信息无效
 	GetTokenErr                                      // 获取Token信息异常
 	GetLeaderboardListErr                            // 获取Nakama排行榜数据列表异常
 	GetLeaderboardDetailErr                          // 获取Nakama排行榜数据详情异常

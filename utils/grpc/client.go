@@ -10,7 +10,10 @@ package grpc
 
 import (
 	"context"
+	"github.com/go-utils-module/module/utils"
 	"google.golang.org/grpc"
+	"log"
+	"time"
 )
 
 var GrpcClient = new(Client)
@@ -40,6 +43,8 @@ func (g *Client) Connect() (*grpc.ClientConn, error) {
 	var opts []grpc.DialOption
 	// 使用自定义认证
 	opts = append(opts, grpc.WithPerRPCCredentials(NewCustomCredential(g.token)))
+	// 指定客户端interceptor
+	opts = append(opts, grpc.WithUnaryInterceptor(interceptor))
 	opts = append(opts, grpc.WithInsecure())
 	conn, err := grpc.Dial(g.address, opts...)
 	if err != nil {
@@ -70,4 +75,16 @@ func (c CustomCredential) GetRequestMetadata(ctx context.Context, uri ...string)
 // RequireTransportSecurity 自定义认证是否开启TLS
 func (c CustomCredential) RequireTransportSecurity() bool {
 	return false
+}
+
+// interceptor 客户端拦截器
+func interceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+	start := time.Now()
+	err := invoker(ctx, method, req, reply, cc, opts...)
+	if utils.Logger == nil {
+		log.Printf("method=%s req=%v rep=%v duration=%s error=%v\n", method, req, reply, time.Since(start), err)
+	} else {
+		utils.Logger.Debugf("method=%s req=%v rep=%v duration=%s error=%v\n", method, req, reply, time.Since(start), err)
+	}
+	return err
 }
