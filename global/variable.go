@@ -49,4 +49,6 @@ const (
 	ChannelConfigDataId = "channel"
 	// NoticeConfigDataId 通知配置
 	NoticeConfigDataId = "notice"
+	// GRPCConfigDataId GRPC配置
+	GRPCConfigDataId = "grpc"
 )

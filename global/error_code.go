@@ -44,6 +44,7 @@ const (
 	GetLogConfigErr                                  // 获取日志配置
 	GetApiConfigErr                                  // 获取Api配置
 	GetDbConfigErr                                   // 获取数据库配置异常
+	GetGRPCConfigErr                                 // 获取GRPC配置异常
 	GetSystemConfigErr                               // 获取系统配置异常
 	RedisPushErr                                     // Redis push 数据异常
 	RedisPublishErr                                  // Redis 发布消息异常

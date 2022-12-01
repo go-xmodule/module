@@ -15,7 +15,6 @@ import (
 	"log"
 )
 
-// ListenConfig 监听配置文件更新
 func ListenConfig(client config_client.IConfigClient, dataId string, group string, onChange nacos.OnChange) {
 	// 监听数据库配置更新
 	err := nacos.ListenConfig(nacos.ListenConfigParams{
