@@ -11,8 +11,8 @@ package api
 import (
 	"errors"
 	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/nakama/common"
 	"github.com/go-utils-module/module/utils"
+	"github.com/go-utils-module/module/utils/nakama/common"
 	"github.com/go-utils-module/module/utils/request"
 
 	"github.com/gin-gonic/gin"

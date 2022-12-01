@@ -11,6 +11,7 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/utils"
 )
 
@@ -46,11 +47,11 @@ func StartServer(config ServerConfig, hock hockFun) error {
 func SetRunModel(mode string) {
 	utils.Logger.Info("当前运行模式为:", mode)
 	switch mode {
-	case gin.ReleaseMode:
+	case global.OnlineMode:
 		gin.SetMode(gin.ReleaseMode)
-	case gin.DebugMode:
+	case global.DevMode:
 		gin.SetMode(gin.DebugMode)
-	case gin.TestMode:
+	case global.TestMode:
 		gin.SetMode(gin.TestMode)
 	}
 }

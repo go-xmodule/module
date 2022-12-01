@@ -11,7 +11,7 @@ package panel
 
 import (
 	"fmt"
-	models "github.com/go-utils-module/module/model"
+	"github.com/go-utils-module/module/server/model"
 	"github.com/go-utils-module/module/utils"
 	"strconv"
 	"strings"

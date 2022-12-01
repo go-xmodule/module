@@ -10,7 +10,7 @@
 package panel
 
 import (
-	models "github.com/go-utils-module/module/model"
+	"github.com/go-utils-module/module/server/model"
 	"github.com/go-utils-module/module/utils"
 	"html/template"
 

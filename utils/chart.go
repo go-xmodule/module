@@ -11,7 +11,7 @@ package utils
 import (
 	"fmt"
 	"github.com/druidcaesa/gotool"
-	"github.com/go-utils-module/module/service"
+	"github.com/go-utils-module/module/server/service"
 	"github.com/wcharczuk/go-chart"
 	"os"
 	"time"

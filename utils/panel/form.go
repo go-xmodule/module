@@ -12,7 +12,7 @@ package panel
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	models "github.com/go-utils-module/module/model"
+	"github.com/go-utils-module/module/server/model"
 	"github.com/go-utils-module/module/utils"
 	"html/template"
 	"strings"

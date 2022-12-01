@@ -10,7 +10,7 @@ package panel
 
 import (
 	"errors"
-	models "github.com/go-utils-module/module/model"
+	models2 "github.com/go-utils-module/module/server/model"
 	"github.com/go-utils-module/module/utils"
 	"strings"
 )
@@ -31,18 +31,18 @@ const (
 var ValidatorList = map[string]map[ActionType]map[string][]ValidatorItem{}
 
 type Validator struct {
-	baseModel *models.CommonModel
-	model     models.ModelAction
+	baseModel *models2.CommonModel
+	model     models2.ModelAction
 }
 
-func NewValidator(model models.ModelAction) *Validator {
+func NewValidator(model models2.ModelAction) *Validator {
 	return &Validator{
 		model: model,
 	}
 }
 
 // SetBaseModel 设置基础model
-func (v *Validator) SetBaseModel(model *models.CommonModel) *Validator {
+func (v *Validator) SetBaseModel(model *models2.CommonModel) *Validator {
 	v.baseModel = model
 	return v
 }

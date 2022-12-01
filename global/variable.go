@@ -13,14 +13,16 @@ import "embed"
 var TemplatePath embed.FS
 var AssetsPath embed.FS
 
-// 运行模式定义
+// 运行环境定义
 const (
-	// DebugMode indicates gin mode is debug.
-	DebugMode = "debug"
-	// ReleaseMode indicates gin mode is release.
-	ReleaseMode = "release"
-	// TestMode indicates gin mode is test.
+	// DevMode 开发环境
+	DevMode = "dev"
+	// TestMode 测试环境
 	TestMode = "test"
+	// OnlineMode 生成环境
+	OnlineMode = "online"
+	// ================================
+	DefaultNacosGroup = "DEFAULT_GROUP"
 )
 
 // 常量定义

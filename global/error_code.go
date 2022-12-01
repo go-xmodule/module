@@ -32,6 +32,8 @@ const (
 const (
 	StartServerErr           ErrCode = 101000 + iota // 启动服务异常
 	SystemErr                                        // 系统异常
+	SystemInitFail                                   // 系统初始化失败
+	listenConfigErr                                  // 配置文件监控失败
 	ParamsError                                      // 参数异常，请检查
 	ConnectMysqlErr                                  // 连接数据库异常
 	RequestOvertimeErr                               // 请求发起时间超时
@@ -45,12 +47,12 @@ const (
 	GetSystemConfigErr                               // 获取系统配置异常
 	RedisPushErr                                     // Redis push 数据异常
 	RedisPublishErr                                  // Redis 发布消息异常
-	NeTRequestErr                                    // 网络请求失败
+	NeTRequestErr                                    // 网络请求异常
 	DataSaveErr                                      // DB数据编辑异常
 	DataAddErr                                       // DB数据添加异常
 	DataGetErr                                       // DB数据获取异常
 	GetNakamaConfigErr                               // 获取Nakama配置异常
-	PublishDataErr                                   // 数据发布失败
+	PublishDataErr                                   // 数据发布异常
 	DbErr                                            // 数据库异常
 	DataDeleteErr                                    // DB数据删除异常
 	NoTokenErr                                       // 无Token认证信息
@@ -87,5 +89,14 @@ const (
 	ParamsFormatError                                // 参数格式错误，请检查
 	RepeatRequestError                               // 重复请求
 	InitSessionRedisErr                              // 初始化sessionRedis连接异常
-	GetSystemNoticeConfigErr                         // 获取系统通知配置文件失败
+	GetSystemNoticeConfigErr                         // 获取系统通知配置文件异常
+	RegisterServerErr                                // 服务注册异常
+	GetServerErr                                     // 获取服务异常
+	GetConfigErr                                     // 获取配置异常
+	ListenConfigErr                                  // 监听配置异常
+	GetNamingClientErr                               // 获取服务实例异常
+	GetConfigClientErr                               // 获取配置实例异常
+	GetInstanceErr                                   // 获取服务实例异常
+	RunModeErr                                       // 运行模式异常
+
 )

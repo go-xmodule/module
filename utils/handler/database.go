@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/go-utils-module/module/global"
-	models "github.com/go-utils-module/module/model"
+	"github.com/go-utils-module/module/server/model"
 	"github.com/go-utils-module/module/utils"
 	"github.com/jinzhu/gorm"
 )

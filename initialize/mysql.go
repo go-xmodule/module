@@ -10,9 +10,9 @@ package system
 
 import (
 	"github.com/go-utils-module/module/config"
-	"github.com/go-utils-module/module/dirver"
-	"github.com/go-utils-module/module/handler"
 	"github.com/go-utils-module/module/utils"
+	"github.com/go-utils-module/module/utils/dirver"
+	"github.com/go-utils-module/module/utils/handler"
 	"github.com/jinzhu/gorm"
 )
 

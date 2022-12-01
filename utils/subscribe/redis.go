@@ -9,8 +9,8 @@
 package subscribe
 
 import (
-	"github.com/go-utils-module/module/dirver"
 	"github.com/go-utils-module/module/utils"
+	"github.com/go-utils-module/module/utils/dirver"
 )
 
 type RedisSubscribe struct {
