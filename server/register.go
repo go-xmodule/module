@@ -20,14 +20,23 @@ type ConnectConfig struct {
 	Port uint64 `json:"port,omitempty"`
 }
 
-func RegisterServer(nacosConfig config.NacosConfig, serverConfig config.Server, serverName, clusterName string) {
+type RegisterServerParams struct {
+	config       config.NacosConfig
+	serverConfig config.Server
+	serverName   string
+	clusterName  string
+	groupName    string
+	Port         uint64
+}
+
+func RegisterServer(params RegisterServerParams) {
 	connectConfig := center2.ConnectConfig{
-		Host:        nacosConfig.Params.Host,
-		Port:        nacosConfig.Params.Port,
-		NamespaceId: nacosConfig.Params.NamespaceId,
-		LogDir:      nacosConfig.Params.LogDir,
-		CacheDir:    nacosConfig.Params.CacheDir,
-		LogLevel:    nacosConfig.Params.LogLevel,
+		Host:        params.config.Params.Host,
+		Port:        params.config.Params.Port,
+		NamespaceId: params.config.Params.NamespaceId,
+		LogDir:      params.config.Params.LogDir,
+		CacheDir:    params.config.Params.CacheDir,
+		LogLevel:    params.config.Params.LogLevel,
 	}
 	client, err := center2.GetNamingClient(connectConfig)
 	if err != nil {
@@ -36,9 +45,10 @@ func RegisterServer(nacosConfig config.NacosConfig, serverConfig config.Server, 
 	}
 	registerServerParams := center2.RegisterServerParams{
 		Client:      client,
-		Port:        uint64(serverConfig.Port),
-		ServiceName: serverName,
-		ClusterName: clusterName,
+		Port:        params.Port,
+		ServiceName: params.serverName,
+		ClusterName: params.clusterName,
+		GroupName:   params.groupName,
 		Metadata:    map[string]string{},
 	}
 	result, _ := center2.RegisterServer(registerServerParams)
