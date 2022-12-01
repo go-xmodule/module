@@ -21,22 +21,22 @@ type ConnectConfig struct {
 }
 
 type RegisterServerParams struct {
-	config       config.NacosConfig
-	serverConfig config.Server
-	serverName   string
-	clusterName  string
-	groupName    string
-	Port         uint64
+	Config       config.NacosConfig `json:"config"`
+	ServerConfig config.Server      `json:"server_config"`
+	ServerName   string             `json:"server_name,omitempty"`
+	ClusterName  string             `json:"cluster_name,omitempty"`
+	GroupName    string             `json:"group_name,omitempty"`
+	Port         uint64             `json:"port,omitempty"`
 }
 
 func RegisterServer(params RegisterServerParams) {
 	connectConfig := center2.ConnectConfig{
-		Host:        params.config.Params.Host,
-		Port:        params.config.Params.Port,
-		NamespaceId: params.config.Params.NamespaceId,
-		LogDir:      params.config.Params.LogDir,
-		CacheDir:    params.config.Params.CacheDir,
-		LogLevel:    params.config.Params.LogLevel,
+		Host:        params.Config.Params.Host,
+		Port:        params.Config.Params.Port,
+		NamespaceId: params.Config.Params.NamespaceId,
+		LogDir:      params.Config.Params.LogDir,
+		CacheDir:    params.Config.Params.CacheDir,
+		LogLevel:    params.Config.Params.LogLevel,
 	}
 	client, err := center2.GetNamingClient(connectConfig)
 	if err != nil {
@@ -46,9 +46,9 @@ func RegisterServer(params RegisterServerParams) {
 	registerServerParams := center2.RegisterServerParams{
 		Client:      client,
 		Port:        params.Port,
-		ServiceName: params.serverName,
-		ClusterName: params.clusterName,
-		GroupName:   params.groupName,
+		ServiceName: params.ServerName,
+		ClusterName: params.ClusterName,
+		GroupName:   params.GroupName,
 		Metadata:    map[string]string{},
 	}
 	result, _ := center2.RegisterServer(registerServerParams)
