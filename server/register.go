@@ -29,7 +29,6 @@ type RegisterServerParams struct {
 	Port         uint64             `json:"port,omitempty"`
 }
 
-// RegisterServer 服务注册
 func RegisterServer(params RegisterServerParams) {
 	connectConfig := center2.ConnectConfig{
 		Host:        params.Config.Params.Host,

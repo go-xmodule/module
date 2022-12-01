@@ -21,6 +21,8 @@ const (
 	TestMode = "test"
 	// OnlineMode 生成环境
 	OnlineMode = "online"
+	// ================================
+	DefaultNacosGroup = "DEFAULT_GROUP"
 )
 
 // 常量定义
@@ -31,4 +33,20 @@ const (
 
 const (
 	ErrField = "error"
+)
+
+// 配置定义
+const (
+	// DatabaseConfigDataId 数据库配置
+	DatabaseConfigDataId = "database"
+	// SystemConfigDataId 系统配置
+	SystemConfigDataId = "system"
+	// NakamaConfigDataId nakama 配置
+	NakamaConfigDataId = "nakama"
+	// GameConfigDataId 游戏数据配置
+	GameConfigDataId = "game"
+	// ChannelConfigDataId 订阅评定配置
+	ChannelConfigDataId = "channel"
+	// NoticeConfigDataId 通知配置
+	NoticeConfigDataId = "notice"
 )

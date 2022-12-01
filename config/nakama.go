@@ -8,6 +8,13 @@
 
 package config
 
+import (
+	"github.com/go-utils-module/module/global"
+	"github.com/go-utils-module/module/utils/nacos"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"log"
+)
+
 // NakamaConfig nakama 配置
 type NakamaConfig struct {
 	Account Account
@@ -32,4 +39,18 @@ type Base struct {
 	HttpKey   string `yaml:"httpKey"`
 	SyncTimes int    `yaml:"syncTimes"`
 	Port      int    `yaml:"port"`
+}
+
+func InitNakamaConfig(client config_client.IConfigClient, group string) NakamaConfig {
+	var nakamaConfig NakamaConfig
+	getConfigParams := nacos.GetConfigParams{
+		Client: client,
+		DataId: global.NakamaConfigDataId,
+		Group:  group,
+	}
+	err := nacos.GetConfig(getConfigParams, &nakamaConfig)
+	if err != nil {
+		log.Fatal(global.GetNakamaConfigErr)
+	}
+	return nakamaConfig
 }

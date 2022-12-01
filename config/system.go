@@ -8,6 +8,13 @@
 
 package config
 
+import (
+	"github.com/go-utils-module/module/global"
+	"github.com/go-utils-module/module/utils/nacos"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"log"
+)
+
 // System 系统配置
 type System struct {
 	Mode        string `yaml:"mode"`
@@ -43,4 +50,16 @@ type Avatar struct {
 
 type View struct {
 	PageCount int `yaml:"pageCount"`
+}
+
+func InitSystemConfig(client config_client.IConfigClient, group string, config interface{}) {
+	getConfigParams := nacos.GetConfigParams{
+		Client: client,
+		DataId: global.SystemConfigDataId,
+		Group:  group,
+	}
+	err := nacos.GetConfig(getConfigParams, config)
+	if err != nil {
+		log.Fatal(global.GetSystemConfigErr)
+	}
 }
