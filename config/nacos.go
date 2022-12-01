@@ -10,8 +10,8 @@ package config
 
 import (
 	"github.com/go-utils-module/module/global"
+	"github.com/go-utils-module/module/nacos"
 	"github.com/go-utils-module/module/utils"
-	"github.com/go-utils-module/module/utils/nacos"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
 	"os"
 )

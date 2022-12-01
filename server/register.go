@@ -11,8 +11,8 @@ package server
 import (
 	"github.com/go-utils-module/module/config"
 	"github.com/go-utils-module/module/global"
+	"github.com/go-utils-module/module/nacos"
 	"github.com/go-utils-module/module/utils"
-	nacos2 "github.com/go-utils-module/module/utils/nacos"
 )
 
 type ConnectConfig struct {
@@ -21,7 +21,7 @@ type ConnectConfig struct {
 }
 
 func RegisterServer(nacosConfig config.NacosConfig, serverConfig config.Server, serverName, clusterName string) {
-	connectConfig := nacos2.ConnectConfig{
+	connectConfig := nacos.ConnectConfig{
 		Host:        nacosConfig.Params.Host,
 		Port:        nacosConfig.Params.Port,
 		NamespaceId: nacosConfig.Params.NamespaceId,
@@ -29,19 +29,19 @@ func RegisterServer(nacosConfig config.NacosConfig, serverConfig config.Server, 
 		CacheDir:    nacosConfig.Params.CacheDir,
 		LogLevel:    nacosConfig.Params.LogLevel,
 	}
-	client, err := nacos2.GetNamingClient(connectConfig)
+	client, err := nacos.GetNamingClient(connectConfig)
 	if err != nil {
 		utils.Logger.WithField(global.ErrField, err).Fatalln(global.GetNamingClientErr.String())
 		return
 	}
-	registerServerParams := nacos2.RegisterServerParams{
+	registerServerParams := nacos.RegisterServerParams{
 		Client:      client,
 		Port:        uint64(serverConfig.Port),
 		ServiceName: serverName,
 		ClusterName: clusterName,
 		Metadata:    map[string]string{},
 	}
-	result, _ := nacos2.RegisterServer(registerServerParams)
+	result, _ := nacos.RegisterServer(registerServerParams)
 	if result {
 		utils.Logger.Debug("服务注册成功!")
 	} else {
