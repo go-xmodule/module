@@ -21,8 +21,6 @@ const (
 	TestMode = "test"
 	// OnlineMode 生成环境
 	OnlineMode = "online"
-	// ================================
-	DefaultNacosGroup = "DEFAULT_GROUP"
 )
 
 // 常量定义
