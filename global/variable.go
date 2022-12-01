@@ -51,4 +51,6 @@ const (
 	NoticeConfigDataId = "notice"
 	// GRPCConfigDataId GRPC配置
 	GRPCConfigDataId = "grpc"
+	// ApiConfigDataId Api 配置
+	ApiConfigDataId = "api"
 )

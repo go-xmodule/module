@@ -13,7 +13,7 @@ import (
 	"github.com/go-utils-module/module/utils"
 	"github.com/go-utils-module/module/utils/nacos"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
-	"os"
+	"log"
 )
 
 // NacosConfig Nacos 配置
@@ -37,8 +37,8 @@ const NacosConfigFile = "nacos.yaml"
 func GetNacosConfig() (NacosConfig, config_client.IConfigClient) {
 	var nacosConfig NacosConfig
 	err := utils.ParseConfig(NacosConfigFile, &nacosConfig)
-	if utils.HasErr(err, global.GetSystemConfigErr) {
-		os.Exit(403)
+	if err != nil {
+		log.Fatal(global.GetNacosConfigErr, err.Error())
 	}
 	connectConfig := nacos.ConnectConfig{
 		Host:        nacosConfig.Params.Host,
@@ -50,7 +50,7 @@ func GetNacosConfig() (NacosConfig, config_client.IConfigClient) {
 	}
 	client, err := nacos.GetConfigClient(connectConfig)
 	if err != nil {
-		utils.Logger.Fatal(global.SystemInitFail.String())
+		log.Fatal(global.SystemInitFail.String())
 	}
 	return nacosConfig, client
 }
