@@ -9,8 +9,8 @@
 package config
 
 import (
+	"github.com/go-utils-module/module/center"
 	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/nacos"
 	"github.com/go-utils-module/module/utils"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
 	"os"
@@ -40,7 +40,7 @@ func GetNacosConfig() (NacosConfig, config_client.IConfigClient) {
 	if utils.HasErr(err, global.GetSystemConfigErr) {
 		os.Exit(403)
 	}
-	connectConfig := nacos.ConnectConfig{
+	connectConfig := center.ConnectConfig{
 		Host:        nacosConfig.Params.Host,
 		Port:        nacosConfig.Params.Port,
 		NamespaceId: nacosConfig.Params.NamespaceId,
@@ -48,7 +48,7 @@ func GetNacosConfig() (NacosConfig, config_client.IConfigClient) {
 		CacheDir:    nacosConfig.Params.CacheDir,
 		LogLevel:    nacosConfig.Params.LogLevel,
 	}
-	client, err := nacos.GetConfigClient(connectConfig)
+	client, err := center.GetConfigClient(connectConfig)
 	if err != nil {
 		utils.Logger.Fatal(global.SystemInitFail.String())
 	}

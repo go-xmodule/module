@@ -6,7 +6,7 @@
  * @desc   config.go
  */
 
-package nacos
+package center
 
 import "C"
 import (

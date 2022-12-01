@@ -6,7 +6,7 @@
  * @desc   client.go
  */
 
-package nacos
+package center
 
 import (
 	"github.com/go-utils-module/module/global"
