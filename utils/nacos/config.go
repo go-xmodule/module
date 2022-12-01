@@ -6,9 +6,8 @@
  * @desc   config.go
  */
 
-package center
+package nacos
 
-import "C"
 import (
 	"github.com/go-utils-module/module/global"
 	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
