@@ -38,6 +38,7 @@ const (
 	ConnectMysqlErr                                  // 连接数据库异常
 	RequestOvertimeErr                               // 请求发起时间超时
 	SignErr                                          // 参数签名异常
+	NoSignParamsErr                                  // 参数签名时间戳或签名为异常
 	GetNoticeConfigErr                               // 获取系统通知配置异常
 	GetGameConfigErr                                 // 获取游戏配置异常
 	GetChannelConfigErr                              // 获取发布频道配置异常
