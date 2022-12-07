@@ -202,3 +202,11 @@ func MinNum(arr []int) (min int, minIndex int) {
 	}
 	return min, minIndex
 }
+
+func GetApiServer(url string) string {
+	if strings.Contains(url, "@") {
+		temps := strings.Split(url, "@")
+		return temps[0]
+	}
+	return ""
+}

@@ -10,9 +10,11 @@ package grpc
 
 import (
 	"context"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/utils"
 	"google.golang.org/grpc"
 	"log"
+	"strconv"
 	"time"
 )
 
@@ -48,6 +50,7 @@ func (g *Client) Connect() (*grpc.ClientConn, error) {
 	opts = append(opts, grpc.WithInsecure())
 	conn, err := grpc.Dial(g.address, opts...)
 	if err != nil {
+		utils.Logger.WithField("err", err).Errorf(global.RPCLinkErr.String())
 		return nil, err
 	}
 	g.connect = conn
@@ -56,19 +59,21 @@ func (g *Client) Connect() (*grpc.ClientConn, error) {
 
 // CustomCredential 自定义认证
 type CustomCredential struct {
-	token string
+	sign string
+	ts   int64
 }
 
 func NewCustomCredential(token string) *CustomCredential {
-	return &CustomCredential{
-		token: token,
-	}
+	credential := &CustomCredential{}
+	credential.sign, credential.ts = utils.RpcSign(token)
+	return credential
 }
 
 // GetRequestMetadata 实现自定义认证接口
 func (c CustomCredential) GetRequestMetadata(ctx context.Context, uri ...string) (map[string]string, error) {
 	return map[string]string{
-		"token": c.token,
+		"sign": c.sign,
+		"ts":   strconv.FormatInt(c.ts, 10),
 	}, nil
 }
 

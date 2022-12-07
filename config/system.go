@@ -42,6 +42,8 @@ type Server struct {
 	Domain   string `yaml:"domain"`
 	Port     int    `yaml:"port"`
 	Ip       string `yaml:"ip"`
+	Describe string `yaml:"describe"`
+	Host     string `yaml:"host"`
 }
 type Avatar struct {
 	Width  int `yaml:"width"`
@@ -60,6 +62,7 @@ func InitSystemConfig(client config_client.IConfigClient, group string, config i
 	}
 	err := nacos.GetConfig(getConfigParams, config)
 	if err != nil {
+		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		log.Fatal(global.GetSystemConfigErr)
 	}
 }

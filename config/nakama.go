@@ -50,6 +50,7 @@ func InitNakamaConfig(client config_client.IConfigClient, group string) NakamaCo
 	}
 	err := nacos.GetConfig(getConfigParams, &nakamaConfig)
 	if err != nil {
+		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		log.Fatal(global.GetNakamaConfigErr)
 	}
 	return nakamaConfig

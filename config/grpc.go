@@ -38,6 +38,7 @@ func InitGrpcConfig(client config_client.IConfigClient, group string) GrpcConfig
 	}
 	err := nacos.GetConfig(getConfigParams, &grpcConfig)
 	if err != nil {
+		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		log.Fatal(global.GetGRPCConfigErr)
 	}
 	return grpcConfig

@@ -23,6 +23,7 @@ func InitGameConfig(client config_client.IConfigClient, group string, config int
 	}
 	err := nacos.GetConfig(getConfigParams, config)
 	if err != nil {
+		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		log.Fatal(global.GetGameConfigErr)
 	}
 }

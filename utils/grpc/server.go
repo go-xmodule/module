@@ -3,6 +3,7 @@ package grpc
 import (
 	"context"
 	"github.com/go-utils-module/module/global"
+	"github.com/go-utils-module/module/utils"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/metadata"
@@ -74,7 +75,11 @@ func (g *Server) auth(context context.Context) error {
 	if !ok {
 		return status.Errorf(codes.Unauthenticated, global.NoTokenErr.String())
 	}
-	if token, ok := md["token"]; !ok || token[0] != g.token {
+	if _, ok := md["ts"]; !ok {
+		return status.Error(codes.Unauthenticated, global.NoSignParamsErr.String())
+	}
+	newSign := utils.RequestSign(md["ts"][0], g.token)
+	if sign, ok := md["sign"]; !ok || sign[0] != newSign {
 		return status.Error(codes.Unauthenticated, global.TokenErr.String())
 	}
 	return nil

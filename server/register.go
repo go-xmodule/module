@@ -27,6 +27,7 @@ type RegisterServerParams struct {
 	ClusterName  string             `json:"cluster_name,omitempty"`
 	GroupName    string             `json:"group_name,omitempty"`
 	Port         uint64             `json:"port,omitempty"`
+	Metadata     map[string]string  `json:"metadata"`
 }
 
 func RegisterServer(params RegisterServerParams) {
@@ -49,7 +50,7 @@ func RegisterServer(params RegisterServerParams) {
 		ServiceName: params.ServerName,
 		ClusterName: params.ClusterName,
 		GroupName:   params.GroupName,
-		Metadata:    map[string]string{},
+		Metadata:    params.Metadata,
 	}
 	result, _ := center2.RegisterServer(registerServerParams)
 	if result {

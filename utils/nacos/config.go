@@ -42,6 +42,9 @@ func GetConfig(params GetConfigParams, config interface{}) error {
 		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		return err
 	}
+	if content == "" {
+		log.Fatalf("%s,config:%s", global.GetConfigErr.String(), params.DataId)
+	}
 	return yaml.Unmarshal([]byte(content), config)
 }
 

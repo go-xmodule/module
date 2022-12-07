@@ -24,6 +24,7 @@ func ListenConfig(client config_client.IConfigClient, dataId string, group strin
 		OnChange: onChange,
 	})
 	if err != nil {
+		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		log.Fatal(global.ListenConfigErr.String(), err.Error())
 	}
 

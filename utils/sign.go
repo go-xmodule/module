@@ -14,6 +14,7 @@ import (
 	"github.com/golang-module/carbon"
 	"sort"
 	"strings"
+	"time"
 )
 
 // Sign 接口请求签名
@@ -74,4 +75,10 @@ func ApiSign(url string, secret string) string {
 func RequestSign(ts string, secret string) string {
 	signStr := fmt.Sprintf("%s@%s@%s", secret, ts, secret)
 	return SHA1(signStr)
+}
+
+func RpcSign(secret string) (string, int64) {
+	ts := time.Now().Unix()
+	signStr := fmt.Sprintf("%s@%d@%s", secret, ts, secret)
+	return SHA1(signStr), ts
 }

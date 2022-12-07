@@ -8,18 +8,6 @@
 
 package global
 
-/**
-错误码规则: 错误码暂定都是5位数字
-. 错误码为 0 表示成功，其他都表示错误。
-. 数字 1 开头的错误码表示系统级别的错误，比如缺少某种字符集，连不上数据库之类的，系统级的错误码不需要分模块，可以按照自增方式进行添加。
-. 数字 2 开头的错误码表示命令行错误
-. 数字 3 开头的错误码表示内部API错误
-. 数字 4 开头的错误码表示调用外部API错误
-. 第二、三位标识功能
-. 第四、五位、六位标识错误
-. 例如：201001  内部的包列表接口参数错误
-**/
-
 type ErrCode int64
 
 //go:generate stringer -type ErrCode -linecomment
@@ -28,7 +16,7 @@ const (
 	Success ErrCode = 200 // Success
 )
 
-// 系统功能asdfasdf
+// 系统功能
 const (
 	StartServerErr           ErrCode = 101000 + iota // 启动服务异常
 	SystemErr                                        // 系统异常
@@ -42,8 +30,8 @@ const (
 	GetNoticeConfigErr                               // 获取系统通知配置异常
 	GetGameConfigErr                                 // 获取游戏配置异常
 	GetChannelConfigErr                              // 获取发布频道配置异常
-	GetLogConfigErr                                  // 获取日志配置
-	GetApiConfigErr                                  // 获取Api配置
+	GetLogConfigErr                                  // 获取日志配置异常
+	GetApiConfigErr                                  // 获取Api配置异常
 	GetDbConfigErr                                   // 获取数据库配置异常
 	GetGRPCConfigErr                                 // 获取GRPC配置异常
 	GetSystemConfigErr                               // 获取系统配置异常
@@ -51,6 +39,7 @@ const (
 	RedisPushErr                                     // Redis push 数据异常
 	RedisPublishErr                                  // Redis 发布消息异常
 	NeTRequestErr                                    // 网络请求异常
+	RPCRequestErr                                    // RPC请求异常
 	DataSaveErr                                      // DB数据编辑异常
 	DataAddErr                                       // DB数据添加异常
 	DataGetErr                                       // DB数据获取异常
@@ -101,5 +90,7 @@ const (
 	GetConfigClientErr                               // 获取配置实例异常
 	GetInstanceErr                                   // 获取服务实例异常
 	RunModeErr                                       // 运行模式异常
-
+	SubscribeServerErr                               // 服务监听异常
+	UnknownServerErr                                 // 未知服务
+	RPCLinkErr                                       // RPC连接异常
 )

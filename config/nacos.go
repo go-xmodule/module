@@ -50,6 +50,7 @@ func GetNacosConfig() (NacosConfig, config_client.IConfigClient) {
 	}
 	client, err := nacos.GetConfigClient(connectConfig)
 	if err != nil {
+		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
 		log.Fatal(global.SystemInitFail.String())
 	}
 	return nacosConfig, client
