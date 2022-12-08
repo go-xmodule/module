@@ -25,6 +25,7 @@ type ConnectConfig struct {
 	LogDir      string `json:"log_dir,omitempty"`
 	CacheDir    string `json:"cache_dir,omitempty"`
 	LogLevel    string `json:"log_level,omitempty"`
+	AppName     string `json:"app_name"`
 }
 
 // GetNamingClient 服务连接配置
@@ -40,6 +41,7 @@ func GetNamingClient(config ConnectConfig) (naming_client.INamingClient, error) 
 		constant.WithLogDir(config.LogDir),
 		constant.WithCacheDir(config.CacheDir),
 		constant.WithLogLevel(config.LogLevel),
+		constant.WithAppName(config.AppName),
 	)
 	client, err := clients.NewNamingClient(
 		vo.NacosClientParam{
