@@ -11,6 +11,7 @@ package server
 import (
 	"errors"
 	"fmt"
+	"github.com/go-utils-module/module/config"
 	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/utils"
 	"github.com/go-utils-module/module/utils/nacos"
@@ -83,4 +84,20 @@ func GetServerAddress(serverName string) (string, error) {
 	} else {
 		return fmt.Sprintf("%s:%s", server.Host, server.Port), nil
 	}
+}
+
+// InitServerConfig 初始化个服务配置信息
+func InitServerConfig(config config.NacosConfig, serverName string) {
+	client := GetNacosClient(config)
+	var serverList []ServerGroup
+	for _, server := range global.ServerList {
+		if server.Name != serverName {
+			serverList = append(serverList, ServerGroup{
+				ServiceName: server.Name,
+				GroupName:   server.Group,
+			})
+		}
+	}
+	InitServer(client, serverList)
+	SubscribeServer(client, serverList)
 }

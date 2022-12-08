@@ -54,3 +54,37 @@ const (
 	// ApiConfigDataId Api 配置
 	ApiConfigDataId = "api"
 )
+
+type Server struct {
+	Name  string `yaml:"name"`
+	Group string `yaml:"group"`
+	Desc  string `yaml:"desc"`
+}
+
+var ServerList = []Server{
+	{
+		Name:  "notification",
+		Group: "notification",
+		Desc:  "消息通知服务",
+	},
+	{
+		Name:  "collection",
+		Group: "collection",
+		Desc:  "数据收集服务",
+	},
+	{
+		Name:  "web",
+		Group: "web",
+		Desc:  "主站服务",
+	},
+	{
+		Name:  "console",
+		Group: "console",
+		Desc:  "控制台服务",
+	},
+	{
+		Name:  "analysis",
+		Group: "analysis",
+		Desc:  "数据分析服务",
+	},
+}

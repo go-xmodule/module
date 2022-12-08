@@ -38,6 +38,7 @@ type Log struct {
 
 // Server 服务配置
 type Server struct {
+	Name     string `yaml:"name"`
 	Protocol string `yaml:"protocol"`
 	Domain   string `yaml:"domain"`
 	Port     int    `yaml:"port"`
