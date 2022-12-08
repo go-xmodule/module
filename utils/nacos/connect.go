@@ -68,6 +68,7 @@ func GetConfigClient(config ConnectConfig) (config_client.IConfigClient, error) 
 		constant.WithLogDir(config.LogDir),
 		constant.WithCacheDir(config.CacheDir),
 		constant.WithLogLevel(config.LogLevel),
+		constant.WithAppName(config.AppName),
 	)
 	// 创建动态配置客户端
 	client, err := clients.CreateConfigClient(map[string]interface{}{
