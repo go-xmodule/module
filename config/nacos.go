@@ -28,6 +28,7 @@ type Params struct {
 	CacheDir    string `yaml:"cacheDir"`
 	LogLevel    string `yaml:"logLevel"`
 	Host        string `yaml:"host"`
+	AppName     string `yaml:"appName"`
 }
 
 // NacosConfigFile Nacos配置文件
