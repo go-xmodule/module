@@ -25,6 +25,7 @@ func GetNacosClient(nacosConfig config.NacosConfig) naming_client.INamingClient 
 		LogDir:      nacosConfig.Params.LogDir,
 		CacheDir:    nacosConfig.Params.CacheDir,
 		LogLevel:    nacosConfig.Params.LogLevel,
+		AppName:     nacosConfig.Params.AppName,
 	}
 	client, err := nacos.GetNamingClient(connectConfig)
 	if err != nil {
