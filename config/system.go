@@ -44,8 +44,10 @@ type Server struct {
 	Port     int    `yaml:"port"`
 	Ip       string `yaml:"ip"`
 	Describe string `yaml:"describe"`
-	Host     string `yaml:"host"`
+	RpcHost  string `yaml:"rpcHost"`
+	RpcPort  int    `yaml:"rpcPort"`
 }
+
 type Avatar struct {
 	Width  int `yaml:"width"`
 	Height int `yaml:"height"`
