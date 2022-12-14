@@ -10,6 +10,7 @@ package utils
 
 import (
 	"errors"
+	"fmt"
 	"net"
 )
 
@@ -59,4 +60,20 @@ func GetIpFromAddr(addr net.Addr) net.IP {
 	}
 
 	return ip
+}
+
+// OpenFreeUDPPort opens free UDP port.
+// This example does not actually use UDP ports,
+// but to avoid port collisions with the HTTP server,
+// it binds the same number of UDP port in advance.
+func OpenFreeUDPPort(portBase int, num int) (net.PacketConn, int, error) {
+	for i := 0; i < num; i++ {
+		port := portBase + i
+		conn, err := net.ListenPacket("udp", fmt.Sprint(":", port))
+		if err != nil {
+			continue
+		}
+		return conn, port, nil
+	}
+	return nil, 0, errors.New("failed to open free port")
 }

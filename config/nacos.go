@@ -48,6 +48,7 @@ func GetNacosConfig() (NacosConfig, config_client.IConfigClient) {
 		LogDir:      nacosConfig.Params.LogDir,
 		CacheDir:    nacosConfig.Params.CacheDir,
 		LogLevel:    nacosConfig.Params.LogLevel,
+		AppName:     nacosConfig.Params.AppName,
 	}
 	client, err := nacos.GetConfigClient(connectConfig)
 	if err != nil {
