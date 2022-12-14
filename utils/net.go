@@ -62,7 +62,7 @@ func GetIpFromAddr(addr net.Addr) net.IP {
 	return ip
 }
 
-// OpenFreeUDPPort opens free UDP port.
+// OpenFreeUDPPort opens free UDP port
 // This example does not actually use UDP ports,
 // but to avoid port collisions with the HTTP server,
 // it binds the same number of UDP port in advance.
