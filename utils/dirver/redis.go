@@ -120,6 +120,16 @@ func (r *RedisClient) HGetAll(key string) (map[string]string, error) {
 	return result.Result()
 }
 
+func (r *RedisClient) HGet(key, field string) (string, error) {
+	// r.checkConnect()
+	// 执行命令
+	result := r.client.HGet(r.context, key, field)
+	if err := result.Err(); err != nil {
+		return "", err
+	}
+	return result.Result()
+}
+
 func (r *RedisClient) Get(key string) (bool, string, error) {
 	// r.checkConnect()
 	result, err := r.client.Get(r.context, key).Result()
