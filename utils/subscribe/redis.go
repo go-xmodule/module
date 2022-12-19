@@ -10,7 +10,6 @@ package subscribe
 
 import (
 	"github.com/go-utils-module/module/utils"
-	"github.com/go-utils-module/module/utils/dirver"
 	"github.com/go-utils-module/module/utils/handler"
 )
 
@@ -28,7 +27,7 @@ func (s *RedisSubscribe) Subscribe(channel string, callback SubscribeCallback) {
 	for message := range messageList {
 		// 处理消息
 		utils.Logger.Debug("consumer data:", utils.Json(message))
-		var data dirver.SubscribeData
+		var data handler.SubscribeData
 		_ = utils.TransInterfaceToStruct(message, &data)
 		callback(data.Payload)
 	}

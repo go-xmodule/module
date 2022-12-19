@@ -36,8 +36,8 @@ type LinkParams struct {
 	Mode        string
 }
 
-// InitializeConsoleDB 初始化管理后台数据库
-func InitializeConsoleDB(params LinkParams) (*gorm.DB, error) {
+// InitializeDB 初始化管理后台数据库
+func InitializeDB(params LinkParams) (*gorm.DB, error) {
 	linkParams := "%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local"
 	linkAddress := fmt.Sprintf(linkParams, params.UserName, params.Password, params.Host, params.Port, params.DbName)
 	db, err := gorm.Open(DbType, linkAddress)

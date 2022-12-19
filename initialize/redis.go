@@ -9,16 +9,19 @@
 package system
 
 import (
+	"github.com/go-redis/redis/v8"
 	"github.com/go-utils-module/module/config"
+	"github.com/go-utils-module/module/utils"
 	"github.com/go-utils-module/module/utils/dirver"
+	"github.com/go-utils-module/module/utils/handler"
 )
 
 // InitializeRedisPool 初始化redis连接池
-func InitializeRedisPool(config config.Redis) dirver.RedisClient {
-	c, err := dirver.NewRedis().Connect(config.Host, config.Port, config.Password, config.Db)
+func InitializeRedisPool(config config.Redis) *redis.Client {
+	c, err := dirver.InitializeRedis(config.Host, config.Port, config.Password, config.Db)
 	if err != nil {
-		panic(err)
-		return dirver.RedisClient{}
+		utils.Logger.Fatalln("初始化系统-连接Redis数据库异常。", err)
 	}
-	return *c
+	handler.RedisHandler = handler.NewRedis(c)
+	return c
 }

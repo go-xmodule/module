@@ -18,7 +18,7 @@ import (
 
 // InitializeDatabase 初始化数据库连接
 func InitializeDatabase(conf config.Database) *gorm.DB {
-	db, err := dirver.InitializeConsoleDB(dirver.LinkParams{
+	db, err := dirver.InitializeDB(dirver.LinkParams{
 		Host:        conf.Database.Host,
 		Port:        conf.Database.Port,
 		UserName:    conf.Database.UserName,
