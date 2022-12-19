@@ -11,6 +11,7 @@ package subscribe
 import (
 	"github.com/go-utils-module/module/utils"
 	"github.com/go-utils-module/module/utils/dirver"
+	"github.com/go-utils-module/module/utils/handler"
 )
 
 type RedisSubscribe struct {
@@ -23,7 +24,7 @@ func NewRedisSubscribe() *RedisSubscribe {
 // Subscribe 订阅消息
 func (s *RedisSubscribe) Subscribe(channel string, callback SubscribeCallback) {
 	utils.Logger.Debug("start subscribe data, channel:", channel)
-	messageList := dirver.Redis.Subscribe(channel)
+	messageList := handler.RedisHandler.Subscribe(channel)
 	for message := range messageList {
 		// 处理消息
 		utils.Logger.Debug("consumer data:", utils.Json(message))
@@ -36,7 +37,7 @@ func (s *RedisSubscribe) Subscribe(channel string, callback SubscribeCallback) {
 // Publish 发布数据
 func (s *RedisSubscribe) Publish(channel string, message interface{}) error {
 	utils.Logger.Debug("start publish data, message:", utils.Json(message))
-	_, err := dirver.Redis.Publish(channel, message)
+	_, err := handler.RedisHandler.Publish(channel, message)
 	if err != nil {
 		utils.Logger.Error(PublishErr, err.Error())
 		return err

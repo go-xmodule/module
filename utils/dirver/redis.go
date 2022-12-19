@@ -13,6 +13,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v8"
+	"reflect"
 	"time"
 )
 
@@ -27,8 +28,6 @@ type SubscribeData struct {
 	Payload      string      `json:"Payload"`
 	PayloadSlice interface{} `json:"PayloadSlice"`
 }
-
-var Redis RedisClient
 
 // NewRedis 实例化
 func NewRedis() *RedisClient {
@@ -202,4 +201,119 @@ func (r *RedisClient) Publish(channel string, message interface{}) (int64, error
 func (r *RedisClient) Subscribe(channel string) <-chan *redis.Message {
 	result := r.client.Subscribe(r.context, channel)
 	return result.Channel()
+}
+
+type PipAction func(pipeLiner redis.Pipeliner)
+
+func (r *RedisClient) SelectDbAction(index int, action PipAction) (map[int]interface{}, error) {
+	pipeLine := r.client.Pipeline()
+	pipeLine.Do(context.Background(), "select", index)
+	action(pipeLine)
+	result, err := pipeLine.Exec(context.Background())
+	if err != nil {
+		return map[int]interface{}{}, err
+	}
+	return r.getCmdResult(result), nil
+}
+
+func (r *RedisClient) getCmdResult(cmdRes []redis.Cmder) map[int]interface{} {
+	strMap := make(map[int]interface{}, len(cmdRes))
+	for idx, cmder := range cmdRes {
+		// *ClusterSlotsCmd 未实现
+		switch reflect.TypeOf(cmder).String() {
+		case "*redis.Cmd":
+			cmd := cmder.(*redis.Cmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.StringCmd":
+			cmd := cmder.(*redis.StringCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.SliceCmd":
+			cmd := cmder.(*redis.SliceCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.StringSliceCmd":
+			cmd := cmder.(*redis.StringSliceCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.StringStringMapCmd":
+			cmd := cmder.(*redis.StringStringMapCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.StringIntMapCmd":
+			cmd := cmder.(*redis.StringIntMapCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.BoolCmd":
+			cmd := cmder.(*redis.BoolCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.BoolSliceCmd":
+			cmd := cmder.(*redis.BoolSliceCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.IntCmd":
+			cmd := cmder.(*redis.IntCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.FloatCmd":
+			cmd := cmder.(*redis.FloatCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.StatusCmd":
+			cmd := cmder.(*redis.StatusCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.TimeCmd":
+			cmd := cmder.(*redis.TimeCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.DurationCmd":
+			cmd := cmder.(*redis.DurationCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.StringStructMapCmd":
+			cmd := cmder.(*redis.StringStructMapCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.XMessageSliceCmd":
+			cmd := cmder.(*redis.XMessageSliceCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.XStreamSliceCmd":
+			cmd := cmder.(*redis.XStreamSliceCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.XPendingCmd":
+			cmd := cmder.(*redis.XPendingCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.XPendingExtCmd":
+			cmd := cmder.(*redis.XPendingExtCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.ZSliceCmd":
+			cmd := cmder.(*redis.ZSliceCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.ZWithKeyCmd":
+			cmd := cmder.(*redis.ZWithKeyCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.CommandsInfoCmd":
+			cmd := cmder.(*redis.CommandsInfoCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.GeoLocationCmd":
+			cmd := cmder.(*redis.GeoLocationCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		case "*redis.GeoPosCmd":
+			cmd := cmder.(*redis.GeoPosCmd)
+			strMap[idx], _ = cmd.Result()
+			break
+		}
+	}
+	return strMap
 }
