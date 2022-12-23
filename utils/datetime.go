@@ -11,6 +11,7 @@ package utils
 import (
 	"errors"
 	"fmt"
+	"github.com/golang-module/carbon"
 	"math"
 	"strings"
 	"time"
@@ -66,9 +67,7 @@ func GetDayStringSub(startDate string, endDate string) int {
 
 // GetDaySub 获取日期差天数
 func GetDaySub(startDate time.Time, endDate time.Time) int {
-	std := GetYearDay(startDate)
-	end := GetYearDay(endDate)
-	return end - std
+	return int(carbon.Time2Carbon(startDate).DiffAbsInDays(carbon.Time2Carbon(endDate)))
 }
 
 // GetYearDay 获取一年中的第几天
