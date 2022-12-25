@@ -96,7 +96,7 @@ func (m *Database) Find(id interface{}) error {
 }
 
 // Get 根据where条件查询数据
-func (m *Database) Get(where ...map[string]interface{}) error {
+func (m *Database) Get(where ...interface{}) error {
 	if len(where) > 0 {
 		return m.db.Where(where[0]).Find(m.Result).Error
 	} else {
@@ -107,24 +107,6 @@ func (m *Database) Get(where ...map[string]interface{}) error {
 // GetDb 获取当前数据库连接
 func (m *Database) GetDb() *gorm.DB {
 	return m.db
-}
-
-// WhereClosure 设置查询的闭包方法
-func (m *Database) WhereClosure(where models.WhereClosure) *Database {
-	m.db = where(m.db)
-	return m
-}
-
-// SetWhere 设置当前查询条件
-func (m *Database) SetWhere(whereMap map[string]interface{}) *Database {
-	m.db = m.db.Where(whereMap)
-	return m
-}
-
-// Select 设置查询的字段
-func (m *Database) Select(query interface{}, args ...interface{}) *Database {
-	m.db = m.db.Select(query, args)
-	return m
 }
 
 // Create 创建数据
@@ -143,11 +125,11 @@ func (m *Database) Delete(model interface{}) error {
 }
 
 // GetByPage 分页查询数据
-func (m *Database) GetByPage(pagination models.PaginationQuery) utils.PageData {
+func (m *Database) GetByPage(pagination models.PaginationQuery, where interface{}) utils.PageData {
 	var count int
-	m.db.Model(m.Result).Count(&count)
+	m.db.Model(m.Result).Where(where).Count(&count)
 	offset := pagination.PageSize * (pagination.PageNum - 1)
-	m.db.Order(fmt.Sprintf("%s %s ", pagination.OrderBy, pagination.Order)).Offset(offset).Limit(pagination.PageSize).Find(m.Result)
+	m.db.Where(where).Order(fmt.Sprintf("%s %s ", pagination.OrderBy, pagination.Order)).Offset(offset).Limit(pagination.PageSize).Find(m.Result)
 	paginator := new(utils.PageUtil).Paginator(pagination.PageNum, pagination.PageSize, int64(count))
 	paginator.Offset = offset
 	paginator.EndOffset = pagination.PageSize + offset

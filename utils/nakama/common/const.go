@@ -14,6 +14,39 @@ const AuthenticateApiUrl = "/v2/console/authenticate"
 // CountApi 统计
 const CountApi = "/v2/console/status"
 
+// AccountListApiUrl 接口-账户列表地址
+const AccountListApiUrl = "/v2/console/account"
+
+// AccountBanListApiUrl 接口-账户禁用列表地址
+const AccountBanListApiUrl = "/v2/rpc/ban_accounts"
+
+// AccountDetailApiUrl 接口-账户详情地址
+const AccountDetailApiUrl = "/v2/console/account"
+
+// UpdateAccountApiUrl 接口-更新账户信息
+const UpdateAccountApiUrl = "/v2/console/account"
+
+// LeaderboardApi 排行榜
+const LeaderboardApi = "/v2/console/leaderboard"
+
+// MatchApi 比赛
+const MatchApi = "/v2/console/match"
+
+// AccountStatistical 账号总数统计
+const AccountStatistical = "/v2/rpc/account_statistical"
+
+// AccountCount 账号总数
+const AccountCount = "/v2/rpc/account_count"
+
+// WalletGet 用户钱包活的
+const WalletGet = "/v2/rpc/wallet/get"
+
+// AddGoods 添加商品
+const AddGoods = "/v2/rpc/add_goods"
+
+// UpdateGoods 更新商品
+const UpdateGoods = "/v2/rpc/update_goods"
+
 type NakamaApi struct {
 	Token string
 }
