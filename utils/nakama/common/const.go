@@ -18,7 +18,7 @@ const CountApi = "/v2/console/status"
 const AccountListApiUrl = "/v2/console/account"
 
 // AccountBanListApiUrl 接口-账户禁用列表地址
-const AccountBanListApiUrl = "/v2/rpc/ban_accounts"
+const AccountBanListApiUrl = "/v2/rpc/player/ban"
 
 // AccountDetailApiUrl 接口-账户详情地址
 const AccountDetailApiUrl = "/v2/console/account"

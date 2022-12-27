@@ -44,11 +44,26 @@ type Accounts struct {
 	TotalCount int    `json:"total_count"`
 	NextCursor string `json:"next_cursor"`
 }
-type banAccountList struct {
-	Users      []BanAccount `json:"users"`
-	TotalCount int          `json:"total_count"`
-	NextCursor string       `json:"next_cursor"`
+
+type BanPlayer struct {
+	ID          string     `json:"id"`
+	Username    string     `json:"username"`
+	DisplayName string     `json:"display_name"`
+	AvatarURL   string     `json:"avatar_url"`
+	LangTag     string     `json:"lang_tag"`
+	Metadata    string     `json:"metadata"`
+	EdgeCount   int        `json:"edge_count"`
+	CreateTime  CreateTime `json:"create_time"`
+	UpdateTime  UpdateTime `json:"update_time"`
+	SteamID     string     `json:"steam_id,omitempty"`
 }
+type CreateTime struct {
+	Seconds int `json:"seconds"`
+}
+type UpdateTime struct {
+	Seconds int `json:"seconds"`
+}
+
 type User struct {
 	ID                    string    `json:"id"`
 	Username              string    `json:"username"`
@@ -69,11 +84,7 @@ type User struct {
 	FacebookInstantGameID string    `json:"facebook_instant_game_id"`
 	AppleID               string    `json:"apple_id"`
 }
-type BanAccount struct {
-	User
-	CreateTime interface{} `json:"create_time"`
-	UpdateTime interface{} `json:"update_time"`
-}
+
 type Encoder struct{}
 type Params struct {
 	Updates   interface{} `json:"updates"`
@@ -149,7 +160,7 @@ func (a *Account) GetAccountList(apiUrl string, filter string, cursor string, mo
 }
 
 // GetAccountBanList 获取用用列表
-func (a *Account) GetAccountBanList(apiUrl string, UserID string, UserName string, Offset int, Limit int, mode string) (banAccountList, error) {
+func (a *Account) GetAccountBanList(apiUrl string, UserID string, UserName string, Offset int, Limit int, mode string) ([]BanPlayer, error) {
 	utils.Logger.Info("当前运行模式为:", mode)
 	params := map[string]interface{}{
 		"user_id":   UserID,
@@ -161,19 +172,21 @@ func (a *Account) GetAccountBanList(apiUrl string, UserID string, UserName strin
 		"Accept": "application/json",
 	}).SetTimeout(20).Post(apiUrl, params)
 	if utils.HasErr(err, global.GetAccountBanListErr) {
-		return banAccountList{}, err
+		return nil, err
 	}
 	defer response.Close()
 
 	if !utils.Success(response.StatusCode()) {
 		content, _ := response.Content()
 		utils.Logger.Error("request api[accounts-ban-list] response code error，code:", response.StatusCode(), ",result:", content)
-		return banAccountList{}, errors.New("request nakama server error")
+		return nil, errors.New("request nakama server error")
 	}
-	var accounts banAccountList
+	// c, _ := response.Content()
+	// utils.JsonDisplay(c)
+	var accounts []BanPlayer
 	err = response.Json(&accounts)
 	if utils.HasErr(err, global.ParseJsonDataErr) {
-		return banAccountList{}, err
+		return nil, err
 	}
 	return accounts, nil
 }
