@@ -41,11 +41,13 @@ func (a *InnerApiMiddleware) checkSign(context *gin.Context) {
 	if ts == "" || sign == "" {
 		utils.ApiResponse(context, global.NoSignParamsErr)
 		context.Abort()
+		return
 	}
 	timestamp, err := strconv.ParseInt(ts, 10, 64)
 	if err != nil {
 		utils.ApiResponse(context, global.NoSignParamsErr)
 		context.Abort()
+		return
 	}
 	path := a.getBaseUri(context, a.serverConfig.Domain)
 	if a.isApi(path) { // 不是api 请求
@@ -53,11 +55,13 @@ func (a *InnerApiMiddleware) checkSign(context *gin.Context) {
 		if carbon.Now().Timestamp()-timestamp > a.apiConfig.Overtime {
 			utils.ApiResponse(context, global.RequestOvertimeErr)
 			context.Abort()
+			return
 		}
 		newSign := utils.RequestSign(ts, a.apiConfig.Secret)
 		if newSign != sign {
 			utils.ApiResponse(context, global.SignErr)
 			context.Abort()
+			return
 		}
 	}
 }

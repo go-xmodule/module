@@ -45,6 +45,7 @@ func (a *OutApiMiddleware) checkSign(context *gin.Context) {
 		if carbon.Now(carbon.PRC).Timestamp()-requestTime > a.apiConfig.Overtime {
 			utils.ApiResponse(context, global.RequestOvertimeErr)
 			context.Abort()
+			return
 		}
 		requestParamsSign := params["sign"]
 		delete(params, "sign")
@@ -53,6 +54,7 @@ func (a *OutApiMiddleware) checkSign(context *gin.Context) {
 		if newSign != requestParamsSign {
 			utils.ApiResponse(context, global.SignErr)
 			context.Abort()
+			return
 		}
 	}
 }
