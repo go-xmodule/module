@@ -81,7 +81,7 @@ func (stc *ConsoleTokenClaims) Valid() error {
 
 // 解析token
 func (a *Auth) parseConsoleToken(hmacSecretByte []byte, tokenString string) (username, email string, role UserRole, exp int64, ok bool) {
-	token, err := jwt.ParseWithClaims(tokenString, &ConsoleTokenClaims{}, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &ConsoleTokenClaims{}, func(token *jwt.Token) (any, error) {
 		if s, ok := token.Method.(*jwt.SigningMethodHMAC); !ok || s.Hash != crypto.SHA256 {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
@@ -99,7 +99,7 @@ func (a *Auth) parseConsoleToken(hmacSecretByte []byte, tokenString string) (use
 
 // token 检测
 func (a *Auth) testToken(loginToken LoginToken) (int, error) {
-	token, err := jwt.Parse(loginToken.Token, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.Parse(loginToken.Token, func(token *jwt.Token) (any, error) {
 		if s, ok := token.Method.(*jwt.SigningMethodHMAC); !ok || s.Hash != crypto.SHA256 {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}

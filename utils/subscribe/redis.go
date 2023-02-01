@@ -34,7 +34,7 @@ func (s *RedisSubscribe) Subscribe(channel string, callback SubscribeCallback) {
 }
 
 // Publish 发布数据
-func (s *RedisSubscribe) Publish(channel string, message interface{}) error {
+func (s *RedisSubscribe) Publish(channel string, message any) error {
 	utils.Logger.Debug("start publish data, message:", utils.Json(message))
 	_, err := handler.RedisHandler.Publish(channel, message)
 	if err != nil {

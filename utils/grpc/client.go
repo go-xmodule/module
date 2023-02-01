@@ -83,7 +83,7 @@ func (c CustomCredential) RequireTransportSecurity() bool {
 }
 
 // interceptor 客户端拦截器
-func interceptor(ctx context.Context, method string, req, reply interface{}, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
+func interceptor(ctx context.Context, method string, req, reply any, cc *grpc.ClientConn, invoker grpc.UnaryInvoker, opts ...grpc.CallOption) error {
 	start := time.Now()
 	err := invoker(ctx, method, req, reply, cc, opts...)
 	if utils.Logger == nil {

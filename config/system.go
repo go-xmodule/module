@@ -57,7 +57,7 @@ type View struct {
 	PageCount int `yaml:"pageCount"`
 }
 
-func InitSystemConfig(client config_client.IConfigClient, group string, config interface{}) {
+func InitSystemConfig(client config_client.IConfigClient, group string, config any) {
 	getConfigParams := nacos.GetConfigParams{
 		Client: client,
 		DataId: global.SystemConfigDataId,

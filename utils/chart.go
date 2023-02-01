@@ -84,7 +84,7 @@ func (c *Chart) Generate(xValues []time.Time, yValues []float64, dirPath string)
 			TickStyle: chart.Style{
 				TextRotationDegrees: 45.0,
 			},
-			ValueFormatter: func(v interface{}) string {
+			ValueFormatter: func(v any) string {
 				return fmt.Sprintf("%d P", int(v.(float64)))
 			},
 		},

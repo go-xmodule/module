@@ -21,7 +21,7 @@ type Api struct {
 	Overtime int64  `yaml:"overtime"`
 }
 
-func InitApiConfig(client config_client.IConfigClient, group string, config interface{}) {
+func InitApiConfig(client config_client.IConfigClient, group string, config any) {
 	getConfigParams := nacos.GetConfigParams{
 		Client: client,
 		DataId: global.ApiConfigDataId,

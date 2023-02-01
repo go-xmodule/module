@@ -21,14 +21,14 @@ type Field struct {
 	Field   string
 	Where   string
 	Default string
-	Value   interface{}
+	Value   any
 	Option  string
 }
 type SqlUtil struct {
 }
 
 // TransWhere 结构体转换查询sql
-func TransWhere(params interface{}) (string, string) {
+func TransWhere(params any) (string, string) {
 	typeOfCat := reflect.TypeOf(params)
 	valueOfCat := reflect.ValueOf(params)
 	search := map[string]Field{}

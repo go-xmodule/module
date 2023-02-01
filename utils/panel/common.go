@@ -130,13 +130,13 @@ func (t Type) String() string {
 
 // FieldModel display 元素
 type FieldModel struct {
-	ID    interface{}
-	Value interface{}
-	Row   map[string]interface{}
+	ID    any
+	Value any
+	Row   map[string]any
 }
 
 // FieldDisplayFun table展示自定义方法
-type FieldDisplayFun func(model FieldModel) interface{}
+type FieldDisplayFun func(model FieldModel) any
 
 // TableField table 元数据
 type TableField struct {
@@ -184,8 +184,8 @@ type ActionType int
 // FormField form表单原数据定义
 type FormField struct {
 	Field          string
-	Value          interface{}
-	Value2         interface{}
+	Value          any
+	Value2         any
 	FormType       Type
 	FieldName      string
 	FieldClass     string
@@ -209,7 +209,7 @@ type FormField struct {
 	Label         string
 	Display       FieldDisplayFun
 
-	CustomContent interface{}
+	CustomContent any
 	CustomJs      template.JS
 	CustomCss     template.CSS
 }

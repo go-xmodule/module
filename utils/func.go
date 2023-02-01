@@ -51,7 +51,7 @@ func StringReplace(targetString string, sourceList []string, targetList []string
 }
 
 // TransInterfaceToStruct 转换interface 到struct
-func TransInterfaceToStruct(params interface{}, v interface{}) error {
+func TransInterfaceToStruct(params any, v any) error {
 	jsonData, err := json.Marshal(params)
 	if err != nil {
 		return err
@@ -65,8 +65,8 @@ func TransInterfaceToStruct(params interface{}, v interface{}) error {
 }
 
 // TransInterfaceToMap 转换struct 等结构到map
-func TransInterfaceToMap(params interface{}) map[string]interface{} {
-	var paramsMap map[string]interface{}
+func TransInterfaceToMap(params any) map[string]any {
+	var paramsMap map[string]any
 	jsonData, _ := json.Marshal(params)
 	_ = json.Unmarshal(jsonData, &paramsMap)
 	return paramsMap
@@ -77,20 +77,20 @@ func ParseFloat64(str string) float64 {
 }
 
 // TansToMap 转换json 到map
-func TansToMap(paramsStr []byte) map[string]interface{} {
-	var params map[string]interface{}
+func TansToMap(paramsStr []byte) map[string]any {
+	var params map[string]any
 	_ = json.Unmarshal(paramsStr, &params)
 	return params
 }
-func Json(params interface{}) string {
+func Json(params any) string {
 	b, _ := json.Marshal(params)
 	return string(b)
 }
-func JsonString(params interface{}) string {
+func JsonString(params any) string {
 	b, _ := json.Marshal(params)
 	return string(b)
 }
-func Unmarshal(data string, params interface{}) error {
+func Unmarshal(data string, params any) error {
 	return json.Unmarshal([]byte(data), params)
 }
 func SplitTowString(str string) (string, string, error) {
@@ -112,10 +112,10 @@ func Success(status int) bool {
 	return global.ErrCode(status) == global.Success
 }
 
-func CatchErr(err error, errCode fmt.Stringer, params ...interface{}) bool {
+func CatchErr(err error, errCode fmt.Stringer, params ...any) bool {
 	return HasErr(err, errCode, params...)
 }
-func HasErr(err error, errCode fmt.Stringer, params ...interface{}) bool {
+func HasErr(err error, errCode fmt.Stringer, params ...any) bool {
 	if err != nil {
 		errMsg := fmt.Sprintf("%s ,err:%s,params:%s,stack:%s", errCode.String(), err.Error(), params, string(debug.Stack()))
 		if Logger != nil {
@@ -134,7 +134,7 @@ func HasErr(err error, errCode fmt.Stringer, params ...interface{}) bool {
 	}
 	return false
 }
-func HasWar(err error, errCode fmt.Stringer, params ...interface{}) bool {
+func HasWar(err error, errCode fmt.Stringer, params ...any) bool {
 	if err != nil {
 		errMsg := fmt.Sprintf("%s ,waring:%s,params:%s", errCode.String(), err.Error(), params)
 		if Logger != nil {
@@ -157,7 +157,7 @@ func HasWar(err error, errCode fmt.Stringer, params ...interface{}) bool {
 func CheckErr(err error) bool {
 	return err != nil
 }
-func JsonDisplay(obj interface{}) {
+func JsonDisplay(obj any) {
 	b, _ := json.Marshal(obj)
 	fmt.Println("---------------------------------json obj-------------------------------------")
 	var out bytes.Buffer

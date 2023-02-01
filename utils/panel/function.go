@@ -27,10 +27,10 @@ func InitializeTemplateFun() template.FuncMap {
 		"staticPath": func() string {
 			return StaticPath
 		},
-		"lang": func(a interface{}) interface{} {
+		"lang": func(a any) any {
 			return a
 		},
-		"interfaceChek": func(a interface{}) bool {
+		"interfaceChek": func(a any) bool {
 			res := fmt.Sprint(a)
 			if res == "" {
 				return false
@@ -41,7 +41,7 @@ func InitializeTemplateFun() template.FuncMap {
 		"showDate": func(time time.Time) string {
 			return time.Format(utils.DateTemplate)
 		},
-		"date": func(a interface{}) interface{} {
+		"date": func(a any) any {
 			switch a.(type) {
 			case time.Time:
 				return a.(time.Time).Format(utils.DateTimeTemplate)
@@ -51,7 +51,7 @@ func InitializeTemplateFun() template.FuncMap {
 			}
 			return a
 		},
-		"transDate": func(a interface{}) interface{} {
+		"transDate": func(a any) any {
 			switch a.(type) {
 			case time.Time:
 				return a.(time.Time).Format(utils.DateTemplate)
@@ -73,28 +73,28 @@ func InitializeTemplateFun() template.FuncMap {
 			return one - two
 		},
 
-		"index": func(option interface{}, num int) string {
+		"index": func(option any, num int) string {
 			return ""
 		},
-		"baseName": func(path interface{}) string {
+		"baseName": func(path any) string {
 			if path != nil {
 				temp := strings.Split(path.(string), "/")
 				return temp[len(temp)-1]
 			}
 			return ""
 		},
-		"isArray": func(params interface{}) bool {
+		"isArray": func(params any) bool {
 			kind := reflect.TypeOf(params).Kind().String()
 			return kind == "slice"
 		},
-		"isHidden": func(elementType interface{}) bool {
+		"isHidden": func(elementType any) bool {
 			elementType = fmt.Sprint(elementType)
 			return elementType == "hidden"
 		},
 		"option": func(editAble, detailAble, deleteAble bool) bool {
 			return editAble || detailAble || deleteAble
 		},
-		"langHtml": func(a interface{}) interface{} {
+		"langHtml": func(a any) any {
 			return a
 		},
 		"link": func(cdnUrl, prefixUrl, assetsUrl string) string {
@@ -115,7 +115,7 @@ func InitializeTemplateFun() template.FuncMap {
 		"divide": func(a, b int) int {
 			return a / b
 		},
-		"renderRowDataHTML": func(id, content template.HTML, value ...interface{}) template.HTML {
+		"renderRowDataHTML": func(id, content template.HTML, value ...any) template.HTML {
 			return template.HTML("")
 		},
 		// "renderRowDataJS": func(id template.HTML, content template.JS, value ...map[string]types.InfoItem) template.JS {
@@ -124,7 +124,7 @@ func InitializeTemplateFun() template.FuncMap {
 		"attr": func(s template.HTML) template.HTMLAttr {
 			return template.HTMLAttr(s)
 		},
-		"js": func(s interface{}) template.JS {
+		"js": func(s any) template.JS {
 			if ss, ok := s.(string); ok {
 				return template.JS(ss)
 			}
@@ -133,7 +133,7 @@ func InitializeTemplateFun() template.FuncMap {
 			}
 			return ""
 		},
-		"md5": func(params interface{}) string {
+		"md5": func(params any) string {
 			md5, _ := utils.Md5(params)
 			return md5
 		},
@@ -150,7 +150,7 @@ func InitializeTemplateFun() template.FuncMap {
 		"formatFileSize": func(fileSize float64) (size string) {
 			return utils.FormatFileSize(fileSize)
 		},
-		"html": func(str string) interface{} {
+		"html": func(str string) any {
 			return template.HTML(str)
 		},
 		"strEq": func(one string, tow string) bool {

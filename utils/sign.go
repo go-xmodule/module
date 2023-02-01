@@ -18,8 +18,8 @@ import (
 )
 
 // Sign 接口请求签名
-func SignParams(paramsStruct interface{}, secret string) map[string]interface{} {
-	var params map[string]interface{}
+func SignParams(paramsStruct any, secret string) map[string]any {
+	var params map[string]any
 	b, _ := json.Marshal(paramsStruct)
 	json.Unmarshal(b, &params)
 	timeStamp := carbon.Now().Timestamp()
@@ -42,7 +42,7 @@ func SignParams(paramsStruct interface{}, secret string) map[string]interface{} 
 }
 
 // Sign 接口请求签名
-func Sign(params map[string]interface{}, secret string) string {
+func Sign(params map[string]any, secret string) string {
 	var dataParams string
 	var keys []string
 	for k := range params {

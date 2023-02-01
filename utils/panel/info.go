@@ -105,8 +105,8 @@ func (s *Info) GetInfo(data models.ModelAction) *Info {
 }
 
 // 获取当前数据
-func (s *Info) getRowValue() map[string]interface{} {
-	row := map[string]interface{}{}
+func (s *Info) getRowValue() map[string]any {
+	row := map[string]any{}
 	for _, v := range s.fieldList {
 		row[v.Field] = v.Value
 	}

@@ -27,7 +27,7 @@ type PageInfo struct {
 }
 type PageData struct {
 	PageInfo PageInfo
-	DataList interface{}
+	DataList any
 }
 
 func (u *PageUtil) Paginator(currentPage, prePage int, totalCount int64) PageInfo {

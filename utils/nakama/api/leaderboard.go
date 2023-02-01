@@ -26,48 +26,48 @@ type LeaderboardList struct {
 	Leaderboards []LeaderboardInfo `json:"leaderboards"`
 }
 type LeaderboardInfo struct {
-	ID            string      `json:"id"`
-	Title         string      `json:"title"`
-	Description   string      `json:"description"`
-	Category      int         `json:"category"`
-	SortOrder     int         `json:"sort_order"`
-	Size          int         `json:"size"`
-	MaxSize       int         `json:"max_size"`
-	MaxNumScore   int         `json:"max_num_score"`
-	Operator      int         `json:"operator"`
-	EndActive     int         `json:"end_active"`
-	ResetSchedule string      `json:"reset_schedule"`
-	Metadata      string      `json:"metadata"`
-	CreateTime    interface{} `json:"create_time"`
-	StartTime     interface{} `json:"start_time"`
-	EndTime       interface{} `json:"end_time"`
-	Duration      int         `json:"duration"`
-	StartActive   int         `json:"start_active"`
-	JoinRequired  bool        `json:"join_required"`
-	Authoritative bool        `json:"authoritative"`
-	Tournament    bool        `json:"tournament"`
+	ID            string `json:"id"`
+	Title         string `json:"title"`
+	Description   string `json:"description"`
+	Category      int    `json:"category"`
+	SortOrder     int    `json:"sort_order"`
+	Size          int    `json:"size"`
+	MaxSize       int    `json:"max_size"`
+	MaxNumScore   int    `json:"max_num_score"`
+	Operator      int    `json:"operator"`
+	EndActive     int    `json:"end_active"`
+	ResetSchedule string `json:"reset_schedule"`
+	Metadata      string `json:"metadata"`
+	CreateTime    any    `json:"create_time"`
+	StartTime     any    `json:"start_time"`
+	EndTime       any    `json:"end_time"`
+	Duration      int    `json:"duration"`
+	StartActive   int    `json:"start_active"`
+	JoinRequired  bool   `json:"join_required"`
+	Authoritative bool   `json:"authoritative"`
+	Tournament    bool   `json:"tournament"`
 }
 
 type LeaderboardRecord struct {
-	Records      []Records     `json:"records"`
-	OwnerRecords []interface{} `json:"owner_records"`
-	NextCursor   string        `json:"next_cursor"`
-	PrevCursor   string        `json:"prev_cursor"`
+	Records      []Records `json:"records"`
+	OwnerRecords []any     `json:"owner_records"`
+	NextCursor   string    `json:"next_cursor"`
+	PrevCursor   string    `json:"prev_cursor"`
 }
 
 type Records struct {
-	LeaderboardID string      `json:"leaderboard_id"`
-	OwnerID       string      `json:"owner_id"`
-	Username      string      `json:"username"`
-	Score         string      `json:"score"`
-	Subscore      string      `json:"subscore"`
-	NumScore      int         `json:"num_score"`
-	Metadata      string      `json:"metadata"`
-	CreateTime    time.Time   `json:"create_time"`
-	UpdateTime    time.Time   `json:"update_time"`
-	ExpiryTime    interface{} `json:"expiry_time"`
-	Rank          string      `json:"rank"`
-	MaxNumScore   int         `json:"max_num_score"`
+	LeaderboardID string    `json:"leaderboard_id"`
+	OwnerID       string    `json:"owner_id"`
+	Username      string    `json:"username"`
+	Score         string    `json:"score"`
+	Subscore      string    `json:"subscore"`
+	NumScore      int       `json:"num_score"`
+	Metadata      string    `json:"metadata"`
+	CreateTime    time.Time `json:"create_time"`
+	UpdateTime    time.Time `json:"update_time"`
+	ExpiryTime    any       `json:"expiry_time"`
+	Rank          string    `json:"rank"`
+	MaxNumScore   int       `json:"max_num_score"`
 }
 
 func NewLeaderboard(token string) *Leaderboard {

@@ -30,7 +30,7 @@ type Request struct {
 	cookies          map[string]string
 	method           string
 	url              string
-	data             interface{}
+	data             any
 	disableKeepAlive bool
 	timeout          time.Duration
 }
@@ -117,7 +117,7 @@ func (r *Request) buildClient() *http.Client {
 }
 
 // 构建请求的url
-func (r *Request) buildUrl(url string, params ...interface{}) (string, error) {
+func (r *Request) buildUrl(url string, params ...any) (string, error) {
 	query, err := r.parseUrl(url)
 	if err != nil {
 		return url, err
@@ -127,7 +127,7 @@ func (r *Request) buildUrl(url string, params ...interface{}) (string, error) {
 		paramsType := reflect.TypeOf(params[0]).String()
 		switch paramsType {
 		case "map[string]interface {}":
-			for key, value := range params[0].(map[string]interface{}) {
+			for key, value := range params[0].(map[string]any) {
 				if reflect.TypeOf(value).String() == "string" {
 					paramsValue = value.(string)
 				} else {
@@ -177,7 +177,7 @@ func (r *Request) runTime(n int64, resp *Response) {
 	resp.time = end - n
 }
 
-func (r *Request) request(url string, method string, params ...interface{}) (*Response, error) {
+func (r *Request) request(url string, method string, params ...any) (*Response, error) {
 	if url == "" || method == "" {
 		return nil, errors.New("parameter method and url is required")
 	}
@@ -270,7 +270,7 @@ func (r *Request) SetCookies(cookies map[string]string) *Request {
 }
 
 // 构建请求消息体
-func (r *Request) buildBody(params ...interface{}) (io.Reader, error) {
+func (r *Request) buildBody(params ...any) (io.Reader, error) {
 	if r.method == http.MethodGet || r.method == http.MethodDelete {
 		return nil, nil
 	}
@@ -283,7 +283,7 @@ func (r *Request) buildBody(params ...interface{}) (io.Reader, error) {
 			payloadBytes, _ := json.Marshal(params[0])
 			return strings.NewReader(string(payloadBytes)), nil
 		} else {
-			for key, value := range params[0].(map[string]interface{}) {
+			for key, value := range params[0].(map[string]any) {
 				if param, ok := value.(string); ok {
 					data = append(data, fmt.Sprintf("%s=%s", key, param))
 					continue
@@ -302,13 +302,13 @@ func (r *Request) buildBody(params ...interface{}) (io.Reader, error) {
 	return strings.NewReader(strings.Join(data, "&")), nil
 }
 
-func (r *Request) Get(url string, params ...interface{}) (*Response, error) {
+func (r *Request) Get(url string, params ...any) (*Response, error) {
 	return r.request(url, http.MethodGet, params...)
 }
-func (r *Request) Delete(url string, params ...interface{}) (*Response, error) {
+func (r *Request) Delete(url string, params ...any) (*Response, error) {
 	return r.request(url, http.MethodDelete, params...)
 }
 
-func (r *Request) Post(url string, params ...interface{}) (*Response, error) {
+func (r *Request) Post(url string, params ...any) (*Response, error) {
 	return r.request(url, http.MethodPost, params...)
 }

@@ -81,7 +81,7 @@ func StrToFloat64(strFloat string, defaultFloat ...float64) float64 {
 
 // IntToStr int类型转字符串
 // num int类型的数据，不区分int64或者int类型
-func IntToStr(num interface{}) string {
+func IntToStr(num any) string {
 	var str string
 	switch num.(type) {
 	case int:

@@ -19,13 +19,13 @@ import (
 )
 
 // ParseConfig 解析配置文件
-func ParseConfig(configFile string, config interface{}) error {
+func ParseConfig(configFile string, config any) error {
 	configFile = GetConfigFile(configFile)
 	return GetConfig(configFile, config)
 }
 
 // GetConfig 获取配置
-func GetConfig(path string, config interface{}) error {
+func GetConfig(path string, config any) error {
 	exists := gotool.FileUtils.Exists(path)
 	if !exists {
 		return errors.New("config file:" + path + " is not found")

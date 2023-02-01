@@ -56,8 +56,8 @@ type Grid struct {
 // Field 显示字段信息
 type Field struct {
 	Field   string
-	Row     map[string]interface{}
-	Value   interface{}
+	Row     map[string]any
+	Value   any
 	Display FieldDisplayFun
 	Label   bool
 	Icon    bool
@@ -210,7 +210,7 @@ func (t *Grid) BaseUrl() string {
 }
 
 // CurrentUrl 获取当前url 页面分页用
-func (t *Grid) CurrentUrl(params ...interface{}) string {
+func (t *Grid) CurrentUrl(params ...any) string {
 	if len(params) > 0 {
 		par := map[string]string{
 			"_ts": "s",
@@ -237,12 +237,12 @@ func (t *Grid) CurrentUrl(params ...interface{}) string {
 }
 
 // SearchValue 当前搜索的字段信息，页面回显用
-func (t *Grid) SearchValue(params interface{}) interface{} {
+func (t *Grid) SearchValue(params any) any {
 	return t.context.DefaultQuery(fmt.Sprintf("_search_params_%s", params), "")
 }
 
 // Show 数据显现
-func (f *Field) Show() interface{} {
+func (f *Field) Show() any {
 	res := f.Display(FieldModel{
 		ID:    f.Row["id"],
 		Value: f.Value,
@@ -256,10 +256,10 @@ func (t *Grid) GetTable(pageData utils.PageData) *Grid {
 	t.PageData = pageData
 	var response [][]Field
 	if t.PageData.DataList != nil {
-		res := t.PageData.DataList.([]map[string]interface{})
+		res := t.PageData.DataList.([]map[string]any)
 		for _, v := range res {
 			var tmp []Field
-			var value interface{}
+			var value any
 			for _, key := range t.fieldSort {
 				if key == "created_at" || key == "updated_at" || key == "deleted_at" {
 					if v[key] != nil {

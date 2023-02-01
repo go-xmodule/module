@@ -17,9 +17,9 @@ import (
 	"time"
 )
 
-func GetStructMap(data interface{}) map[string]interface{} {
+func GetStructMap(data any) map[string]any {
 	s, _ := json.Marshal(data)
-	var mapData map[string]interface{}
+	var mapData map[string]any
 	_ = json.Unmarshal(s, &mapData)
 	for field, value := range mapData {
 		if field == "created_at" || field == "updated_at" || field == "deleted_at" {
@@ -32,7 +32,7 @@ func GetStructMap(data interface{}) map[string]interface{} {
 	return mapData
 }
 
-func SetStructField(ptr interface{}, fields map[string]string) {
+func SetStructField(ptr any, fields map[string]string) {
 	v := reflect.ValueOf(ptr).Elem() // the struct variable
 	for i := 0; i < v.NumField(); i++ {
 		fieldInfo := v.Type().Field(i) // a reflect.StructField
@@ -49,7 +49,7 @@ func SetStructField(ptr interface{}, fields map[string]string) {
 	}
 }
 
-func GetStructField(ptr interface{}) []string {
+func GetStructField(ptr any) []string {
 	v := reflect.ValueOf(ptr).Elem() // the struct variable
 	var fieldNames []string
 	for i := 0; i < v.NumField(); i++ {

@@ -15,7 +15,7 @@ import (
 	"log"
 )
 
-func InitChannelConfig(client config_client.IConfigClient, group string, config interface{}) {
+func InitChannelConfig(client config_client.IConfigClient, group string, config any) {
 	getConfigParams := nacos.GetConfigParams{
 		Client: client,
 		DataId: global.ChannelConfigDataId,

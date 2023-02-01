@@ -19,7 +19,7 @@ import (
 )
 
 // EditSourceDataFun 自定义编辑元数据修改方法
-type EditSourceDataFun func(map[string]interface{}) map[string]interface{}
+type EditSourceDataFun func(map[string]any) map[string]any
 
 // Form Form表单
 type Form struct {
@@ -154,13 +154,13 @@ func (f *Form) Disable() *Form {
 }
 
 // Default 默认值
-func (f *Form) Default(defaultValue interface{}) *Form {
+func (f *Form) Default(defaultValue any) *Form {
 	f.fieldList[f.curFieldListIndex].Value = defaultValue
 	return f
 }
 
 // DefaultValueTow 默认值
-func (f *Form) DefaultValueTow(defaultValue interface{}) *Form {
+func (f *Form) DefaultValueTow(defaultValue any) *Form {
 	f.fieldList[f.curFieldListIndex].Value2 = defaultValue
 	return f
 }

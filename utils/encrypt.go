@@ -17,7 +17,7 @@ type EncryptUtil struct {
 }
 
 // Md5 MD5算法.
-func Md5(input interface{}) (string, error) {
+func Md5(input any) (string, error) {
 	params := ""
 	inputType := reflect.TypeOf(input).String()
 	if inputType == "string" {

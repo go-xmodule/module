@@ -23,10 +23,10 @@ type RedisClient struct {
 	context      context.Context
 }
 type SubscribeData struct {
-	Channel      string      `json:"Channel"`
-	Pattern      string      `json:"Pattern"`
-	Payload      string      `json:"Payload"`
-	PayloadSlice interface{} `json:"PayloadSlice"`
+	Channel      string `json:"Channel"`
+	Pattern      string `json:"Pattern"`
+	Payload      string `json:"Payload"`
+	PayloadSlice any    `json:"PayloadSlice"`
 }
 
 // NewRedis 实例化
@@ -38,7 +38,7 @@ func NewRedis(client *redis.Client) *RedisClient {
 }
 
 // Set 字符串设置
-func (r *RedisClient) Set(key string, value interface{}, expiration time.Duration) error {
+func (r *RedisClient) Set(key string, value any, expiration time.Duration) error {
 	// 执行命令
 	err := r.client.Set(r.context, key, value, expiration).Err()
 	if err != nil {
@@ -47,7 +47,7 @@ func (r *RedisClient) Set(key string, value interface{}, expiration time.Duratio
 	return nil
 }
 
-func (r *RedisClient) HSetNX(key, field string, value interface{}) (bool, error) {
+func (r *RedisClient) HSetNX(key, field string, value any) (bool, error) {
 	// 执行命令
 	result := r.client.HSetNX(r.context, key, field, value)
 	if err := result.Err(); err != nil {
@@ -66,7 +66,7 @@ func (r *RedisClient) HSet(key string, values map[string]string) (int64, error) 
 	return result.Result()
 }
 
-func (r *RedisClient) SetNX(key string, value interface{}, expiration time.Duration) (bool, error) {
+func (r *RedisClient) SetNX(key string, value any, expiration time.Duration) (bool, error) {
 	// 执行命令
 	// r.client.Conn(r.context).Select(r.context,1)
 	result := r.client.SetNX(r.context, key, value, expiration)
@@ -127,7 +127,7 @@ func (r *RedisClient) LPop(key string) (string, error) {
 	}
 }
 
-func (r *RedisClient) LPush(key string, value interface{}) (int64, error) {
+func (r *RedisClient) LPush(key string, value any) (int64, error) {
 	result := r.client.LPush(r.context, key, value)
 	if err := result.Err(); err != nil {
 		return 0, err
@@ -155,7 +155,7 @@ func (r *RedisClient) Keys(pattern string) ([]string, error) {
 }
 
 // Publish 发布
-func (r *RedisClient) Publish(channel string, message interface{}) (int64, error) {
+func (r *RedisClient) Publish(channel string, message any) (int64, error) {
 	result := r.client.Publish(r.context, channel, message)
 	if err := result.Err(); err != nil {
 		return 0, err
@@ -172,19 +172,19 @@ func (r *RedisClient) Subscribe(channel string) <-chan *redis.Message {
 
 type PipAction func(pipeLiner redis.Pipeliner)
 
-func (r *RedisClient) SelectDbAction(index int, action PipAction) (map[int]interface{}, error) {
+func (r *RedisClient) SelectDbAction(index int, action PipAction) (map[int]any, error) {
 	pipeLine := r.client.Pipeline()
 	pipeLine.Do(context.Background(), "select", index)
 	action(pipeLine)
 	result, err := pipeLine.Exec(context.Background())
 	if err != nil {
-		return map[int]interface{}{}, err
+		return map[int]any{}, err
 	}
 	return r.getCmdResult(result), nil
 }
 
-func (r *RedisClient) getCmdResult(cmdRes []redis.Cmder) map[int]interface{} {
-	strMap := make(map[int]interface{}, len(cmdRes))
+func (r *RedisClient) getCmdResult(cmdRes []redis.Cmder) map[int]any {
+	strMap := make(map[int]any, len(cmdRes))
 	for idx, cmder := range cmdRes {
 		// *ClusterSlotsCmd 未实现
 		switch reflect.TypeOf(cmder).String() {

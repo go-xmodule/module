@@ -60,7 +60,7 @@ func (g *Server) Start() error {
 }
 
 // interceptor 拦截器
-func (g *Server) interceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
+func (g *Server) interceptor(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
 	err := g.auth(ctx)
 	if err != nil {
 		return nil, err

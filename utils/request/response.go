@@ -99,7 +99,7 @@ func (r *Response) Content() (string, error) {
 	return string(b), nil
 }
 
-func (r *Response) Json(T interface{}) error {
+func (r *Response) Json(T any) error {
 	body, err := r.Body()
 	if err != nil {
 		return err
@@ -130,7 +130,7 @@ func (r *Response) Result() (Result, error) {
 	return result, nil
 }
 
-func (r *Response) JsonReturn(T interface{}) (string, error) {
+func (r *Response) JsonReturn(T any) (string, error) {
 	body, err := r.Body()
 	if err != nil {
 		return "", err

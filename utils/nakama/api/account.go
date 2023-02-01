@@ -28,16 +28,16 @@ type Account struct {
 
 type AccountInfo struct {
 	Account     AccountData `json:"account"`
-	DisableTime interface{} `json:"disable_time"`
+	DisableTime any         `json:"disable_time"`
 }
 type AccountData struct {
-	User        User          `json:"user"`
-	Wallet      string        `json:"wallet"`
-	Email       string        `json:"email"`
-	Devices     []interface{} `json:"devices"`
-	CustomID    string        `json:"custom_id"`
-	VerifyTime  interface{}   `json:"verify_time"`
-	DisableTime string        `json:"disable_time"`
+	User        User   `json:"user"`
+	Wallet      string `json:"wallet"`
+	Email       string `json:"email"`
+	Devices     []any  `json:"devices"`
+	CustomID    string `json:"custom_id"`
+	VerifyTime  any    `json:"verify_time"`
+	DisableTime string `json:"disable_time"`
 }
 type Accounts struct {
 	Users      []User `json:"users"`
@@ -87,10 +87,10 @@ type User struct {
 
 type Encoder struct{}
 type Params struct {
-	Updates   interface{} `json:"updates"`
-	CloneFrom interface{} `json:"cloneFrom"`
-	Encoder   Encoder     `json:"encoder"`
-	Map       interface{} `json:"map"`
+	Updates   any     `json:"updates"`
+	CloneFrom any     `json:"cloneFrom"`
+	Encoder   Encoder `json:"encoder"`
+	Map       any     `json:"map"`
 }
 type NormalizedNames struct{}
 type LazyUpdate struct {
@@ -100,7 +100,7 @@ type LazyUpdate struct {
 }
 type LazyInit struct {
 	NormalizedNames NormalizedNames   `json:"normalizedNames"`
-	LazyUpdate      interface{}       `json:"lazyUpdate"`
+	LazyUpdate      any               `json:"lazyUpdate"`
 	Headers         map[string]string `json:"headers"`
 }
 type Headers struct {
@@ -162,7 +162,7 @@ func (a *Account) GetAccountList(apiUrl string, filter string, cursor string, mo
 // GetAccountBanList 获取用用列表
 func (a *Account) GetAccountBanList(apiUrl string, UserID string, UserName string, Offset int, Limit int, mode string) ([]BanPlayer, error) {
 	utils.Logger.Info("当前运行模式为:", mode)
-	params := map[string]interface{}{
+	params := map[string]any{
 		"user_id":   UserID,
 		"user_name": UserName,
 		"offset":    Offset,
@@ -229,9 +229,9 @@ func (a *Account) UpdateAccount(id string, params []byte, url string, mode strin
 	}
 	defer response.Close()
 	type ErrorResponse struct {
-		Code    int           `json:"code"`
-		Message string        `json:"message"`
-		Details []interface{} `json:"details"`
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Details []any  `json:"details"`
 	}
 	if !utils.Success(response.StatusCode()) {
 		res, _ := response.Content()
@@ -267,9 +267,9 @@ func (a *Account) Unlink(url string, mode string) error {
 	}
 	defer response.Close()
 	type ErrorResponse struct {
-		Code    int           `json:"code"`
-		Message string        `json:"message"`
-		Details []interface{} `json:"details"`
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Details []any  `json:"details"`
 	}
 	if !utils.Success(response.StatusCode()) {
 		res, _ := response.Content()
@@ -299,9 +299,9 @@ func (a *Account) ChangeAccount(email string, password string, url string, mode 
 	}
 	defer response.Close()
 	type ErrorResponse struct {
-		Code    int           `json:"code"`
-		Message string        `json:"message"`
-		Details []interface{} `json:"details"`
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Details []any  `json:"details"`
 	}
 	if !utils.Success(response.StatusCode()) {
 		res, _ := response.Content()
@@ -389,9 +389,9 @@ func (a *Account) Enable(url string, mode string) error {
 	}
 	defer response.Close()
 	type ErrorResponse struct {
-		Code    int           `json:"code"`
-		Message string        `json:"message"`
-		Details []interface{} `json:"details"`
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Details []any  `json:"details"`
 	}
 	if !utils.Success(response.StatusCode()) {
 		res, _ := response.Content()
@@ -425,9 +425,9 @@ func (a *Account) Disable(url string, mode string) error {
 	}
 	defer response.Close()
 	type ErrorResponse struct {
-		Code    int           `json:"code"`
-		Message string        `json:"message"`
-		Details []interface{} `json:"details"`
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+		Details []any  `json:"details"`
 	}
 	if !utils.Success(response.StatusCode()) {
 		res, _ := response.Content()

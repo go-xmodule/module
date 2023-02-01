@@ -32,7 +32,7 @@ type GetConfigParams struct {
 }
 
 // GetConfig 获取配置
-func GetConfig(params GetConfigParams, config interface{}) error {
+func GetConfig(params GetConfigParams, config any) error {
 	content, err := params.Client.GetConfig(vo.ConfigParam{
 		Group:  params.Group,
 		DataId: params.DataId,

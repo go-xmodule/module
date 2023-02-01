@@ -45,11 +45,11 @@ type MatchState struct {
 	State     string      `json:"state"`
 }
 type Presences struct {
-	UserID      string      `json:"user_id"`
-	SessionID   string      `json:"session_id"`
-	Username    string      `json:"username"`
-	Persistence bool        `json:"persistence"`
-	Status      interface{} `json:"status"`
+	UserID      string `json:"user_id"`
+	SessionID   string `json:"session_id"`
+	Username    string `json:"username"`
+	Persistence bool   `json:"persistence"`
+	Status      any    `json:"status"`
 }
 
 func (a *Match) GetMatchList(url string, mode string) (MatchList, error) {

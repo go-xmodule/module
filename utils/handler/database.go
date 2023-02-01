@@ -18,12 +18,12 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-type Where interface{}
+type Where any
 
 // Database 基础模型
 type Database struct {
 	db     *gorm.DB
-	Result interface{}
+	Result any
 }
 
 // DBHandler 数据库操作句柄
@@ -33,24 +33,24 @@ var DBHandler *Database
 func NewDatabase(db *gorm.DB) *Database {
 	database := new(Database)
 	database.db = db
-	database.Result = &[]map[string]interface{}{}
+	database.Result = &[]map[string]any{}
 	return database
 }
 
 // SetModel 设置数据结果model
-func (m *Database) SetModel(executeModel interface{}) *Database {
+func (m *Database) SetModel(executeModel any) *Database {
 	m.Result = executeModel
 	return m
 }
 
 // SetResult 设置数据结果model
-func (m *Database) SetResult(resultModel interface{}) *Database {
+func (m *Database) SetResult(resultModel any) *Database {
 	m.Result = resultModel
 	return m
 }
 
 // DeleteByWhere 删除数据
-func (m *Database) DeleteByWhere(where interface{}) error {
+func (m *Database) DeleteByWhere(where any) error {
 	err := m.db.Where(where).Delete(m.Result).Error
 	if utils.HasErr(err, global.DataDeleteErr) {
 		return err
@@ -91,12 +91,12 @@ func (m *Database) ExecuteSql(sql string, logMod ...bool) error {
 }
 
 // Find 根据id获取一条数据
-func (m *Database) Find(id interface{}) error {
+func (m *Database) Find(id any) error {
 	return m.db.Where("id=?", id).First(m.Result).Error
 }
 
 // Get 根据where条件查询数据
-func (m *Database) Get(where ...interface{}) error {
+func (m *Database) Get(where ...any) error {
 	if len(where) > 0 {
 		return m.db.Where(where[0]).Find(m.Result).Error
 	} else {
@@ -115,17 +115,17 @@ func (m *Database) Create(model models.ModelAction) error {
 }
 
 // Save 保存修改的数据
-func (m *Database) Save(model interface{}) error {
+func (m *Database) Save(model any) error {
 	return m.db.Save(model).Error
 }
 
 // Delete 删除数据
-func (m *Database) Delete(model interface{}) error {
+func (m *Database) Delete(model any) error {
 	return m.db.Delete(model).Error
 }
 
 // GetByPage 分页查询数据
-func (m *Database) GetByPage(pagination models.PaginationQuery, where interface{}) utils.PageData {
+func (m *Database) GetByPage(pagination models.PaginationQuery, where any) utils.PageData {
 	var count int
 	m.db.Model(m.Result).Where(where).Count(&count)
 	offset := pagination.PageSize * (pagination.PageNum - 1)
@@ -134,7 +134,7 @@ func (m *Database) GetByPage(pagination models.PaginationQuery, where interface{
 	paginator.Offset = offset
 	paginator.EndOffset = pagination.PageSize + offset
 	data, _ := json.Marshal(m.Result)
-	mapRes := make([]map[string]interface{}, 0)
+	mapRes := make([]map[string]any, 0)
 	_ = json.Unmarshal(data, &mapRes)
 	return utils.PageData{
 		PageInfo: paginator,

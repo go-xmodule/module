@@ -15,7 +15,7 @@ import (
 	"log"
 )
 
-func InitGameConfig(client config_client.IConfigClient, group string, config interface{}) {
+func InitGameConfig(client config_client.IConfigClient, group string, config any) {
 	getConfigParams := nacos.GetConfigParams{
 		Client: client,
 		DataId: global.GameConfigDataId,

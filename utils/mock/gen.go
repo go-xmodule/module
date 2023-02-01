@@ -15,13 +15,13 @@ import (
 )
 
 type MockResult struct {
-	Data interface{} `json:"data"`
+	Data any `json:"data"`
 }
 
-func MockData(fields map[string]interface{}, count int, target interface{}, path string) error {
+func MockData(fields map[string]any, count int, target any, path string) error {
 	extra.RegisterFuzzyDecoders()
 	key := fmt.Sprintf("%s|%d", "data", count)
-	paramsBite := map[string][]map[string]interface{}{
+	paramsBite := map[string][]map[string]any{
 		key: {
 			fields,
 		},
@@ -63,11 +63,11 @@ func getCurrentAbPathByExecutable() string {
 	return abPath
 }
 
-func MockRequestData(fields map[string]interface{}, dataKey string, count int) (string, error) {
+func MockRequestData(fields map[string]any, dataKey string, count int) (string, error) {
 	path := getCurrentAbPathByExecutable()
 	key := fmt.Sprintf("%s|%d", dataKey, count)
 	// rule, _ := json.Marshal(fields)
-	paramsBite := map[string][]map[string]interface{}{
+	paramsBite := map[string][]map[string]any{
 		key: {
 			fields,
 		},

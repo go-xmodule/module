@@ -22,5 +22,5 @@ type SubPub interface {
 	// Subscribe 订阅消息
 	Subscribe(channel string, callback SubscribeCallback)
 	// Publish 发布消息
-	Publish(channel string, message interface{}) error
+	Publish(channel string, message any) error
 }

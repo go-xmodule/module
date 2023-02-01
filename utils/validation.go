@@ -13,9 +13,10 @@ import (
 	"errors"
 	"fmt"
 	"reflect"
+	"strings"
 )
 
-func ValidationStruct(params interface{}) error {
+func ValidationStruct(params any) error {
 	paramsMap := GetStructMap(params)
 	for _, key := range GetStructField(params) {
 		if fmt.Sprint(paramsMap[key]) == "" {
@@ -25,30 +26,30 @@ func ValidationStruct(params interface{}) error {
 	return nil
 }
 
-func Validation(requestParams []byte, obj interface{}) error {
+func Validation(requestParams []byte, obj any) error {
 	err := json.Unmarshal(requestParams, &obj)
 	if err != nil {
 		return err
 	}
 	t := reflect.TypeOf(obj).Elem()
 	t1 := reflect.ValueOf(obj)
-	checkErrors := ""
+	var checkErrors []string
 	for i := 0; i < t.NumField(); i++ {
 		if t.Field(i).Tag.Get("binding") == "required" && t1.Elem().Field(i).String() == "" {
 			errMsg := t.Field(i).Tag.Get("msg")
 			if errMsg == "" {
-				errMsg = t.Field(i).Name + " 为空！"
+				errMsg = "不能为空！"
 			}
-			checkErrors += fmt.Sprintf(" %s:%s", t.Field(i).Name, errMsg)
+			checkErrors = append(checkErrors, fmt.Sprintf(" %s:%s", t.Field(i).Name, errMsg))
 		}
 	}
 	if len(checkErrors) == 0 {
 		return nil
 	} else {
-		return errors.New(checkErrors)
+		return errors.New(strings.Join(checkErrors, ","))
 	}
 }
-func Validation1(obj interface{}) error {
+func Validation1(obj any) error {
 	t := reflect.TypeOf(obj).Elem()
 	t1 := reflect.ValueOf(obj)
 	err := ""

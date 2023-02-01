@@ -71,7 +71,7 @@ func GetConfigClient(config ConnectConfig) (config_client.IConfigClient, error) 
 		constant.WithAppName(config.AppName),
 	)
 	// 创建动态配置客户端
-	client, err := clients.CreateConfigClient(map[string]interface{}{
+	client, err := clients.CreateConfigClient(map[string]any{
 		"serverConfigs": serverConfig,
 		"clientConfig":  clientConfig,
 	})

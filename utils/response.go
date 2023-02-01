@@ -20,11 +20,11 @@ import (
 type ResponseData struct {
 	Code fmt.Stringer `json:"code"`
 	Msg  string       `json:"msg"`
-	Data interface{}  `json:"data"`
+	Data any          `json:"data"`
 }
 
 // ApiResponse 异常通知
-func ApiResponse(context *gin.Context, errorCode fmt.Stringer, data ...interface{}) {
+func ApiResponse(context *gin.Context, errorCode fmt.Stringer, data ...any) {
 	response := ResponseData{
 		Code: errorCode,
 		Msg:  errorCode.String(),
@@ -36,7 +36,7 @@ func ApiResponse(context *gin.Context, errorCode fmt.Stringer, data ...interface
 }
 
 // WebResponse 异常通知
-func WebResponse(context *gin.Context, errorCode interface{}, data ...interface{}) {
+func WebResponse(context *gin.Context, errorCode any, data ...any) {
 	msg := ""
 	var errCode global.ErrCode = 201
 	if code, ok := errorCode.(global.ErrCode); ok {

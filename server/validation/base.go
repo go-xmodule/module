@@ -10,11 +10,21 @@ package validation
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/go-utils-module/module/global"
 	"github.com/go-utils-module/module/utils"
 )
 
 // BaseValidation 基类
-type BaseValidation struct {
+type BaseValidation[T any] struct {
+	context      *gin.Context
+	paramsStruct T
+}
+
+func NewBaseValidation[T any](ctx *gin.Context, params T) *BaseValidation[T] {
+	return &BaseValidation[T]{
+		context:      ctx,
+		paramsStruct: params,
+	}
 }
 
 // BaseValidationParams 基础参数
@@ -22,15 +32,15 @@ type BaseValidationParams struct {
 }
 
 // ParamsValidationInter 验证接口
-type ParamsValidationInter interface {
-	// ParamsValidation 参数绑定
-	ParamsValidation(context *gin.Context, paramsStruct interface{}) (interface{}, error)
+type ParamsValidationInter[T any] interface {
+	// Validation ParamsValidation 参数绑定
+	Validation(context *gin.Context) (T, error)
 }
 
-func (i *BaseValidation) ParamsValidation(context *gin.Context, paramsStruct interface{}) (interface{}, error) {
-	params, _ := context.Get("params")
-	if err := utils.Validation(params.([]byte), paramsStruct); utils.CheckErr(err) {
-		return params, err
+func (i *BaseValidation[T]) Validation() (T, error) {
+	params, _ := i.context.Get(global.RequestParams)
+	if err := utils.Validation(params.([]byte), i.paramsStruct); utils.CheckErr(err) {
+		return i.paramsStruct, err
 	}
-	return paramsStruct, nil
+	return i.paramsStruct, nil
 }
