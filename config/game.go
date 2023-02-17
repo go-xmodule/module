@@ -10,20 +10,18 @@ package config
 
 import (
 	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils/nacos"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	utils "github.com/go-utils-module/utils/utils/config"
 	"log"
 )
 
-func InitGameConfig(client config_client.IConfigClient, group string, config any) {
-	getConfigParams := nacos.GetConfigParams{
-		Client: client,
-		DataId: global.GameConfigDataId,
-		Group:  group,
-	}
-	err := nacos.GetConfig(getConfigParams, config)
+// GameConfigFile Game配置文件
+const GameConfigFile = "game.yaml"
+
+// InitGameConfig Game统配置
+func InitGameConfig(config any) {
+	path := utils.GetConfigFile(GameConfigFile)
+	err := utils.GetConfig(path, config)
 	if err != nil {
-		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
-		log.Fatal(global.GetGameConfigErr)
+		log.Fatal(err, global.GetGameConfigErr.String())
 	}
 }

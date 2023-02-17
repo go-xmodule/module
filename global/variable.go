@@ -29,6 +29,7 @@ const (
 const (
 	ApiV1                = "/api/v1"
 	RequestParams string = "params"
+	ENVIRONMENT   string = "ENVIRONMENT"
 )
 
 const (

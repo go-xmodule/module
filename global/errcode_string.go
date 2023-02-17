@@ -67,39 +67,38 @@ func _() {
 	_ = x[LinkMysqlErr-101055]
 	_ = x[GetSingleDataErr-101056]
 	_ = x[CreateUploadFileDirErr-101057]
-	_ = x[SystemError-101058]
-	_ = x[ParamsEmptyError-101059]
-	_ = x[ParamsFormatError-101060]
-	_ = x[RepeatRequestError-101061]
-	_ = x[InitSessionRedisErr-101062]
-	_ = x[GetSystemNoticeConfigErr-101063]
-	_ = x[RegisterServerErr-101064]
-	_ = x[GetServerErr-101065]
-	_ = x[GetConfigErr-101066]
-	_ = x[ListenConfigErr-101067]
-	_ = x[GetNamingClientErr-101068]
-	_ = x[GetConfigClientErr-101069]
-	_ = x[GetInstanceErr-101070]
-	_ = x[RunModeErr-101071]
-	_ = x[SubscribeServerErr-101072]
-	_ = x[UnknownServerErr-101073]
-	_ = x[RPCLinkErr-101074]
+	_ = x[ParamsEmptyError-101058]
+	_ = x[ParamsFormatError-101059]
+	_ = x[RepeatRequestError-101060]
+	_ = x[InitSessionRedisErr-101061]
+	_ = x[GetSystemNoticeConfigErr-101062]
+	_ = x[RegisterServerErr-101063]
+	_ = x[GetServerErr-101064]
+	_ = x[GetConfigErr-101065]
+	_ = x[ListenConfigErr-101066]
+	_ = x[GetNamingClientErr-101067]
+	_ = x[GetConfigClientErr-101068]
+	_ = x[GetInstanceErr-101069]
+	_ = x[RunModeErr-101070]
+	_ = x[SubscribeServerErr-101071]
+	_ = x[UnknownServerErr-101072]
+	_ = x[RPCLinkErr-101073]
 }
 
 const (
 	_ErrCode_name_0 = "Success"
-	_ErrCode_name_1 = "启动服务异常系统异常系统初始化失败配置文件监控失败参数异常，请检查连接数据库异常请求发起时间超时参数签名异常参数签名时间戳或签名为异常获取系统通知配置异常获取游戏配置异常获取发布频道配置异常获取日志配置异常获取Api配置异常获取数据库配置异常获取GRPC配置异常获取系统配置异常获取Nacos配置异常Redis push 数据异常Redis 发布消息异常网络请求异常RPC请求异常DB数据编辑异常DB数据添加异常DB数据获取异常获取Nakama配置异常数据发布异常数据库异常DB数据删除异常无Token认证信息Token认证信息无效获取Token信息异常获取Nakama排行榜数据列表异常获取Nakama排行榜数据详情异常解析Nakama json数据异常获取Nakama账户列表异常删除Nakama账户列表异常编辑Nakama账户列表异常获取Nakama账户详情异常获取Nakama禁用账户列表异常删除Nakama排行榜数据异常删除Nakama账户好友关联异常获取Nakama账户好友异常删除Nakama账户好友异常启用Nakama账户异常禁用Nakama账户异常获取Nakama比赛数据异常获取Nakama比赛状态数据异常Nakama账户登录异常Nakama Token过期异常获取Nakama数据异常执行删除后方法异常执行编辑后方法异常执行编辑前方法异常执行添加前方法异常连接数据库异常获取单条数据异常创建上传目录异常系统异常，请稍后重试参数不可空，请检查参数格式错误，请检查重复请求初始化sessionRedis连接异常获取系统通知配置文件异常服务注册异常获取服务异常获取配置异常监听配置异常获取服务实例异常获取配置实例异常获取服务实例异常运行模式异常服务监听异常未知服务RPC连接异常"
+	_ErrCode_name_1 = "启动服务异常系统异常系统初始化失败配置文件监控失败参数异常，请检查连接数据库异常请求发起时间超时参数签名异常参数签名时间戳或签名为异常获取系统通知配置异常获取游戏配置异常获取发布频道配置异常获取日志配置异常获取Api配置异常获取数据库配置异常获取GRPC配置异常获取系统配置异常获取Nacos配置异常Redis push 数据异常Redis 发布消息异常网络请求异常RPC请求异常DB数据编辑异常DB数据添加异常DB数据获取异常获取Nakama配置异常数据发布异常数据库异常DB数据删除异常无Token认证信息Token认证信息无效获取Token信息异常获取Nakama排行榜数据列表异常获取Nakama排行榜数据详情异常解析Nakama json数据异常获取Nakama账户列表异常删除Nakama账户列表异常编辑Nakama账户列表异常获取Nakama账户详情异常获取Nakama禁用账户列表异常删除Nakama排行榜数据异常删除Nakama账户好友关联异常获取Nakama账户好友异常删除Nakama账户好友异常启用Nakama账户异常禁用Nakama账户异常获取Nakama比赛数据异常获取Nakama比赛状态数据异常Nakama账户登录异常Nakama Token过期异常获取Nakama数据异常执行删除后方法异常执行编辑后方法异常执行编辑前方法异常执行添加前方法异常连接数据库异常获取单条数据异常创建上传目录异常参数不可空，请检查参数格式错误，请检查重复请求初始化sessionRedis连接异常获取系统通知配置文件异常服务注册异常获取服务异常获取配置异常监听配置异常获取服务实例异常获取配置实例异常获取服务实例异常运行模式异常服务监听异常未知服务RPC连接异常"
 )
 
 var (
-	_ErrCode_index_1 = [...]uint16{0, 18, 30, 51, 75, 99, 120, 144, 162, 201, 231, 255, 285, 309, 330, 357, 379, 403, 426, 449, 473, 491, 506, 526, 546, 566, 590, 608, 623, 643, 663, 686, 709, 748, 787, 816, 846, 876, 906, 936, 972, 1005, 1041, 1071, 1101, 1125, 1149, 1179, 1215, 1239, 1263, 1287, 1314, 1341, 1368, 1395, 1416, 1440, 1464, 1494, 1521, 1551, 1563, 1596, 1632, 1650, 1668, 1686, 1704, 1728, 1752, 1776, 1794, 1812, 1824, 1839}
+	_ErrCode_index_1 = [...]uint16{0, 18, 30, 51, 75, 99, 120, 144, 162, 201, 231, 255, 285, 309, 330, 357, 379, 403, 426, 449, 473, 491, 506, 526, 546, 566, 590, 608, 623, 643, 663, 686, 709, 748, 787, 816, 846, 876, 906, 936, 972, 1005, 1041, 1071, 1101, 1125, 1149, 1179, 1215, 1239, 1263, 1287, 1314, 1341, 1368, 1395, 1416, 1440, 1464, 1491, 1521, 1533, 1566, 1602, 1620, 1638, 1656, 1674, 1698, 1722, 1746, 1764, 1782, 1794, 1809}
 )
 
 func (i ErrCode) String() string {
 	switch {
 	case i == 200:
 		return _ErrCode_name_0
-	case 101000 <= i && i <= 101074:
+	case 101000 <= i && i <= 101073:
 		i -= 101000
 		return _ErrCode_name_1[_ErrCode_index_1[i]:_ErrCode_index_1[i+1]]
 	default:

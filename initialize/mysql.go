@@ -10,15 +10,13 @@ package system
 
 import (
 	"github.com/go-utils-module/module/config"
-	"github.com/go-utils-module/module/utils"
-	"github.com/go-utils-module/module/utils/dirver"
-	"github.com/go-utils-module/module/utils/handler"
-	"github.com/jinzhu/gorm"
+	"github.com/go-utils-module/utils/dirver"
+	"github.com/go-utils-module/utils/handler"
 )
 
 // InitializeDatabase 初始化数据库连接
-func InitializeDatabase(conf config.Database) *gorm.DB {
-	db, err := dirver.InitializeDB(dirver.LinkParams{
+func InitializeDatabase(conf config.Database) {
+	LinkParams := dirver.LinkParams{
 		Host:        conf.Database.Host,
 		Port:        conf.Database.Port,
 		UserName:    conf.Database.UserName,
@@ -27,10 +25,6 @@ func InitializeDatabase(conf config.Database) *gorm.DB {
 		MaxOpenConn: conf.MaxOpenConn,
 		MaxIdleConn: conf.MaxIdleConn,
 		Mode:        conf.Database.Mode,
-	})
-	if err != nil {
-		utils.Logger.Fatalln("初始化系统-连接管理后台数据库异常。", err)
 	}
-	handler.DBHandler = handler.NewDatabase(db)
-	return db
+	handler.InitializeMysql(LinkParams)
 }

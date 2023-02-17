@@ -76,7 +76,6 @@ const (
 	LinkMysqlErr                                     // 连接数据库异常
 	GetSingleDataErr                                 // 获取单条数据异常
 	CreateUploadFileDirErr                           // 创建上传目录异常
-	SystemError                                      // 系统异常，请稍后重试
 	ParamsEmptyError                                 // 参数不可空，请检查
 	ParamsFormatError                                // 参数格式错误，请检查
 	RepeatRequestError                               // 重复请求
