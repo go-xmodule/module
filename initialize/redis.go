@@ -9,8 +9,8 @@
 package system
 
 import (
-	"github.com/go-utils-module/module/config"
-	"github.com/go-utils-module/utils/handler"
+	"github.com/go-xmodule/module/config"
+	"github.com/go-xmodule/utils/handler"
 )
 
 // InitializeRedisPool 初始化redis连接池

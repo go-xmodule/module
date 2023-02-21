@@ -11,8 +11,8 @@ package system
 import (
 	"github.com/druidcaesa/gotool"
 	"github.com/druidcaesa/gotool/openfile"
-	"github.com/go-utils-module/module/config"
-	"github.com/go-utils-module/utils/utils/xlog"
+	"github.com/go-xmodule/module/config"
+	"github.com/go-xmodule/utils/utils/xlog"
 	"os"
 	"path"
 )

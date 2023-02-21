@@ -1,4 +1,4 @@
-module github.com/go-utils-module/module
+module github.com/go-xmodule/module
 
 go 1.18
 
@@ -39,7 +39,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect
-	github.com/go-utils-module/utils v0.0.1 // indirect
+	github.com/go-xmodule/utils v0.0.3 // indirect
 	github.com/gobuffalo/envy v1.7.0 // indirect
 	github.com/gobuffalo/packd v0.3.0 // indirect
 	github.com/gobuffalo/packr v1.30.1 // indirect
