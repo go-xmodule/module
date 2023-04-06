@@ -10,9 +10,10 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-utils-module/module/config"
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils"
+	"github.com/go-xmodule/module/config"
+	"github.com/go-xmodule/module/global"
+	"github.com/go-xmodule/utils/utils/request"
+	utils "github.com/go-xmodule/utils/utils/response"
 	"github.com/golang-module/carbon"
 	"strconv"
 )
@@ -57,7 +58,7 @@ func (a *InnerApiMiddleware) checkSign(context *gin.Context) {
 			context.Abort()
 			return
 		}
-		newSign := utils.RequestSign(ts, a.apiConfig.Secret)
+		newSign := request.RequestSign(ts, a.apiConfig.Secret)
 		if newSign != sign {
 			utils.ApiResponse(context, global.SignErr)
 			context.Abort()

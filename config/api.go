@@ -9,9 +9,8 @@
 package config
 
 import (
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils/nacos"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"github.com/go-xmodule/module/global"
+	utils "github.com/go-xmodule/utils/utils/config"
 	"log"
 )
 
@@ -21,15 +20,14 @@ type Api struct {
 	Overtime int64  `yaml:"overtime"`
 }
 
-func InitApiConfig(client config_client.IConfigClient, group string, config any) {
-	getConfigParams := nacos.GetConfigParams{
-		Client: client,
-		DataId: global.ApiConfigDataId,
-		Group:  group,
-	}
-	err := nacos.GetConfig(getConfigParams, config)
+// ApiConfigFile Api配置文件
+const ApiConfigFile = "api.yaml"
+
+// InitApiConfig Game统配置
+func InitApiConfig(config any) {
+	path := utils.GetConfigFile(ApiConfigFile)
+	err := utils.GetConfig(path, config)
 	if err != nil {
-		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
-		log.Fatal(global.GetApiConfigErr)
+		log.Fatal(err, global.GetApiConfigErr.String())
 	}
 }

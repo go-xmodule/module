@@ -16,16 +16,6 @@ import (
 	"strings"
 )
 
-func ValidationStruct(params any) error {
-	paramsMap := GetStructMap(params)
-	for _, key := range GetStructField(params) {
-		if fmt.Sprint(paramsMap[key]) == "" {
-			return errors.New(key + " is empty")
-		}
-	}
-	return nil
-}
-
 func Validation(requestParams []byte, obj any) error {
 	err := json.Unmarshal(requestParams, &obj)
 	if err != nil {

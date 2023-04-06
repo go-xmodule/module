@@ -11,15 +11,14 @@ package system
 import (
 	"github.com/druidcaesa/gotool"
 	"github.com/druidcaesa/gotool/openfile"
-	"github.com/go-utils-module/module/config"
-	"github.com/go-utils-module/module/utils"
-	"github.com/sirupsen/logrus"
+	"github.com/go-xmodule/module/config"
+	"github.com/go-xmodule/utils/utils/xlog"
 	"os"
 	"path"
 )
 
 // InitializeLogger 初始化日志配置
-func InitializeLogger(config config.Log) *logrus.Logger {
+func InitializeLogger(config config.Log) {
 	if !gotool.FileUtils.Exists(config.Path) {
 		err := os.MkdirAll(config.Path, os.ModePerm)
 		if err != nil {
@@ -34,6 +33,5 @@ func InitializeLogger(config config.Log) *logrus.Logger {
 			panic("init system error. create log file err. log file:" + fileName)
 		}
 	}
-	logger := new(utils.Log).InitLogger(config.Path, config.File, config.Mode)
-	return logger
+	xlog.InitLogger(config.Path, config.File, config.Mode)
 }

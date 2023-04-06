@@ -9,9 +9,8 @@
 package config
 
 import (
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils/nacos"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"github.com/go-xmodule/module/global"
+	utils "github.com/go-xmodule/utils/utils/config"
 	"log"
 )
 
@@ -41,17 +40,16 @@ type Base struct {
 	Port      int    `yaml:"port"`
 }
 
-func InitNakamaConfig(client config_client.IConfigClient, group string) NakamaConfig {
+// NakamaConfigFile Nakama配置文件
+const NakamaConfigFile = "nakama.yaml"
+
+// InitNakamaConfig 获取系统配置
+func InitNakamaConfig() NakamaConfig {
 	var nakamaConfig NakamaConfig
-	getConfigParams := nacos.GetConfigParams{
-		Client: client,
-		DataId: global.NakamaConfigDataId,
-		Group:  group,
-	}
-	err := nacos.GetConfig(getConfigParams, &nakamaConfig)
+	path := utils.GetConfigFile(NakamaConfigFile)
+	err := utils.GetConfig(path, &nakamaConfig)
 	if err != nil {
-		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
-		log.Fatal(global.GetNakamaConfigErr)
+		log.Fatal(err, global.GetNakamaConfigErr.String())
 	}
 	return nakamaConfig
 }

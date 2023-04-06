@@ -10,8 +10,9 @@ package validation
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils"
+	"github.com/go-xmodule/module/global"
+	"github.com/go-xmodule/module/utils"
+	"github.com/go-xmodule/utils/utils/xlog"
 )
 
 // BaseValidation 基类
@@ -39,7 +40,9 @@ type ParamsValidationInter[T any] interface {
 
 func (i *BaseValidation[T]) Validation() (T, error) {
 	params, _ := i.context.Get(global.RequestParams)
-	if err := utils.Validation(params.([]byte), i.paramsStruct); utils.CheckErr(err) {
+
+	if err := utils.Validation(params.([]byte), i.paramsStruct); err != nil {
+		xlog.Logger.Warn(err)
 		return i.paramsStruct, err
 	}
 	return i.paramsStruct, nil

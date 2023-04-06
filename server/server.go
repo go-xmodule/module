@@ -11,8 +11,8 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils"
+	"github.com/go-xmodule/module/global"
+	"github.com/go-xmodule/utils/utils/xlog"
 )
 
 type hockFun func(engine *gin.Engine)
@@ -34,18 +34,18 @@ func StartServer(config ServerConfig, hock hockFun) error {
 	// 开始启动服务
 	addr := fmt.Sprintf("%s:%d", config.Ip, config.Port)
 	err := engine.Run(addr)
-	if utils.CheckErr(err) {
-		utils.Logger.Fatalln("服务启动失败,错误信息:", err.Error())
+	if err != nil {
+		xlog.Logger.Fatalln("服务启动失败,错误信息:", err.Error())
 		return err
 	} else {
-		utils.Logger.Info("服务启动成功. 服务地址:", addr)
+		xlog.Logger.Info("服务启动成功. 服务地址:", addr)
 	}
 	return nil
 }
 
 // SetRunModel 设置当前系统运行模式
 func SetRunModel(mode string) {
-	utils.Logger.Info("当前运行模式为:", mode)
+	xlog.Logger.Info("当前运行模式为:", mode)
 	switch mode {
 	case global.OnlineMode:
 		gin.SetMode(gin.ReleaseMode)

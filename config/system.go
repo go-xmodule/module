@@ -9,9 +9,8 @@
 package config
 
 import (
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils/nacos"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"github.com/go-xmodule/module/global"
+	utils "github.com/go-xmodule/utils/utils/config"
 	"log"
 )
 
@@ -57,15 +56,14 @@ type View struct {
 	PageCount int `yaml:"pageCount"`
 }
 
-func InitSystemConfig(client config_client.IConfigClient, group string, config any) {
-	getConfigParams := nacos.GetConfigParams{
-		Client: client,
-		DataId: global.SystemConfigDataId,
-		Group:  group,
-	}
-	err := nacos.GetConfig(getConfigParams, config)
+// SystemConfigFile 系统配置文件
+const SystemConfigFile = "system.yaml"
+
+// InitSystemConfig 获取系统配置
+func InitSystemConfig(config any) {
+	path := utils.GetConfigFile(SystemConfigFile)
+	err := utils.GetConfig(path, config)
 	if err != nil {
-		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
-		log.Fatal(global.GetSystemConfigErr)
+		log.Fatal(err, global.GetSystemConfigErr.String())
 	}
 }

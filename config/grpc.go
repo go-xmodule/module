@@ -9,9 +9,8 @@
 package config
 
 import (
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils/nacos"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"github.com/go-xmodule/module/global"
+	utils "github.com/go-xmodule/utils/utils/config"
 	"log"
 )
 
@@ -29,17 +28,15 @@ type Network struct {
 	Port    int    `yaml:"port"`
 }
 
-func InitGrpcConfig(client config_client.IConfigClient, group string) GrpcConfig {
-	var grpcConfig GrpcConfig
-	getConfigParams := nacos.GetConfigParams{
-		Client: client,
-		DataId: global.GRPCConfigDataId,
-		Group:  group,
-	}
-	err := nacos.GetConfig(getConfigParams, &grpcConfig)
+const GRPCConfigFile = "grpc.yaml"
+
+func InitGrpcConfig() GrpcConfig {
+	var config GrpcConfig
+	path := utils.GetConfigFile(GRPCConfigFile)
+	err := utils.GetConfig(path, &config)
 	if err != nil {
-		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
-		log.Fatal(global.GetGRPCConfigErr)
+		log.Fatal(err, global.GetGRPCConfigErr.String())
+		return GrpcConfig{}
 	}
-	return grpcConfig
+	return config
 }

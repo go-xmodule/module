@@ -9,21 +9,19 @@
 package config
 
 import (
-	"github.com/go-utils-module/module/global"
-	"github.com/go-utils-module/module/utils/nacos"
-	"github.com/nacos-group/nacos-sdk-go/v2/clients/config_client"
+	"github.com/go-xmodule/module/global"
+	utils "github.com/go-xmodule/utils/utils/config"
 	"log"
 )
 
-func InitChannelConfig(client config_client.IConfigClient, group string, config any) {
-	getConfigParams := nacos.GetConfigParams{
-		Client: client,
-		DataId: global.ChannelConfigDataId,
-		Group:  group,
-	}
-	err := nacos.GetConfig(getConfigParams, config)
+// ChannelConfigFile Channel配置文件
+const ChannelConfigFile = "channel.yaml"
+
+// InitChannelConfig Game统配置
+func InitChannelConfig(config any) {
+	path := utils.GetConfigFile(ChannelConfigFile)
+	err := utils.GetConfig(path, config)
 	if err != nil {
-		log.Printf("%s,err:%s", global.GetConfigErr.String(), err.Error())
-		log.Fatal(global.GetChannelConfigErr)
+		log.Fatal(err, global.GetChannelConfigErr.String())
 	}
 }

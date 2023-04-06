@@ -23,18 +23,4 @@ type PaginationQuery struct {
 	Order string
 }
 
-// ActonInfo 当前数据模型路由介绍
-type ActonInfo struct {
-	Action     string
-	ParentMenu string
-	ActionType string
-	ActionTag  string
-}
 type WhereClosure func(*gorm.DB) *gorm.DB
-
-type ModelAction interface {
-	ModelInfo() ActonInfo
-	DataId() int
-	TableName() string
-	DbConfig() ConfigType
-}

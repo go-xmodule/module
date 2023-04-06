@@ -18,18 +18,3 @@ type CommonModel struct {
 	CreatedAt time.Time `gorm:"column:created_at" json:"created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at" json:"updated_at"`
 }
-
-func (*CommonModel) ModelInfo() ActonInfo {
-	// TODO implement me
-	panic("implement me")
-}
-
-func (*CommonModel) DataId() int {
-	// TODO implement me
-	panic("implement me")
-}
-
-func (*CommonModel) DbConfig() ConfigType {
-	// TODO implement me
-	panic("implement me")
-}
