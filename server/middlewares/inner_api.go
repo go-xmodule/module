@@ -14,6 +14,7 @@ import (
 	"github.com/go-xmodule/module/global"
 	"github.com/go-xmodule/utils/utils/request"
 	utils "github.com/go-xmodule/utils/utils/response"
+	"github.com/go-xmodule/utils/utils/xlog"
 	"github.com/golang-module/carbon"
 	"strconv"
 )
@@ -39,13 +40,18 @@ func (a *InnerApiMiddleware) Middleware() gin.HandlerFunc {
 func (a *InnerApiMiddleware) checkSign(context *gin.Context) {
 	ts := context.Query("ts")
 	sign := context.Query("sign")
+	xlog.Logger.Debug("--------------------ts:", ts, "  sign:", sign)
+
 	if ts == "" || sign == "" {
+		xlog.Logger.Debug("--------------------ts or sign is null")
 		utils.ApiResponse(context, global.NoSignParamsErr)
 		context.Abort()
 		return
 	}
 	timestamp, err := strconv.ParseInt(ts, 10, 64)
 	if err != nil {
+		xlog.Logger.Debug("-------------------- timestamp error")
+
 		utils.ApiResponse(context, global.NoSignParamsErr)
 		context.Abort()
 		return
@@ -54,12 +60,16 @@ func (a *InnerApiMiddleware) checkSign(context *gin.Context) {
 	if a.isApi(path) { // 不是api 请求
 		// 接口请求超时超过系统超时
 		if carbon.Now().Timestamp()-timestamp > a.apiConfig.Overtime {
+			xlog.Logger.Debug("--------------------接口请求超时超过系统超时")
+
 			utils.ApiResponse(context, global.RequestOvertimeErr)
 			context.Abort()
 			return
 		}
 		newSign := request.RequestSign(ts, a.apiConfig.Secret)
 		if newSign != sign {
+			xlog.Logger.Debug("-------------------- 签名错误")
+
 			utils.ApiResponse(context, global.SignErr)
 			context.Abort()
 			return
