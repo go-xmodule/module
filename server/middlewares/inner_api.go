@@ -68,6 +68,7 @@ func (a *InnerApiMiddleware) checkSign(context *gin.Context) {
 		}
 		newSign := request.RequestSign(ts, a.apiConfig.Secret)
 		if newSign != sign {
+			xlog.Logger.Debug("-------------sa.apiConfig.Secret:", a.apiConfig.Secret, "  ts:", a.apiConfig.Secret, "  sign:", sign)
 			xlog.Logger.Debug("-------------------- 签名错误")
 
 			utils.ApiResponse(context, global.SignErr)
