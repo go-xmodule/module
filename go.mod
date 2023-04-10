@@ -1,11 +1,12 @@
 module github.com/go-xmodule/module
 
 go 1.18
+replace github.com/go-xmodule/utils v0.1.2 => ../utils
 
 require (
 	github.com/druidcaesa/gotool v0.0.0-20220613023420-645c641d1304
 	github.com/gin-gonic/gin v1.8.2
-	github.com/go-xmodule/utils v0.0.4
+	github.com/go-xmodule/utils v0.1.2
 	github.com/golang-module/carbon v1.7.3
 	github.com/jinzhu/gorm v1.9.16
 	github.com/urfave/cli/v2 v2.24.4
@@ -29,6 +30,7 @@ require (
 	github.com/goccy/go-json v0.9.11 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/google/uuid v1.3.0 // indirect
+	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect
