@@ -9,9 +9,7 @@
 
 package global
 
-import (
-	"embed"
-)
+import "embed"
 
 func BuildServer(template embed.FS, assets embed.FS) {
 	TemplatePath = template

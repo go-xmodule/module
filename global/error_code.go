@@ -23,6 +23,7 @@ const (
 	SystemInitFail                                   // 系统初始化失败
 	listenConfigErr                                  // 配置文件监控失败
 	ParamsError                                      // 参数异常，请检查
+	ParamsErr                                        // 参数异常，请检查
 	ConnectMysqlErr                                  // 连接数据库异常
 	RequestOvertimeErr                               // 请求发起时间超时
 	SignErr                                          // 参数签名异常
@@ -92,4 +93,5 @@ const (
 	SubscribeServerErr                               // 服务监听异常
 	UnknownServerErr                                 // 未知服务
 	RPCLinkErr                                       // RPC连接异常
+	GetSentryConfigErr                               // 获取Sentry配置异常
 )

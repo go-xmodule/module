@@ -12,17 +12,20 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-xmodule/module/config"
 	"github.com/go-xmodule/module/global"
+	"github.com/go-xmodule/utils/utils/request"
+	utils "github.com/go-xmodule/utils/utils/response"
+	"github.com/go-xmodule/utils/utils/xlog"
+	"github.com/golang-module/carbon"
+	"strconv"
 )
 
 type ApiMiddleware struct {
 	BaseMiddleware
-	serverConfig config.Server
-	apiConfig    config.Api
+	apiConfig config.Api
 }
 
-func NewApiMiddleware(serverConfig config.Server, apiConfig config.Api) *ApiMiddleware {
+func NewApiMiddleware(apiConfig config.Api) *ApiMiddleware {
 	middle := new(ApiMiddleware)
-	middle.serverConfig = serverConfig
 	middle.apiConfig = apiConfig
 	return middle
 }
@@ -33,10 +36,40 @@ func (a *ApiMiddleware) Middleware() gin.HandlerFunc {
 
 // 检查参数签名
 func (a *ApiMiddleware) checkSign(context *gin.Context) {
-	data, _ := context.GetRawData()
-	context.Set(global.RequestParams, data)
-	path := a.getBaseUri(context, a.serverConfig.Domain)
-	if a.isApi(path) { // 不是api 请求
-		// todo
+	ts := context.Query("ts")
+	sign := context.Query("sign")
+	xlog.Logger.Debug("--------------------ts:", ts, "  sign:", sign)
+
+	if ts == "" || sign == "" {
+		xlog.Logger.Debug("--------------------ts or sign is null")
+		utils.ApiResponse(context, global.NoSignParamsErr)
+		context.Abort()
+		return
 	}
+	timestamp, err := strconv.ParseInt(ts, 10, 64)
+	if err != nil {
+		xlog.Logger.Debug("-------------------- timestamp error")
+
+		utils.ApiResponse(context, global.NoSignParamsErr)
+		context.Abort()
+		return
+	}
+	// 接口请求超时超过系统超时
+	if carbon.Now().Timestamp()-timestamp > a.apiConfig.Overtime {
+		xlog.Logger.Debug("--------------------接口请求超时超过系统超时")
+
+		utils.ApiResponse(context, global.RequestOvertimeErr)
+		context.Abort()
+		return
+	}
+	newSign := request.RequestSign(ts, a.apiConfig.Secret)
+	if newSign != sign {
+		xlog.Logger.Debug("-------------sa.apiConfig.Secret:", a.apiConfig.Secret, "  ts:", a.apiConfig.Secret, "  sign:", sign, " newSign:", newSign)
+		xlog.Logger.Debug("-------------------- 签名错误")
+
+		utils.ApiResponse(context, global.SignErr)
+		context.Abort()
+		return
+	}
+
 }
