@@ -42,7 +42,7 @@ func NoCacheMiddleware() gin.HandlerFunc {
 	}
 }
 func CookieMiddleware() gin.HandlerFunc {
-	store := cookie.NewStore([]byte("secret"))
+	store := cookie.NewStore([]byte("f997f28a%&34a9d"))
 	return sessions.Sessions("session", store)
 }
 
