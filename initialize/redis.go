@@ -9,18 +9,11 @@
 package system
 
 import (
-	"github.com/go-xmodule/module/config"
+	"github.com/go-xmodule/utils/dirver"
 	"github.com/go-xmodule/utils/handler"
 )
 
 // InitializeRedisPool 初始化redis连接池
-func InitializeRedisPool(config config.Redis) {
-	LinkParams := handler.RedisConfig{
-		Host:       config.Host,
-		Port:       config.Port,
-		Db:         config.Db,
-		Password:   config.Password,
-		MaxRetries: config.MaxRetries,
-	}
-	handler.InitializeRedisPool(LinkParams)
+func InitializeRedisPool(config dirver.RedisConfig) {
+	handler.NewRedis(config)
 }

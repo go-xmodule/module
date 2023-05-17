@@ -32,15 +32,6 @@ type Connect struct {
 	Mode     string `yaml:"mode"`
 }
 
-// Redis 配置
-type Redis struct {
-	Host       string `yaml:"host"`
-	Port       int    `yaml:"port"`
-	Db         int    `yaml:"db"`
-	Password   string `yaml:"password"`
-	MaxRetries int    `yaml:"maxRetries"`
-}
-
 // DatabaseConfigFile Database配置文件
 const DatabaseConfigFile = "database.yaml"
 
