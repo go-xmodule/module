@@ -28,6 +28,7 @@ const (
 // 常量定义
 const (
 	ApiV1                = "/api/v1"
+	ConsoleV1            = "/console/v1"
 	RequestParams string = "params"
 	ENVIRONMENT   string = "ENVIRONMENT"
 )

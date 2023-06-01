@@ -45,62 +45,63 @@ func _() {
 	_ = x[GetLeaderboardListErr-101033]
 	_ = x[GetLeaderboardDetailErr-101034]
 	_ = x[ParseJsonDataErr-101035]
-	_ = x[GetAccountListErr-101036]
-	_ = x[DeleteAccountErr-101037]
-	_ = x[EditeAccountErr-101038]
-	_ = x[GetAccountDetailErr-101039]
-	_ = x[GetAccountBanListErr-101040]
-	_ = x[DeleteLeaderboardErr-101041]
-	_ = x[AccountUnlinkErr-101042]
-	_ = x[GetAccountFriendErr-101043]
-	_ = x[DeleteAccountFriendErr-101044]
-	_ = x[AccountEnableErr-101045]
-	_ = x[AccountDisableErr-101046]
-	_ = x[GetMatchDataErr-101047]
-	_ = x[GetMatchStateErr-101048]
-	_ = x[AccountLoginErr-101049]
-	_ = x[AccountTokenExpressErr-101050]
-	_ = x[GetGameDataErr-101051]
-	_ = x[ExecuteAfterDeleteFunErr-101052]
-	_ = x[ExecuteAfterEditFunErr-101053]
-	_ = x[ExecuteBeforeEditFunErr-101054]
-	_ = x[ExecuteBeforeAddFunErr-101055]
-	_ = x[LinkMysqlErr-101056]
-	_ = x[GetSingleDataErr-101057]
-	_ = x[CreateUploadFileDirErr-101058]
-	_ = x[ParamsEmptyError-101059]
-	_ = x[ParamsFormatError-101060]
-	_ = x[RepeatRequestError-101061]
-	_ = x[InitSessionRedisErr-101062]
-	_ = x[GetSystemNoticeConfigErr-101063]
-	_ = x[RegisterServerErr-101064]
-	_ = x[GetServerErr-101065]
-	_ = x[GetConfigErr-101066]
-	_ = x[ListenConfigErr-101067]
-	_ = x[GetNamingClientErr-101068]
-	_ = x[GetConfigClientErr-101069]
-	_ = x[GetInstanceErr-101070]
-	_ = x[RunModeErr-101071]
-	_ = x[SubscribeServerErr-101072]
-	_ = x[UnknownServerErr-101073]
-	_ = x[RPCLinkErr-101074]
-	_ = x[GetSentryConfigErr-101075]
+	_ = x[ParseNakamaJsonDataErr-101036]
+	_ = x[GetAccountListErr-101037]
+	_ = x[DeleteAccountErr-101038]
+	_ = x[EditeAccountErr-101039]
+	_ = x[GetAccountDetailErr-101040]
+	_ = x[GetAccountBanListErr-101041]
+	_ = x[DeleteLeaderboardErr-101042]
+	_ = x[AccountUnlinkErr-101043]
+	_ = x[GetAccountFriendErr-101044]
+	_ = x[DeleteAccountFriendErr-101045]
+	_ = x[AccountEnableErr-101046]
+	_ = x[AccountDisableErr-101047]
+	_ = x[GetMatchDataErr-101048]
+	_ = x[GetMatchStateErr-101049]
+	_ = x[AccountLoginErr-101050]
+	_ = x[AccountTokenExpressErr-101051]
+	_ = x[GetGameDataErr-101052]
+	_ = x[ExecuteAfterDeleteFunErr-101053]
+	_ = x[ExecuteAfterEditFunErr-101054]
+	_ = x[ExecuteBeforeEditFunErr-101055]
+	_ = x[ExecuteBeforeAddFunErr-101056]
+	_ = x[LinkMysqlErr-101057]
+	_ = x[GetSingleDataErr-101058]
+	_ = x[CreateUploadFileDirErr-101059]
+	_ = x[ParamsEmptyError-101060]
+	_ = x[ParamsFormatError-101061]
+	_ = x[RepeatRequestError-101062]
+	_ = x[InitSessionRedisErr-101063]
+	_ = x[GetSystemNoticeConfigErr-101064]
+	_ = x[RegisterServerErr-101065]
+	_ = x[GetServerErr-101066]
+	_ = x[GetConfigErr-101067]
+	_ = x[ListenConfigErr-101068]
+	_ = x[GetNamingClientErr-101069]
+	_ = x[GetConfigClientErr-101070]
+	_ = x[GetInstanceErr-101071]
+	_ = x[RunModeErr-101072]
+	_ = x[SubscribeServerErr-101073]
+	_ = x[UnknownServerErr-101074]
+	_ = x[RPCLinkErr-101075]
+	_ = x[GetSentryConfigErr-101076]
 }
 
 const (
 	_ErrCode_name_0 = "Success"
-	_ErrCode_name_1 = "启动服务异常系统异常系统初始化失败配置文件监控失败参数异常，请检查参数异常，请检查连接数据库异常请求发起时间超时参数签名异常参数签名时间戳或签名为异常获取系统通知配置异常获取游戏配置异常获取发布频道配置异常获取日志配置异常获取Api配置异常获取数据库配置异常获取GRPC配置异常获取系统配置异常获取Nacos配置异常Redis push 数据异常Redis 发布消息异常网络请求异常RPC请求异常DB数据编辑异常DB数据添加异常DB数据获取异常获取Nakama配置异常数据发布异常数据库异常DB数据删除异常无Token认证信息Token认证信息无效获取Token信息异常获取Nakama排行榜数据列表异常获取Nakama排行榜数据详情异常解析Nakama json数据异常获取Nakama账户列表异常删除Nakama账户列表异常编辑Nakama账户列表异常获取Nakama账户详情异常获取Nakama禁用账户列表异常删除Nakama排行榜数据异常删除Nakama账户好友关联异常获取Nakama账户好友异常删除Nakama账户好友异常启用Nakama账户异常禁用Nakama账户异常获取Nakama比赛数据异常获取Nakama比赛状态数据异常Nakama账户登录异常Nakama Token过期异常获取Nakama数据异常执行删除后方法异常执行编辑后方法异常执行编辑前方法异常执行添加前方法异常连接数据库异常获取单条数据异常创建上传目录异常参数不可空，请检查参数格式错误，请检查重复请求初始化sessionRedis连接异常获取系统通知配置文件异常服务注册异常获取服务异常获取配置异常监听配置异常获取服务实例异常获取配置实例异常获取服务实例异常运行模式异常服务监听异常未知服务RPC连接异常获取Sentry配置异常"
+	_ErrCode_name_1 = "启动服务异常系统异常系统初始化失败配置文件监控失败参数异常，请检查参数异常，请检查连接数据库异常请求发起时间超时参数签名异常参数签名时间戳或签名为异常获取系统通知配置异常获取游戏配置异常获取发布频道配置异常获取日志配置异常获取Api配置异常获取数据库配置异常获取GRPC配置异常获取系统配置异常获取Nacos配置异常Redis push 数据异常Redis 发布消息异常网络请求异常RPC请求异常DB数据编辑异常DB数据添加异常DB数据获取异常获取Nakama配置异常数据发布异常数据库异常DB数据删除异常无Token认证信息Token认证信息无效获取Token信息异常获取Nakama排行榜数据列表异常获取Nakama排行榜数据详情异常解析json数据异常解析Nakama json数据异常获取Nakama账户列表异常删除Nakama账户列表异常编辑Nakama账户列表异常获取Nakama账户详情异常获取Nakama禁用账户列表异常删除Nakama排行榜数据异常删除Nakama账户好友关联异常获取Nakama账户好友异常删除Nakama账户好友异常启用Nakama账户异常禁用Nakama账户异常获取Nakama比赛数据异常获取Nakama比赛状态数据异常Nakama账户登录异常Nakama Token过期异常获取Nakama数据异常执行删除后方法异常执行编辑后方法异常执行编辑前方法异常执行添加前方法异常连接数据库异常获取单条数据异常创建上传目录异常参数不可空，请检查参数格式错误，请检查重复请求初始化sessionRedis连接异常获取系统通知配置文件异常服务注册异常获取服务异常获取配置异常监听配置异常获取服务实例异常获取配置实例异常获取服务实例异常运行模式异常服务监听异常未知服务RPC连接异常获取Sentry配置异常"
 )
 
 var (
-	_ErrCode_index_1 = [...]uint16{0, 18, 30, 51, 75, 99, 123, 144, 168, 186, 225, 255, 279, 309, 333, 354, 381, 403, 427, 450, 473, 497, 515, 530, 550, 570, 590, 614, 632, 647, 667, 687, 710, 733, 772, 811, 840, 870, 900, 930, 960, 996, 1029, 1065, 1095, 1125, 1149, 1173, 1203, 1239, 1263, 1287, 1311, 1338, 1365, 1392, 1419, 1440, 1464, 1488, 1515, 1545, 1557, 1590, 1626, 1644, 1662, 1680, 1698, 1722, 1746, 1770, 1788, 1806, 1818, 1833, 1857}
+	_ErrCode_index_1 = [...]uint16{0, 18, 30, 51, 75, 99, 123, 144, 168, 186, 225, 255, 279, 309, 333, 354, 381, 403, 427, 450, 473, 497, 515, 530, 550, 570, 590, 614, 632, 647, 667, 687, 710, 733, 772, 811, 833, 862, 892, 922, 952, 982, 1018, 1051, 1087, 1117, 1147, 1171, 1195, 1225, 1261, 1285, 1309, 1333, 1360, 1387, 1414, 1441, 1462, 1486, 1510, 1537, 1567, 1579, 1612, 1648, 1666, 1684, 1702, 1720, 1744, 1768, 1792, 1810, 1828, 1840, 1855, 1879}
 )
 
 func (i ErrCode) String() string {
 	switch {
 	case i == 200:
 		return _ErrCode_name_0
-	case 101000 <= i && i <= 101075:
+	case 101000 <= i && i <= 101076:
 		i -= 101000
 		return _ErrCode_name_1[_ErrCode_index_1[i]:_ErrCode_index_1[i+1]]
 	default:

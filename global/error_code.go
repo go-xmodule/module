@@ -53,7 +53,8 @@ const (
 	GetTokenErr                                      // 获取Token信息异常
 	GetLeaderboardListErr                            // 获取Nakama排行榜数据列表异常
 	GetLeaderboardDetailErr                          // 获取Nakama排行榜数据详情异常
-	ParseJsonDataErr                                 // 解析Nakama json数据异常
+	ParseJsonDataErr                                 // 解析json数据异常
+	ParseNakamaJsonDataErr                           // 解析Nakama json数据异常
 	GetAccountListErr                                // 获取Nakama账户列表异常
 	DeleteAccountErr                                 // 删除Nakama账户列表异常
 	EditeAccountErr                                  // 编辑Nakama账户列表异常
