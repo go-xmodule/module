@@ -1,4 +1,4 @@
-module github.com/go-xmodule/module
+module github.com/x-module/module
 
 go 1.18
 
