@@ -10,9 +10,9 @@ package validation
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-xmodule/module/global"
-	"github.com/go-xmodule/module/utils"
-	"github.com/go-xmodule/utils/utils/xlog"
+	"github.com/x-module/module/global"
+	"github.com/x-module/module/utils"
+	"github.com/x-module/utils/utils/xlog"
 )
 
 // BaseValidation 基类

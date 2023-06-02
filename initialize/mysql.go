@@ -9,9 +9,9 @@
 package system
 
 import (
-	"github.com/go-xmodule/module/config"
-	"github.com/go-xmodule/utils/dirver"
-	"github.com/go-xmodule/utils/handler"
+	"github.com/x-module/module/config"
+	"github.com/x-module/utils/dirver"
+	"github.com/x-module/utils/handler"
 )
 
 // InitializeDatabase 初始化数据库连接

@@ -10,12 +10,12 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-xmodule/module/config"
-	"github.com/go-xmodule/module/global"
-	"github.com/go-xmodule/utils/utils/request"
-	utils "github.com/go-xmodule/utils/utils/response"
-	"github.com/go-xmodule/utils/utils/xlog"
 	"github.com/golang-module/carbon"
+	"github.com/x-module/module/config"
+	"github.com/x-module/module/global"
+	"github.com/x-module/utils/utils/request"
+	utils "github.com/x-module/utils/utils/response"
+	"github.com/x-module/utils/utils/xlog"
 	"strconv"
 )
 

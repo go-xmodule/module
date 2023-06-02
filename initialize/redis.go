@@ -9,8 +9,8 @@
 package system
 
 import (
-	"github.com/go-xmodule/utils/dirver"
-	"github.com/go-xmodule/utils/handler"
+	"github.com/x-module/utils/dirver"
+	"github.com/x-module/utils/handler"
 )
 
 // InitializeRedisPool 初始化redis连接池

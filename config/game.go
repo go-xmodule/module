@@ -9,8 +9,8 @@
 package config
 
 import (
-	"github.com/go-xmodule/module/global"
-	utils "github.com/go-xmodule/utils/utils/config"
+	"github.com/x-module/module/global"
+	utils "github.com/x-module/utils/utils/config"
 	"log"
 )
 

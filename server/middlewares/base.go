@@ -10,7 +10,7 @@ package middlewares
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/go-xmodule/module/global"
+	"github.com/x-module/module/global"
 	"strings"
 )
 

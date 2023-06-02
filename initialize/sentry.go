@@ -10,8 +10,8 @@ package system
 
 import (
 	"github.com/getsentry/sentry-go"
-	"github.com/go-xmodule/module/config"
-	"github.com/go-xmodule/utils/utils/xlog"
+	"github.com/x-module/module/config"
+	"github.com/x-module/utils/utils/xlog"
 )
 
 // InitializeSentry 初始化Sentry

@@ -13,8 +13,8 @@ package models
 // import (
 // 	"encoding/json"
 // 	"fmt"
-// 	"github.com/go-xmodule/module/global"
-// 	"github.com/go-xmodule/module/utils"
+// 	"github.com/x-module/module/global"
+// 	"github.com/x-module/module/utils"
 // 	"github.com/jinzhu/gorm"
 // )
 //

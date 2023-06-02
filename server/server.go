@@ -11,8 +11,8 @@ package server
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/go-xmodule/module/global"
-	"github.com/go-xmodule/utils/utils/xlog"
+	"github.com/x-module/module/global"
+	"github.com/x-module/utils/utils/xlog"
 )
 
 type hockFun func(engine *gin.Engine)
