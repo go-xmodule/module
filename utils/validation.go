@@ -12,13 +12,11 @@ import (
 	"errors"
 	"fmt"
 	jsoniter "github.com/json-iterator/go"
-	"github.com/json-iterator/go/extra"
 	"reflect"
 	"strings"
 )
 
 func Validation(requestParams []byte, obj any) error {
-	extra.RegisterFuzzyDecoders()
 	err := jsoniter.UnmarshalFromString(string(requestParams), &obj)
 	if err != nil {
 		return err
