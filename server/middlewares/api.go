@@ -13,6 +13,7 @@ import (
 	"github.com/golang-module/carbon"
 	"github.com/x-module/module/config"
 	"github.com/x-module/module/global"
+	utils2 "github.com/x-module/utils/utils"
 	"github.com/x-module/utils/utils/request"
 	utils "github.com/x-module/utils/utils/response"
 	"github.com/x-module/utils/utils/xlog"
@@ -27,6 +28,7 @@ type ApiMiddleware struct {
 func NewApiMiddleware(apiConfig config.Api) *ApiMiddleware {
 	middle := new(ApiMiddleware)
 	middle.apiConfig = apiConfig
+	utils2.JsonDisplay(middle.apiConfig)
 	return middle
 }
 
@@ -38,38 +40,31 @@ func (a *ApiMiddleware) Middleware() gin.HandlerFunc {
 func (a *ApiMiddleware) checkSign(context *gin.Context) {
 	ts := context.Query("ts")
 	sign := context.Query("sign")
-	xlog.Logger.Debug("--------------------ts:", ts, "  sign:", sign)
-
 	if ts == "" || sign == "" {
-		xlog.Logger.Debug("--------------------ts or sign is null")
+		xlog.Warn(global.NoSignParamsErr.String())
 		utils.ApiResponse(context, global.NoSignParamsErr)
 		context.Abort()
 		return
 	}
 	timestamp, err := strconv.ParseInt(ts, 10, 64)
 	if err != nil {
-		xlog.Logger.Debug("-------------------- timestamp error")
-
+		xlog.Warn(global.NoSignParamsErr.String())
 		utils.ApiResponse(context, global.NoSignParamsErr)
 		context.Abort()
 		return
 	}
 	// 接口请求超时超过系统超时
 	if carbon.Now().Timestamp()-timestamp > a.apiConfig.Overtime {
-		xlog.Logger.Debug("--------------------接口请求超时超过系统超时")
-
+		xlog.Warn(global.RequestOvertimeErr.String())
 		utils.ApiResponse(context, global.RequestOvertimeErr)
 		context.Abort()
 		return
 	}
 	newSign := request.RequestSign(ts, a.apiConfig.Secret)
 	if newSign != sign {
-		xlog.Logger.Debug("-------------sa.apiConfig.Secret:", a.apiConfig.Secret, "  ts:", a.apiConfig.Secret, "  sign:", sign, " newSign:", newSign)
-		xlog.Logger.Debug("-------------------- 签名错误")
-
+		xlog.Warn(global.SignErr.String())
 		utils.ApiResponse(context, global.SignErr)
 		context.Abort()
 		return
 	}
-
 }
