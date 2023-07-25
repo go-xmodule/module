@@ -27,6 +27,14 @@ type Upload struct {
 	UploadDir string `yaml:"uploadDir"`
 	TempDir   string `yaml:"tempDir"`
 }
+type Service struct {
+	Ip         string `yaml:"ip"`
+	Port       int    `yaml:"port"`
+	Name       string `yaml:"name"`
+	Version    string `yaml:"version"`
+	Mode       string `yaml:"mode"`
+	JaegerAddr string `yaml:"jaegerAddr"`
+}
 
 // Log 日志设置
 type Log struct {

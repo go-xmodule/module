@@ -23,4 +23,21 @@ const (
 	NoticeServiceName = "go.micro.api.notice"
 	// ConfigServiceName 配置服务名称
 	ConfigServiceName = "go.micro.api.config"
+	// RewardServiceName 玩家奖励服务
+	RewardServiceName = "go.micro.api.reward"
+	// PassServiceName 玩家通行证服务
+	PassServiceName = "go.micro.api.pass"
 )
+
+// ServicesMap 服务名称映射
+var ServicesMap = map[string]string{
+	"skin":    SkinServiceName,
+	"player":  PlayerServiceName,
+	"pendant": PendantServiceName,
+	"badge":   BadgeServiceName,
+	"buff":    BuffServiceName,
+	"notice":  NoticeServiceName,
+	"config":  ConfigServiceName,
+	"reward":  RewardServiceName,
+	"pass":    PassServiceName,
+}

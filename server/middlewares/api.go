@@ -13,7 +13,6 @@ import (
 	"github.com/golang-module/carbon"
 	"github.com/x-module/module/config"
 	"github.com/x-module/module/global"
-	utils2 "github.com/x-module/utils/utils"
 	"github.com/x-module/utils/utils/request"
 	utils "github.com/x-module/utils/utils/response"
 	"github.com/x-module/utils/utils/xlog"
@@ -28,7 +27,6 @@ type ApiMiddleware struct {
 func NewApiMiddleware(apiConfig config.Api) *ApiMiddleware {
 	middle := new(ApiMiddleware)
 	middle.apiConfig = apiConfig
-	utils2.JsonDisplay(middle.apiConfig)
 	return middle
 }
 
