@@ -27,6 +27,12 @@ const (
 	RewardServiceName = "go.micro.api.reward"
 	// PassServiceName 玩家通行证服务
 	PassServiceName = "go.micro.api.pass"
+	// ShopServiceName 商城服务
+	ShopServiceName = "go.micro.api.shop"
+	//	PropServiceName 道具服务
+	PropServiceName = "go.micro.api.prop"
+	// ReportServiceName 上报服务
+	ReportServiceName = "go.micro.api.report"
 )
 
 // ServicesMap 服务名称映射
@@ -40,4 +46,7 @@ var ServicesMap = map[string]string{
 	"config":  ConfigServiceName,
 	"reward":  RewardServiceName,
 	"pass":    PassServiceName,
+	"shop":    ShopServiceName,
+	"prop":    PropServiceName,
+	"report":  ReportServiceName,
 }
