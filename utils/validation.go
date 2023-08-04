@@ -33,6 +33,12 @@ func Validation(requestParams []byte, obj any) error {
 			checkErrors = append(checkErrors, fmt.Sprintf(" %s:%s", t.Field(i).Name, errMsg))
 		}
 	}
+	// 判断obj中时是否存在为空的字段且字段设置了default值，如果存在则将default值赋值给obj
+	for i := 0; i < t.NumField(); i++ {
+		if t.Field(i).Tag.Get("binding") == "required" && t1.Elem().Field(i).String() == "" && t.Field(i).Tag.Get("default") != "" {
+			t1.Elem().Field(i).SetString(t.Field(i).Tag.Get("default"))
+		}
+	}
 	if len(checkErrors) == 0 {
 		return nil
 	} else {

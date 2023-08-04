@@ -13,6 +13,7 @@ require (
 	github.com/x-module/utils v0.2.0
 	go-micro.dev/v4 v4.10.2
 	golang.org/x/crypto v0.7.0
+	gorm.io/gen v0.3.23
 
 )
 
