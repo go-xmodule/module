@@ -33,6 +33,8 @@ const (
 	PropServiceName = "go.micro.api.prop"
 	// ReportServiceName 上报服务
 	ReportServiceName = "go.micro.api.report"
+	// MicaServiceName mica服务
+	MicaServiceName = "go.micro.api.mica"
 )
 
 // ServicesMap 服务名称映射
@@ -49,4 +51,5 @@ var ServicesMap = map[string]string{
 	"shop":    ShopServiceName,
 	"prop":    PropServiceName,
 	"report":  ReportServiceName,
+	"mica":    MicaServiceName,
 }
