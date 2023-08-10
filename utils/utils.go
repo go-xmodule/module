@@ -28,9 +28,8 @@ func FilterSearchField(s interface{}) map[string]interface{} {
 	_ = json.Unmarshal(jsonStr, &m)
 	delete(m, "PageIndex")
 	delete(m, "PageSize")
-
 	for key, value := range m {
-		if value == "" {
+		if value == nil || value == "" || value == 0 {
 			delete(m, key)
 		}
 	}
