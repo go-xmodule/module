@@ -37,22 +37,25 @@ const (
 	MicaServiceName = "go.micro.api.mica"
 	// TaskServiceName 任务服务
 	TaskServiceName = "go.micro.api.task"
+	// CollectionServiceName 收集服务
+	collectionServiceName = "go.micro.api.collection"
 )
 
 // ServicesMap 服务名称映射
 var ServicesMap = map[string]string{
-	"skin":    SkinServiceName,
-	"player":  PlayerServiceName,
-	"pendant": PendantServiceName,
-	"badge":   BadgeServiceName,
-	"buff":    BuffServiceName,
-	"notice":  NoticeServiceName,
-	"config":  ConfigServiceName,
-	"reward":  RewardServiceName,
-	"pass":    PassServiceName,
-	"shop":    ShopServiceName,
-	"prop":    PropServiceName,
-	"report":  ReportServiceName,
-	"mica":    MicaServiceName,
-	"task":    TaskServiceName,
+	"skin":       SkinServiceName,
+	"player":     PlayerServiceName,
+	"pendant":    PendantServiceName,
+	"badge":      BadgeServiceName,
+	"buff":       BuffServiceName,
+	"notice":     NoticeServiceName,
+	"config":     ConfigServiceName,
+	"reward":     RewardServiceName,
+	"pass":       PassServiceName,
+	"shop":       ShopServiceName,
+	"prop":       PropServiceName,
+	"report":     ReportServiceName,
+	"mica":       MicaServiceName,
+	"task":       TaskServiceName,
+	"collection": collectionServiceName,
 }
