@@ -41,6 +41,8 @@ const (
 	QueryServiceName = "go.micro.api.query"
 	// EventServiceName 事件服务
 	EventServiceName = "go.micro.api.event"
+	// WebServiceName Web服务
+	WebServiceName = "go.micro.api.web"
 )
 
 // ServicesMap 服务名称映射
@@ -61,4 +63,5 @@ var ServicesMap = map[string]string{
 	"collection": collectionServiceName,
 	"query":      QueryServiceName,
 	"event":      EventServiceName,
+	"web":        WebServiceName,
 }
