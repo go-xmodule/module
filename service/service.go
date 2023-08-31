@@ -36,11 +36,11 @@ const (
 	// TaskServiceName 任务服务
 	TaskServiceName = "go.micro.api.task"
 	// CollectionServiceName 收集服务
-	collectionServiceName = "go.micro.api.collection"
-	// QueryServiceName 队列服务
-	QueryServiceName = "go.micro.api.query"
-	// EventServiceName 事件服务
-	EventServiceName = "go.micro.api.event"
+	CollectionServiceName = "go.micro.api.collection"
+	//// QueryServiceName 队列服务
+	//QueryServiceName = "go.micro.api.query"
+	//// EventServiceName 事件服务
+	//EventServiceName = "go.micro.api.event"
 	// WebServiceName Web服务
 	WebServiceName = "go.micro.api.web"
 )
