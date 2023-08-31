@@ -44,24 +44,3 @@ const (
 	// WebServiceName Web服务
 	WebServiceName = "go.micro.api.web"
 )
-
-// ServicesMap 服务名称映射
-var ServicesMap = map[string]string{
-	"skin":       SkinServiceName,
-	"player":     PlayerServiceName,
-	"pendant":    PendantServiceName,
-	"badge":      BadgeServiceName,
-	"buff":       BuffServiceName,
-	"notice":     NoticeServiceName,
-	"config":     ConfigServiceName,
-	"reward":     RewardServiceName,
-	"pass":       PassServiceName,
-	"shop":       ShopServiceName,
-	"prop":       PropServiceName,
-	"mica":       MicaServiceName,
-	"task":       TaskServiceName,
-	"collection": collectionServiceName,
-	"query":      QueryServiceName,
-	"event":      EventServiceName,
-	"web":        WebServiceName,
-}
