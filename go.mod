@@ -6,11 +6,11 @@ require (
 	github.com/druidcaesa/gotool v0.0.0-20220613023420-645c641d1304
 	github.com/getsentry/sentry-go v0.20.0
 	github.com/gin-contrib/sessions v0.0.5
-	github.com/gin-gonic/gin v1.8.2
+	github.com/gin-gonic/gin v1.9.1
 	github.com/golang-module/carbon v1.7.3
 	github.com/json-iterator/go v1.1.12
 	github.com/urfave/cli/v2 v2.24.4
-	github.com/x-module/utils v0.2.0
+	github.com/x-module/utils v0.2.6
 	go-micro.dev/v4 v4.10.2
 	golang.org/x/crypto v0.7.0
 	gorm.io/gen v0.3.23

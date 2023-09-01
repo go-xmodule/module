@@ -29,7 +29,7 @@ type Connect struct {
 	SslMode  string `yaml:"sslmode"`
 	TimeZone string `yaml:"timeZone"`
 	Charset  string `yaml:"charset"`
-	Mode     string `yaml:"mode"`
+	LogLevel int    `yaml:"logLevel"`
 }
 
 // DatabaseConfigFile Database配置文件

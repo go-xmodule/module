@@ -24,7 +24,7 @@ func InitializeDatabase(conf config.Database) {
 		DbName:      conf.Database.DbName,
 		MaxOpenConn: conf.MaxOpenConn,
 		MaxIdleConn: conf.MaxIdleConn,
-		Mode:        conf.Database.Mode,
+		LogLevel:    conf.Database.LogLevel,
 	}
 	handler.InitializeMysql(LinkParams)
 }
