@@ -20,6 +20,13 @@ type Api struct {
 	Overtime int64  `yaml:"overtime"`
 }
 
+type ApiServer struct {
+	Protocol string `yaml:"protocol"`
+	Domain   string `yaml:"domain"`
+	Secret   string `yaml:"secret"`
+	Port     int    `yaml:"port"`
+}
+
 // ApiConfigFile Api配置文件
 const ApiConfigFile = "api.yaml"
 

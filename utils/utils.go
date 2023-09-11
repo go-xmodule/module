@@ -14,6 +14,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/sirupsen/logrus"
+	"github.com/x-module/module/config"
 	"github.com/x-module/utils/global"
 	"github.com/x-module/utils/utils"
 	"github.com/x-module/utils/utils/xlog"
@@ -21,6 +22,11 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
+
+// GetImageUrl 格式化&拼接图片地址
+func GetImageUrl(config config.ApiServer, path string) string {
+	return fmt.Sprintf("%s://%s:%d/%s", config.Protocol, config.Domain, config.Port, path)
+}
 
 func Logger(ctx context.Context) *logrus.Entry {
 	res, _ := metadata.FromContext(ctx)
