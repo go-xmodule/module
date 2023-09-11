@@ -9,9 +9,62 @@
 package utils
 
 import (
+	"context"
 	"encoding/json"
+	"errors"
+	"fmt"
+	"github.com/sirupsen/logrus"
+	"github.com/x-module/utils/global"
+	"github.com/x-module/utils/utils"
+	"github.com/x-module/utils/utils/xlog"
+	"go-micro.dev/v4/metadata"
 	"golang.org/x/crypto/bcrypt"
+	"gorm.io/gorm"
 )
+
+func Logger(ctx context.Context) *logrus.Entry {
+	res, _ := metadata.FromContext(ctx)
+	utils.JsonDisplay(res)
+	return xlog.Logger.WithFields(logrus.Fields{
+		"playerId":  res["Playerid"],
+		"requestId": res["Requestid"],
+		"server":    "player",
+	})
+}
+
+// HasQueryErr 数据库查询异常
+func HasQueryErr(ctx context.Context, err error, errCode fmt.Stringer) bool {
+	if err == nil {
+		return false
+	}
+	if errors.Is(err, gorm.ErrRecordNotFound) {
+		msg := fmt.Sprintf("%s desc:%s", errCode.String(), global.NoRecordErr.String())
+		Logger(ctx).WithField(global.ErrField, err).Warn(msg)
+	} else {
+		Logger(ctx).WithField(global.ErrField, err).Error(errCode.String())
+	}
+	return true
+}
+func HasErr(ctx context.Context, err error, errCode fmt.Stringer) bool {
+	if err != nil {
+		Logger(ctx).WithField("err", err).Error(errCode.String())
+		return true
+	}
+	return false
+}
+
+// HasWar 通用异常处理
+func HasWar(ctx context.Context, err error, errCode fmt.Stringer) bool {
+	if err != nil {
+		Logger(ctx).WithField("err", err).Warn(errCode.String())
+		return true
+	}
+	return false
+}
+
+func CatchErr(ctx context.Context, err error, errCode fmt.Stringer) bool {
+	return HasErr(ctx, err, errCode)
+}
 
 func CompareHashAndPassword(e string, p string) (bool, error) {
 	err := bcrypt.CompareHashAndPassword([]byte(e), []byte(p))
