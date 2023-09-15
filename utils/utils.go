@@ -16,7 +16,6 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/x-module/module/config"
 	"github.com/x-module/utils/global"
-	"github.com/x-module/utils/utils"
 	"github.com/x-module/utils/utils/xlog"
 	"go-micro.dev/v4/metadata"
 	"golang.org/x/crypto/bcrypt"
@@ -30,7 +29,6 @@ func GetImageUrl(config config.ApiServer, path string) string {
 
 func Logger(ctx context.Context) *logrus.Entry {
 	res, _ := metadata.FromContext(ctx)
-	utils.JsonDisplay(res)
 	return xlog.Logger.WithFields(logrus.Fields{
 		"playerId":  res["Playerid"],
 		"requestId": res["Requestid"],
